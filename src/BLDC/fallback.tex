@@ -5,7 +5,7 @@
 \subsection{Fallback}
 \fi
 Ist der Einsatz des vorgesehenen BLDC-Treibers nicht möglich, so muss eine
-alternative Ansteuerung erfolgen. Eine solche kann mittels handelsüblicher
+alternative Ansteuerung erfolgen. Eine solche kann mit einer handelsüblichen
 Steuerungen aus dem Modellbau erfolgen. Eine solche BLDC-Steuerung ist per
 PWM angesteuert, wobei die im Modellbau üblichen Signale gelten, wie in der
 Abbildung \ref{fig:rc-pwm} dargestellt.
@@ -29,9 +29,9 @@ Abbildung \ref{fig:rc-pwm} dargestellt.
 
 Der Einsatz von Modellbausteuerungen für BLDC-Motoren erfordert ein
 Feedback der Drehzahl, da diese lediglich eine Steuerung darstellen. Die
-Drehzahlregelung muss über eine externe Einheit erfolgen, wie etwa einen
-Mikrocontroller. Solche BLDC-Steuerungen werden im Modellbau typisch als
-\emph{Regler} vertrieben und sind auch für hohe Leistungen relativ günstig.
+Drehzahlregelung muss über eine externe Einheit erfolgen, beispielsweise einen
+Mikrocontroller. Solche BLDC-Steuerungen werden im Modellbau typischerweise als
+\emph{Regler} vertrieben und sind auch für hohe Leistungen durchaus preiswert.
 
 \ifSTANDALONE
 \subsection{Konzeptbeschreibung}
@@ -41,10 +41,10 @@ Mikrocontroller. Solche BLDC-Steuerungen werden im Modellbau typisch als
 \fi
 Um eine Regelung der Drehzahl des BLDC-Motors zu ermöglichen, bedarf es eines
 Feebacks, welches die Drehzahl wiedergibt. Dies ist mit einem
-Hall-Effekt-Schalter zu realiseren. Dieser reagiert auf die Magnetfelder,
+Hall-Effekt-Schalter zu realisieren. Dieser reagiert auf die Magnetfelder,
 welche durch Magnete auf dem Rotationskörper gegeben sind. Aus solch einem
-Aufbau resultiert ein Feeback, welches mittels Impulsen einen Segmentdurchlauf
-des Rotationskörpers wiedergibt wie in der Abbildung \ref{fig:fallback-sketch}
+Aufbau resultiert ein Feedback, welches mit Impulsen einen Segmentdurchlauf
+des Rotationskörpers wiedergibt, wie in Abbildung \ref{fig:fallback-sketch}
 dargestellt.
 \begin{figure}[h!]
 	\centering
@@ -53,10 +53,10 @@ dargestellt.
 	\label{fig:fallback-sketch}
 \end{figure}
 Dieses Feedback wird mittels eines Mikrocontrollers ausgewertet und regelt
-damit den Input der Steuerung mittels des PWM-Signals bzw. der Impulsdauer.
+damit den Input der Steuerung mit dem PWM-Signal beziehungsweise der Impulsdauer.
 Das Einlesen einer Flanke, die Zeitmessung bis zur nächsten Flanke und die
-Stellung eines PWM-Signals sind Tasks, welche übliche Mikrocontroller direkt
+Stellung eines PWM-Signals, sind Tasks welche übliche Mikrocontroller direkt
 durch ihre Peripherie-Module ausführen können. Dies ermöglicht eine einfache
 Adaption in ein bestehendes Modell, denn es werden lediglich zwei Timer-IO
-für dieses Fallback verwendet. Je nach Mikrocontroller ist ein Pegelwandler
-notwendig für die PWM-Signale.
+für diesen Fallback verwendet. Je nach Mikrocontroller ist ein Pegelwandler
+für die PWM-Signale notwendig.

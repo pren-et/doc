@@ -18,21 +18,19 @@
     \ifEMBED
         \begin{wrapfigure}{r}{0.50\textwidth}
            	\includegraphics[scale=0.45]{\EtPath/Bilder/ZeitlicheHallSensorAnsteuerung.jpg}
-           	\caption[Zeitliche Darstellung der Ansteuerung mit 
-                Hall-Sensoren]{Zeitliche Darstellung der Ansteuerung mit 
-                Hall-Sensoren \cite{AppNote:BrushlessuC}}
+           	\caption[Zeitliche Darstellung der Ansteuerung mit Hall-Sensoren]
+           	{Zeitliche Darstellung der Ansteuerung mit Hall-Sensoren \cite{AppNote:BrushlessuC}}
            	\centering
             \label{abb:ZeitlicheAnsteuerungBrushlessMotor}
         \end{wrapfigure}
     \fi
-        Brushless-Motoren sind Synchron-Drehstrom-Motoren. Das heisst, sie 
-        werden mittels eines kontinuierlichen Drehfeldes in Bewegung gesetzt. 
-        Dabei ist darauf zu achten, dass der Läufer dem Drehfeld synchron 
-        folgen kann, daher der Name. Falls der Läufer dem Drehfeld aus irgend 
-        einem Grund nicht folgen kann, so wird keine Spannung vom Rotor in die 
-        Statorwicklungen induziert, die der Erregerspannung entgegenwirkt. 
-        Daraus folgt, dass ein immenser Strom fliesst, der nur von der 
-        Wicklungsimpedanz des Motors begrenzt wird.\\
+        Brushless-Motoren (BLDC-Motoren) sind Synchron-Drehstrom-Motoren. Das bedeutet, sie
+        werden mittels eines kontinuierlichen magnetischen Drehfeldes in Bewegung gesetzt.
+        Dabei ist darauf zu achten, dass der Läufer dem Drehfeld synchron folgen kann,
+        daher auch die Namensbezeichnung des Motors. Falls der Läufer dem Drehfeld nicht
+        folgen kann, wird keine Spannung vom Rotor in die Statorwicklungen induziert, die
+        der Erregerspannung entgegenwirkt. Daraus folgt, dass ein immenser Strom fliesst, 
+        der nur von der Wicklungsimpedanz des Motors begrenzt wird.\\
         \ifSTANDALONE
            \begin{figure}[h!]
                \centering
@@ -46,33 +44,32 @@
       \fi
        \\
         Es gibt hauptsächlich drei Methoden das Drehfeld zu generieren und zu 
-        regeln. Die eine und einfache Methode ist die Zwangskommutierung. 
+        regeln. Die einfachste Methode ist die Zwangskommutierung: 
         Dabei wird ein Drehfeld erzeugt und dem Motor aufgezwungen. Der Läufer 
-        muss dem Drehfeld folgen können. Dabei ist ein maximaler Winkel 
-        zwischen dem Feld und dem Läufer von 90$^\circ$ zulässig. Wird deser 
-        Winkel überschritten, wird der Motor zum Stillstand kommen mit den 
-        erwähnten Folgen.\\
+        muss dem Drehfeld folgen, der maximal zulässige Winkel von 90$^\circ$
+        zwischen dem Feld und dem Läufer muss eingehalten werden. Wird dieser 
+        Winkel überschritten, kommt der Motor zum Stillstand.\\
         \\
-        Die zweite Methode zur Regelung ist mittels drei Hallsensoren, die im 
+        Die zweite Methode zur Regelung des Motors verwendet drei Hallsensoren, die im 
         Motor integriert sind. Dies macht den Motor aufwändiger und 
         dementsprechend teurer. Die Regelung mit Hallsensoren ist 
-        verhältnismässig einfach, da je nach den Signalen die einzelnen Spulen 
+        verhältnismässig einfach, da nach den Signalen die einzelnen Spulen 
         direkt angesteuert werden können. Der Zusammenhang zwischen der 
-        Ansteuerung und den Hall-Sensorsignalen ist in Abbildung 
+        Ansteuerung und den Hallsensor-Signalen ist in Abbildung 
         \ref{abb:ZeitlicheAnsteuerungBrushlessMotor} ersichtlich. Dabei stehen 
         $U$, $V$ und $W$ für die Phasenströme und $H_1$, $H_2$ und $H_3$ für die 
         entsprechenden Signale der Hallsensoren. Dieser Darstellung ist zu 
-        entnehmen, dass jedesmal, wenn ein Hallsensor eine Änderung anzeigt, 
+        entnehmen, wenn ein Hallsensor eine Änderung anzeigt, 
         ein Nulldurchgang im entsprechenden Stromverlauf stattgefunden hat. 
         Dies ist der Zeitpunkt, zu dem die Kommutierung durchgeführt werden 
         muss.\\
         \\
-        Die dritte Möglichkeit ist, indem man einen virtuellen Sternpunkt 
-        bildet und mittels Komparatoren die Sternpunktdurchgänge detektiert. 
+        Für die dritte Möglichkeit bildet man einen virtuellen Sternpunkt 
+        und detektiert mit Komparatoren die Sternpunktdurchgänge. 
         In der Controller-Logik muss der Zeitunterschied der Kommutierung 
         bis zum durchschreiten des Sternpunktes gemessen werden. Diese Zeit 
-        muss nochmal abgewartet werden bevor die Kommutierung durchgeführt 
-        werden.
+        muss noch einmal abgewartet werden, bevor die Kommutierung durchgeführt 
+        wird.
     \ifSTANDALONE
     \subsection{Neuer Ansatz}
     \fi
@@ -88,11 +85,11 @@
             \label{abb:PrinzipRekonstruktion}
             \end{wrapfigure}
         \fi
-        In einem modifizierten Ansatz wird versucht, ob die Hall-Sensorsignale 
-        aus den Ansteuerungen des Motors gewonnen werden können. Hierzu wird 
-        eine Schaltung[h!] pro Phase benötigt, um die Nulldurchgänge beim 
+        In einem modifizierten Ansatz wird versucht, die Hallsensor-Signale 
+        aus den Ansteuerungen des Motors zu gewinnen. Hierzu wird 
+        eine Schaltung pro Phase benötigt, um die Nulldurchgänge beim 
         virtuellen Sternpunkt detektieren zu können. Die Abbildung 
-        \ref{abb:PrinzipRekonstruktion} zeigt die Schaltung, mit der dies 
+        \ref{abb:PrinzipRekonstruktion} zeigt die Schaltung, mit der dieser Ansatz 
         realisiert werden kann. 
         \ifSTANDALONE
 	\begin{figure}[h!]
@@ -102,16 +99,16 @@
             \label{abb:PrinzipRekonstruktion}
         \end{figure}
         \fi
-        Mit dem Flip-Flop kann die PWM aus dem 
+        Mit dem Flip-Flop aus Abbildung \ref{abb:PrinzipRekonstruktion} kann die PWM aus dem 
         Sensorsignal unterdrückt werden. Diese rekonstruierten 
-        Hall-Sensor-Signale können direkt logischen verknüpft und genutzt 
-        werden, um den Motor mittels einer Dreiphasen-H-Brücke anzusteuern 
+        Hallsensor-Signale können direkt logisch verknüpft und genutzt 
+        werden, um den Motor mit einer Dreiphasen-H-Brücke anzusteuern 
         \cite{HSLU:Pluess}. Anhand des zeitlichen Verlaufs, der aus Abbildung 
-        \ref{abb:ZeitlicheAnsteuerungBrushlessMotor} zu entnehmen ist, und der 
-        Ansteuerung einer H-Brücke ergibt sich die Wahrheitstabelle, die in 
-        Abbildung \ref{abb:WahrheitstabelleAnsteuerung} abgebildet ist. Das 
+        \ref{abb:ZeitlicheAnsteuerungBrushlessMotor} zu entnehmen ist und der 
+        Ansteuerung einer H-Brücke, ergibt sich die Wahrheitstabelle, die in 
+        Abbildung \ref{abb:WahrheitstabelleAnsteuerung} ersichtlich ist. Das 
         Signal $U_h$ symbolisiert den Highside-Transistor der Phase U auf der 
-        H-Brücke und die $U_l$ entspricht dem Lowside-Transistor.\\      
+        H-Brücke und die Spalte $U_l$ entspricht dem Lowside-Transistor.\\      
         
         \begin{figure}[h!]
             \begin{tabular}{ccc||cc|cc|cc||c}
