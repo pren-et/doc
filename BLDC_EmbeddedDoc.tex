@@ -1,0 +1,39 @@
+\documentclass[a4paper,10pt,fleqn]{article}
+
+\usepackage{src/common/layout}
+
+\input{src/common/booleans}
+
+\setboolean{EMBED}{true}
+
+\title{Dokumentation BLDC}
+\newcommand{\EtPath}{src/BLDC}
+\newcommand{\DasAndereTeam}{T27 }
+\newcommand{\BLDCTeams}{T27 und T32}
+\newcommand{\BLDCcollab}{Dieses Kapitel ist eine Zusammenarbeit der Gruppen \BLDCTeams. }
+
+\begin{document}
+
+\maketitle
+\clearpage
+\tableofcontents
+\clearpage
+
+\input{src/common/Hardwarezusammenarbeit}
+\newpage
+\input{src/BLDC/Ansteuerung}
+\newpage
+\input{src/BLDC/Testbericht}
+\newpage
+\input{src/BLDC/fallback}
+\newpage
+\input{src/BLDC/encoder}
+\clearpage
+
+\begin{flushleft}
+    \renewcommand{\refname}{Literatur- und Quellenverzeichnis}
+%        \{\refname}{Quellenverzeichnis}
+    \bibliography{src/common/ET-Gruppe_Source}{} %!!! Kein Leerzeichen nach dem , !!!!
+\end{flushleft}
+
+\end{document}

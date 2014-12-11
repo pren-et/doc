@@ -1,0 +1,17 @@
+*.aux
+*.bbl
+*.blg
+BLDC_EmbeddedDoc.log
+*.out
+BLDC_EmbeddedDoc.pdf
+BLDC_EmbeddedDoc.synctex.gz
+*.toc
+*.lof
+BLDC_StandaloneDoc.log
+BLDC_StandaloneDoc.lot
+BLDC_StandaloneDoc.pdf
+BLDC_StandaloneDoc.synctex.gz
+Stepper_StandaloneDoc.log
+Stepper_StandaloneDoc.synctex.gz
+Stepper_StandaloneDoc.pdf
+Stepper_StandaloneDoc.lot
