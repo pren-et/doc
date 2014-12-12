@@ -1,17 +1,55 @@
-STANDALONE = StandaloneDoc
-EMBEDDED = EmbeddedDoc
-DOCUMENT = EmbeddedDoc
+BLDC_STANDALONE     = BLDC_StandaloneDoc
+BLDC_EMBEDDED       = BLDC_EmbeddedDoc
+STEPPER_STANDALONE  = Stepper_StandaloneDoc
+STEPPER_EMBEDDED    = Stepper_EmbeddedDoc
+DOCUMENT            = BLDC_EmbeddedDoc
 
 .PHONY: all standalone embedded doc single bib clean
 
-standalone: DOCUMENT=$(STANDALONE)
-embedded: DOCUMENT=$(EMBEDDED)
+bldc_standalone:    DOCUMENT=$(BLDC_STANDALONE)
+bldc_embedded:      DOCUMENT=$(BLDC_EMBEDDED)
+stepper_standalone: DOCUMENT=$(STEPPER_STANDALONE)
+stepper_embedded:   DOCUMENT=$(STEPPER_EMBEDDED)
 
-all:	standalone embedded
+all:	bldc_standalone bldc_embedded stepper_standalone stepper_embedded
 
-standalone: single bib doc clean
 
-embedded: single bib doc clean
+# bldc_standalone: single bib doc clean
+# 
+# bldc_embedded: single bib doc clean
+# 
+# stepper_standalone: single bib doc clean
+# 
+# stepper_embedded: single bib doc clean
+
+bldc_standalone:
+	pdflatex $(BLDC_STANDALONE).tex
+	pdflatex $(BLDC_STANDALONE).tex
+	pdflatex $(BLDC_STANDALONE).tex
+	bibtex   $(BLDC_STANDALONE).aux
+	pdflatex $(BLDC_STANDALONE).tex
+
+bldc_embedded:
+	pdflatex $(BLDC_EMBEDDED).tex
+	pdflatex $(BLDC_EMBEDDED).tex
+	pdflatex $(BLDC_EMBEDDED).tex
+	bibtex   $(BLDC_EMBEDDED).aux
+	pdflatex $(BLDC_EMBEDDED).tex
+
+stepper_standalone:
+	pdflatex $(STEPPER_STANDALONE).tex
+	pdflatex $(STEPPER_STANDALONE).tex
+	pdflatex $(STEPPER_STANDALONE).tex
+	bibtex   $(STEPPER_STANDALONE).aux
+	pdflatex $(STEPPER_STANDALONE).tex
+
+stepper_embedded:
+	pdflatex $(STEPPER_EMBEDDED).tex
+	pdflatex $(STEPPER_EMBEDDED).tex
+	pdflatex $(STEPPER_EMBEDDED).tex
+	bibtex   $(STEPPER_EMBEDDED).aux
+	pdflatex $(STEPPER_EMBEDDED).tex
+
 
 doc:
 	pdflatex $(DOCUMENT).tex
