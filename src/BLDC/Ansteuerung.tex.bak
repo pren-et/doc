@@ -163,7 +163,7 @@
     \paragraph{Schnittstelle}$~~$\vspace{2mm}\\
     \fi
         Die Kommunikation zur Motoransteuerung erfolgt mittels SPI. Die benötigen Pins sind in der
-        Tabelle \ref{abb:SchnittstelleBrushlessBoard} ersichtlich.
+        Abbildung \ref{abb:SchnittstelleBrushlessBoard} ersichtlich.
         \begin{table}[h!]
             \begin{tabular}{ll}
                 Pin     & Funktion \\
