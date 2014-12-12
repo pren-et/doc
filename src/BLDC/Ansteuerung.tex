@@ -24,13 +24,25 @@
             \label{abb:ZeitlicheAnsteuerungBrushlessMotor}
         \end{wrapfigure}
     \fi
-        Brushless-Motoren (BLDC-Motoren) sind Synchron-Drehstrom-Motoren. Das bedeutet, sie
-        werden mittels eines kontinuierlichen magnetischen Drehfeldes in Bewegung gesetzt.
-        Dabei ist darauf zu achten, dass der Läufer dem Drehfeld synchron folgen kann,
-        daher auch die Namensbezeichnung des Motors. Falls der Läufer dem Drehfeld nicht
-        folgen kann, wird keine Spannung vom Rotor in die Statorwicklungen induziert, die
-        der Erregerspannung entgegenwirkt. Daraus folgt, dass ein immenser Strom fliesst, 
-        der nur von der Wicklungsimpedanz des Motors begrenzt wird.\\
+        Brushless-Motoren (BLDC-Motoren) sind Synchron-Drehstrom-Motoren. Das 
+        bedeutet, sie werden mittels eines kontinuierlichen magnetischen 
+        Drehfeldes in Bewegung gesetzt.  Dabei ist darauf zu achten, dass der 
+        Läufer dem Drehfeld synchron folgen kann, daher auch die 
+        Namensbezeichnung des Motors. Falls der Läufer dem Drehfeld nicht 
+        folgen kann, wird keine Spannung vom Rotor in die Statorwicklungen 
+        induziert, die der Erregerspannung entgegenwirkt. Daraus folgt, dass 
+        ein immenser Strom fliesst, der nur von der Wicklungsimpedanz des 
+        Motors begrenzt wird. Das Drehmoment ist abhängig vom Polradwinkel und 
+        erreicht sein Maximum bei einem Polradwinkel von 90$^\circ$. Die 
+        Kommutierung wird entweder als Sinuskommutierung oder als 
+        Blockkommutierung ausgeführt. Die Sinuskommutierung bildet die 
+        Sinusform eines dreiphasigen Netzes nach. Die Sinusform kann mit einem 
+        Rechtecksignal angenähert werden. Dabei spricht man von einer 
+        Blockkommutierung. Diese ist einfacher zu realisieren, aber erreicht 
+        nicht das selbe Drehmoment wie eine Sinuskommutierung. In diesem 
+        Projekt wird aufgrund der einfacheren implementierung eine 
+        Blockkommutierung realisiert. \\
+        \\
         \ifSTANDALONE
            \begin{figure}[h!]
                \centering
@@ -43,7 +55,7 @@
            \end{figure}
       \fi
        \\
-        Es gibt hauptsächlich drei Methoden das Drehfeld zu generieren und zu 
+        Es gibt hauptsächlich drei Methoden um das Drehfeld zu generieren und zu 
         regeln. Die einfachste Methode ist die Zwangskommutierung: 
         Dabei wird ein Drehfeld erzeugt und dem Motor aufgezwungen. Der Läufer 
         muss dem Drehfeld folgen, der maximal zulässige Winkel von 90$^\circ$
@@ -69,7 +81,8 @@
         In der Controller-Logik muss der Zeitunterschied der Kommutierung 
         bis zum durchschreiten des Sternpunktes gemessen werden. Diese Zeit 
         muss noch einmal abgewartet werden, bevor die Kommutierung durchgeführt 
-        wird.
+        wird. Falls der Motor über einen Anschluss für den Sternpunkt 
+        verfügt, kann auch dieser verwendet werden. 
     \ifSTANDALONE
     \subsection{Neuer Ansatz}
     \fi
