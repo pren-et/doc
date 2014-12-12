@@ -158,3 +158,20 @@
             $U_l = \bar{H_1} \wedge H_2$ & $V_l = \bar{H_2} \wedge H_3$ & $W_l = H_1 \wedge \bar{H_3}$
         \end{tabular}
         \fi
+    \ifSTANDALONE
+    \subsection{Schnittstelle}
+    \fi
+    \ifEMBED
+    \subsubsection{Schnittstelle}
+    \fi
+        Die Kommunikation zur Motoransteuerung erfolgt mittels SPI (Serial 
+        Peripheral Interface). \\
+        \begin{zebratabular}{ll}
+            \rowcolor{gray} Pin & Funktion \\
+            SCK     & Bustakt \\
+            MISO    & Master in Slave out \\
+            MOSI    & Master out Slave in \\
+            CS      & Chip select \\
+            Int     & Interrupt \\
+            Reset   & Reset \\
+        \end{zebratabular}
