@@ -1,13 +1,27 @@
 \documentclass[a4paper,10pt,fleqn]{article}
 
-\usepackage{layout}
-
-\input{src/booleans}
+\usepackage{src/common/layout}
+\usepackage{float}
+\usepackage{longtable}          % Tabellen 
+\usepackage{booktabs}           % Tabellen
+% Spezialpakete
+\usepackage{fp}
+\usepackage{tikz}
+\usepackage{xcolor}
+% TikZ-Bibliotheken
+\usetikzlibrary{arrows}
+\usetikzlibrary{shapes}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{decorations.shapes}
+\usetikzlibrary{decorations.text}
+\input{src/common/booleans}
 
 \setboolean{EMBED}{true}
 
-\title{Dokumentation BLDC}
-\newcommand{\BrushlessPath}{src}
+\title{Dokumentation Stepper}
+\newcommand{\EtPath}{src/Stepper}
+\newcommand{\BIBLIOGRAPHY}{src/common/ET-Gruppe_Source}
 \newcommand{\DasAndereTeam}{T27 }
 \newcommand{\BLDCTeams}{T27 und T32}
 \newcommand{\BLDCcollab}{Dieses Kapitel ist eine Zusammenarbeit der Gruppen \BLDCTeams. }
@@ -19,21 +33,23 @@
 \tableofcontents
 \clearpage
 
-\input{src/Hardwarezusammenarbeit}
+\input{src/common/Hardwarezusammenarbeit}
 \newpage
-\input{src/Ansteuerung}
+\input{src/Stepper/Wirkungsweise}
 \newpage
-\input{src/Testbericht}
+\input{src/Stepper/Ansteuerung}
 \newpage
-\input{src/fallback}
+\input{src/Stepper/L6480}
 \newpage
-\input{src/encoder}
-\clearpage
+\input{src/Stepper/Ausblick}
+\newpage
+\input{src/Stepper/quellen}
+
 
 \begin{flushleft}
     \renewcommand{\refname}{Literatur- und Quellenverzeichnis}
 %        \{\refname}{Quellenverzeichnis}
-    \bibliography{src/BLDC_Source}{} %!!! Kein Leerzeichen nach dem , !!!!
+    \bibliography{src/common/ET-Gruppe_Source.bib}{} %!!! Kein Leerzeichen nach dem , !!!!
 \end{flushleft}
 
 \end{document}
