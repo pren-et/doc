@@ -2,7 +2,7 @@
 \section{Brushless Motoransteuerung}
 \fi
 \ifEMBED
-\subsection{Brushless Motoransteuerung}
+\subsubsection{Brushless Motoransteuerung}
 \fi
 
 \ifEMBED
@@ -13,7 +13,7 @@
     \subsection{Theorie der Ansteuerung}
     \fi
     \ifEMBED
-    \subsubsection{Theorie der Ansteuerung}
+    \paragraph{Theorie der Ansteuerung}$~~$\vspace{2mm}\\
     \fi
     \ifEMBED
         \begin{wrapfigure}{r}{0.50\textwidth}
@@ -24,13 +24,24 @@
             \label{abb:ZeitlicheAnsteuerungBrushlessMotor}
         \end{wrapfigure}
     \fi
-        Brushless-Motoren (BLDC-Motoren) sind Synchron-Drehstrom-Motoren. Das bedeutet, sie
-        werden mittels eines kontinuierlichen magnetischen Drehfeldes in Bewegung gesetzt.
-        Dabei ist darauf zu achten, dass der Läufer dem Drehfeld synchron folgen kann,
-        daher auch die Namensbezeichnung des Motors. Falls der Läufer dem Drehfeld nicht
-        folgen kann, wird keine Spannung vom Rotor in die Statorwicklungen induziert, die
-        der Erregerspannung entgegenwirkt. Daraus folgt, dass ein immenser Strom fliesst, 
-        der nur von der Wicklungsimpedanz des Motors begrenzt wird.\\
+        Brushless-Motoren (BLDC-Motoren) sind Synchron-Drehstrom-Motoren. Das 
+        bedeutet, sie werden mittels eines kontinuierlichen magnetischen 
+        Drehfeldes in Bewegung gesetzt.  Dabei ist darauf zu achten, dass der 
+        Läufer dem Drehfeld synchron folgen kann, daher auch die 
+        Namensbezeichnung des Motors. Falls der Läufer dem Drehfeld nicht 
+        folgen kann, wird keine Spannung vom Rotor in die Statorwicklungen 
+        induziert, die der Erregerspannung entgegenwirkt. Daraus folgt, dass 
+        ein immenser Strom fliesst, der nur von der Wicklungsimpedanz des 
+        Motors begrenzt wird. Das Drehmoment ist abhängig vom Polradwinkel und 
+        erreicht sein Maximum bei einem Polradwinkel von 90$^\circ$. Die 
+        Kommutierung wird entweder als Sinuskommutierung oder als 
+        Blockkommutierung ausgeführt. Die Sinuskommutierung bildet die 
+        Sinusform eines dreiphasigen Netzes nach. Die Sinusform kann mit einem 
+        Rechtecksignal angenähert werden. Dabei spricht man von einer 
+        Blockkommutierung. Diese ist einfacher zu realisieren, aber erreicht 
+        nicht das selbe Drehmoment wie eine Sinuskommutierung. In diesem 
+        Projekt wird aufgrund der einfacheren implementierung eine 
+        Blockkommutierung realisiert. \\
         \ifSTANDALONE
            \begin{figure}[h!]
                \centering
@@ -69,14 +80,14 @@
         In der Controller-Logik muss der Zeitunterschied der Kommutierung 
         bis zum durchschreiten des Sternpunktes gemessen werden. Diese Zeit 
         muss noch einmal abgewartet werden, bevor die Kommutierung durchgeführt 
-        wird.
+        wird. Falls der Motor über einen Anschluss für den Sternpunkt 
+        verfügt, kann auch dieser verwendet werden. 
     \ifSTANDALONE
     \subsection{Neuer Ansatz}
     \fi
     \ifEMBED
-    \subsubsection{Neuer Ansatz}
+    \paragraph{Neuer Ansatz}$~~$\vspace{2mm}\\
     \fi
-
         \ifEMBED
         \begin{wrapfigure}{r}{0.40\textwidth}
             \includegraphics[scale=0.46]{\EtPath/Bilder/PrinzipDerRekonstruktion.png}
@@ -110,7 +121,7 @@
         Signal $U_h$ symbolisiert den Highside-Transistor der Phase U auf der 
         H-Brücke und die Spalte $U_l$ entspricht dem Lowside-Transistor.\\      
         
-        \begin{figure}[h!]
+        \begin{table}[h!]
             \begin{tabular}{ccc||cc|cc|cc||c}
                  $H_1$ & $H_2$ & $H_3$ & $U_h$ & $U_l$ & $V_h$ & $V_l$ & $W_h$ & $W_l$ & Illegal\\
             \hline 0   &   0   &   0   &   0   &   0   &   0   &   0   &   0   &   0   &   1\\
@@ -125,7 +136,7 @@
            	\centering
            	\caption{Wahrheitstabelle der Ansteuerung} 
             \label{abb:WahrheitstabelleAnsteuerung}
-        \end{figure}
+        \end{table}
         \parindent 0pt Die Tabelle in Abbildung 
         \ref{abb:WahrheitstabelleAnsteuerung} kann pro Signal zu folgenden 
         logischen Verknüpfung vereinfacht werden\\
@@ -145,3 +156,25 @@
             $U_l = \bar{H_1} \wedge H_2$ & $V_l = \bar{H_2} \wedge H_3$ & $W_l = H_1 \wedge \bar{H_3}$
         \end{tabular}
         \fi
+    \ifSTANDALONE
+    \subsection{Schnittstelle}
+    \fi
+    \ifEMBED
+    \paragraph{Schnittstelle}$~~$\vspace{2mm}\\
+    \fi
+        Die Kommunikation zur Motoransteuerung erfolgt mittels SPI. Die benötigen Pins sind in der
+        Tabelle \ref{abb:SchnittstelleBrushlessBoard} ersichtlich.
+        \begin{table}[h!]
+            \begin{tabular}{ll}
+                Pin     & Funktion \\
+        \hline  SCK     & Bustakt \\
+            MISO    & Master in Slave out \\
+            MOSI    & Master out Slave in \\
+            CS      & Chip select \\
+            Int     & Interrupt \\
+            Reset   & Reset \\
+            \end{tabular}
+           	\centering
+           	\caption{Schnittstelle des Brushless-Boards} 
+            \label{abb:SchnittstelleBrushlessBoard}
+        \end{table}
