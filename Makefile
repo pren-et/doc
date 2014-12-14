@@ -2,6 +2,8 @@ BLDC_STANDALONE     = BLDC_StandaloneDoc
 BLDC_EMBEDDED       = BLDC_EmbeddedDoc
 STEPPER_STANDALONE  = Stepper_StandaloneDoc
 STEPPER_EMBEDDED    = Stepper_EmbeddedDoc
+DC_STANDALONE       = DC_StandaloneDoc
+DC_EMBEDDED         = DC_EmbeddedDoc
 DOCUMENT            = BLDC_EmbeddedDoc
 
 .PHONY: all standalone embedded doc single bib clean
@@ -10,8 +12,10 @@ bldc_standalone:    DOCUMENT=$(BLDC_STANDALONE)
 bldc_embedded:      DOCUMENT=$(BLDC_EMBEDDED)
 stepper_standalone: DOCUMENT=$(STEPPER_STANDALONE)
 stepper_embedded:   DOCUMENT=$(STEPPER_EMBEDDED)
+dc_standalone:      DOCUMENT=$(DC_STANDALONE)
+dc_embedded:        DOCUMENT=$(DC_EMBEDDED)
 
-all:	bldc_standalone bldc_embedded stepper_standalone stepper_embedded
+all:	bldc_standalone bldc_embedded stepper_standalone stepper_embedded dc_standalone
 
 
 # bldc_standalone: single bib doc clean
@@ -50,6 +54,12 @@ stepper_embedded:
 	bibtex   $(STEPPER_EMBEDDED).aux
 	pdflatex $(STEPPER_EMBEDDED).tex
 
+dc_standalone:
+	pdflatex $(DC_STANDALONE).tex
+	pdflatex $(DC_STANDALONE).tex
+	pdflatex $(DC_STANDALONE).tex
+	bibtex   $(DC_STANDALONE).aux
+	pdflatex $(DC_STANDALONE).tex
 
 doc:
 	pdflatex $(DOCUMENT).tex

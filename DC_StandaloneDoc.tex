@@ -1,0 +1,24 @@
+\documentclass[a4paper,10pt,fleqn]{article}
+
+\usepackage{src/common/layout}
+
+\input{src/common/booleans}
+
+\setboolean{STANDALONE}{true}
+
+\newcommand{\EtPath}{src/DC}
+\newcommand{\BIBLIOGRAPHY}{src/common/ET-Gruppe_Source}
+%\newcommand{\DasAndereTeam}{T27}
+%\newcommand{\BLDCTeams}{T27 und T32}
+\newcommand{\BLDCcollab}{Dieses Kapitel ist eine Zusammenarbeit der Gruppen \BLDCTeams. }
+
+\begin{document}
+	\input{src/DC/title}
+	\tableofcontents
+	\newpage
+	\input{src/common/Hardwarezusammenarbeit}
+	\input{src/DC/concept}
+	\input{src/DC/quellen}
+	\listoffigures
+	\listoftables
+\end{document}

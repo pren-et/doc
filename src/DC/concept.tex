@@ -1,0 +1,69 @@
+\ifSTANDALONE
+\section{Konzept}
+\fi
+\ifEMBED
+\subsection{Konzept}
+\fi
+
+Das Stellen eines fremderregten Gleichstrommotors erfolgt über die
+Ankerspannung. Eine variable Ankerspannung kann mittels einer 
+zeitlichen Mittelung der anliegenden Spannung realisert werden. Somit
+ist es möglich eine fremderregte Gleichstrommaschine mittels einer
+kosntatnen Gleichspannung einzustellen. Die Mittelung der Ankerspannung
+bildet die Basis des Konzepts für den DC-Motor Treiber.
+
+\ifSTANDALONE
+\subsection{Annahmen und Abschätzungen}
+\fi
+\ifEMBED
+\subsubsection{Annahmen und Abschätzungen}
+\fi
+Für das vorliegende Konzpept gilt die Annahme, dass das Erregerfeld mittels
+Permanentmagneten realisiert ist und das Erregerfeld konstant ist. Diese
+Annahme ist gewählt, da fremderregte Gleichstrommaschinen ohne
+Permanentmagneten einen Erregerstrom benötigen, welcher das Erregerfeld
+erzeugt. Im einfachsten Fall ist dies eine Kosntantstromquelle. Eine solche
+Maschine benötigt mehr elektrische Energie und erfordert zusätzlichen
+Hardwareaufwand.
+
+Die Drehzahl einer idealen fremderregten Gleichstrommaschine mit konstantem
+Erregerfeld korreliert mit $-1$ zum Strom. Der Strom einer solchen Maschine
+korreliert widerum mit der Belastung \cite{smps}. Dieses Verahalten ist in
+der Abbildung \ref{fig:ideal-dc-curve} dargestellt.
+
+\begin{figure}[h!]
+	\centering
+	\begin{tikzpicture}
+		% Achsen
+		\draw[->] (-0.5,0) -- (8,0) node[anchor=north] {$I, M$};
+		\draw[->] (0,-0.5) -- (0,4) node[anchor=east] {$\omega_m$};
+		% Klemmenspannung
+		\draw[blue, thick] (0,3) -- (7,3) node[anchor=west] {$U_K$};
+		% induzierte Spannung
+		\draw[red, thick] 
+			(0,3) node[anchor=east] {$\omega_0$} -- 
+			(7,0) node[midway, above right] {$\omega \sim U_i$};
+		
+	\end{tikzpicture}
+	\caption{Winkelgeschwindigkeit einer idealen fremderregten 
+		Gleichstrommaschine}
+	\label{fig:ideal-dc-curve}
+\end{figure}
+
+\ifSTANDALONE
+\subsection{Ziel}
+\fi
+\ifEMBED
+\subsubsection{Ziel}
+\fi
+Es ist eine Hardware zu entwicklen, welche es ermöglicht, die
+Winkelgeschwindigkeit einer fremerregten Gleichstrommaschine mit
+Permanentmagneten zu regeln.
+
+\ifSTANDALONE
+\subsection{Funktionsweise}
+
+\fi
+\ifEMBED
+\subsubsection{Funktionsweise}
+\fi
