@@ -5,6 +5,7 @@ STEPPER_EMBEDDED    = Stepper_EmbeddedDoc
 DC_STANDALONE       = DC_StandaloneDoc
 DC_EMBEDDED         = DC_EmbeddedDoc
 DOCUMENT            = BLDC_EmbeddedDoc
+RELEASE_DIR         = ./release
 
 .PHONY: all standalone embedded doc single bib clean
 
@@ -32,6 +33,7 @@ bldc_standalone:
 	pdflatex $(BLDC_STANDALONE).tex
 	bibtex   $(BLDC_STANDALONE).aux
 	pdflatex $(BLDC_STANDALONE).tex
+	mv $(BLDC_STANDALONE).pdf $(RELEASE_DIR)/.
 
 bldc_embedded:
 	pdflatex $(BLDC_EMBEDDED).tex
@@ -46,6 +48,7 @@ stepper_standalone:
 	pdflatex $(STEPPER_STANDALONE).tex
 	bibtex   $(STEPPER_STANDALONE).aux
 	pdflatex $(STEPPER_STANDALONE).tex
+	mv $(STEPPER_STANDALONE).pdf $(RELEASE_DIR)/.
 
 stepper_embedded:
 	pdflatex $(STEPPER_EMBEDDED).tex
@@ -60,6 +63,14 @@ dc_standalone:
 	pdflatex $(DC_STANDALONE).tex
 	bibtex   $(DC_STANDALONE).aux
 	pdflatex $(DC_STANDALONE).tex
+	mv $(DC_STANDALONE).pdf $(RELEASE_DIR)/.
+
+dc_embedded:
+	pdflatex $(DC_EMBEDDED).tex
+	pdflatex $(DC_EMBEDDED).tex
+	pdflatex $(DC_EMBEDDED).tex
+	bibtex   $(DC_EMBEDDED).aux
+	pdflatex $(DC_EMBEDDED).tex
 
 doc:
 	pdflatex $(DOCUMENT).tex
