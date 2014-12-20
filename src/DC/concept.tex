@@ -6,11 +6,11 @@
 \fi
 
 Das Stellen eines fremderregten Gleichstrommotors erfolgt über die
-Ankerspannung. Eine variable Ankerspannung kann mittels einer 
+angelegte Ankerspannung. Eine variable Ankerspannung kann mittels einer 
 zeitlichen Mittelung der anliegenden Spannung realisert werden. Somit
 ist es möglich eine fremderregte Gleichstrommaschine mittels einer
 kosntatnen Gleichspannung einzustellen. Die Mittelung der Ankerspannung
-bildet die Basis des Konzepts für den DC-Motor Treiber.
+bildet die Basis des vorliegenden Konzepts für den DC-Motor Treiber.
 
 \ifSTANDALONE
 \subsection{Annahmen und Abschätzungen}\label{sec:annahmen}
@@ -28,8 +28,9 @@ Hardwareaufwand.
 
 Die Drehzahl einer idealen fremderregten Gleichstrommaschine mit konstantem
 Erregerfeld korreliert mit $-1$ zum Strom. Der Strom einer solchen Maschine
-korreliert widerum mit der Belastung \cite[p.163]{smps}. Dieses Verahalten ist in
-der Abbildung \ref{fig:ideal-dc-curve} dargestellt.
+korreliert widerum mit der Belastung \cite[p.163]{smps}. Dieses Verahalten
+zwischen Belastung und Drehzahl ist in der Abbildung \ref{fig:ideal-dc-curve}
+dargestellt.
 
 \begin{figure}[h!]
 	\centering
@@ -82,8 +83,8 @@ bedient, welcher ebenfalls individuell gewählt ist.
 
 Die Regelung der Winkelgeschwindigkeit eines angeschlossenen Motors kann
 mit verschiedenen Ansätzen realisert werden. Gemeinsam ist dabei stets die
-Stellgrösse $x$, welche das PWM Signal ist, als auch die Regelgrösse $y$,
-welche die Winkelgeschwindigkeit der Maschine ist.
+Stellgrösse, welche durch das PWM Signal gegeben ist, als auch die
+Winkelgeschwindigkeit der Maschine, welche die Regelgrösse darstellt.
 
 Die Regelung muss auf einem Feedback der Winkelgeschwindigkeit basieren.
 Wird von einer idealen Maschine ausgegeangen, muss dieses Feedback nicht
@@ -102,7 +103,7 @@ Winkelgeschwindigkeit verzichtet werden.
 Für die Ansteuerung der H-Brücke bzw. des Treiberchips A3941 wird ein PWM
 Signal benötigt. Dieses kann in Hardware auf dem Treiberboard implementiert
 werden mittels eines Sägezahngenerators und einem Komparator. Der zweite
-Komparatoreingang wird idazu an das Feedback des Stromes angeschlossen, was
+Komparatoreingang wird dazu an das Feedback des Stromes angeschlossen, was
 ein zur Winkelgeschwindigkeit angepasstes PWM Signal generiert.
 
 Alternativ zu dieser Regelung kann das Feedbcak des Stromes auch zum
@@ -126,7 +127,7 @@ PWM Signal generiert.
 	\centering
 	\begin{subfigure}[b]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{src/DC/sim/sch-sawtooth-01.jpg}
-		\caption{Sägezahntgenerators mit Timer TLC555}
+		\caption{Sägezahntgenerator mit Timer TLC555}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{src/DC/sim/sawtooth-01.jpg}
@@ -147,7 +148,7 @@ Hall-Effekt-Stromwandlern, welche den Strom linearisiert als Spannungssignal
 ausgeben. Ein solcher Baustein ist der ACS712 der Allegro Microsystems,
 welcher im SMD Format verfügbar ist bis zu einem Strom von 30A.
 
-Ist eine genau Drehzahl nicht von Bedeutung kann auf die Regelung der
+Ist eine genaue Drehzahl nicht von Bedeutung kann auf die Regelung der
 Winkelgeschwindigkeit verzichtet werden. Dies gilt insbesondere, wenn eine
 hohe Übersetzung vorliegt, welche verhindert, dass die Winkelgeschwindigkeit
 der Gleichstrommaschine einbricht bei entsprechender Belastung. Für diesen
