@@ -167,10 +167,12 @@
         um eine Zwangskommutierung vorzunehmen, um den Motor in eine Initialdrehung zu versetzen. 
         Sobald der Motor dreht, kann der neue Ansatz funktionieren. Weiter wird auf dem Controller eine 
         Regelung implementiert, um die Drehzahl des Motors zu regeln. Zusätzlich kann der Winkel 
-        zwischen Detektion und Kommutierung angepasst werden, wenn dies notwendig ist. 
-        Dabei ist die Idee, dass über SPI 
-        die Solldrehzahl eingestellt werden kann. Die benötigte Zwangskommutierung am Anfang und die 
-        Regelung wird eigenständig vom dem Boardcontroller übernommen.
+        zwischen Detektion und Kommutierung angepasst werden, wenn dies notwendig ist.\\
+        \\
+        Die Idee der Kommunikation mit dem Controller ist, dass über SPI die Solldrehzahl und gegebenenfalls 
+        Parameter eingestellt werden können. Alle weiteren Schritte, wie die benötigte Zwangskommutierung am 
+        Anfang und die Regelung, werden eigenständig vom Boardcontroller vorgenommen.
+        %
         \begin{table}[h!]
             \begin{tabular}{ll}
                 Pin     & Funktion \\
