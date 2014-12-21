@@ -15,10 +15,10 @@
 \fi
     Das Schema des Gesamtaufbaus des Tests ist in der Abbildung 
     \ref{abb:MotoransteuerungSchema} ersichtlich. Die 3-Phasen H-Brücke 
-    im oberen grünen Rechteck wird direkt vom FPGA \footnote{\textbf{F}ield-\textbf{P}rogrammable \textbf{G}ate \textbf{A}rray} angesteuert. Die Hardware 
+    im oberen grünen Rechteck wird direkt vom FPGA\footnote{\textbf{F}ield-\textbf{P}rogrammable \textbf{G}ate \textbf{A}rray} angesteuert. Die Hardware 
     dieser Brücke ermöglicht eine voll galvanisch getrennte Ansteuerung 
-    mit 3.3V Logikpegeln. Diese Brücke wurde zur Verfügung gestellt und direkt
-    implementiert. Die Rekonstruktion der Hallsensoren-Signale findet im rot 
+    mit $3.3 V$ Logikpegeln. Diese Brücke wurde zur Verfügung gestellt und direkt
+    verwendet. Die Rekonstruktion der Hallsensoren-Signale findet im rot 
     markierten Teil des Aufbaus statt. Dieser Part wurde auf einer 
     Laborplatte aufgebaut und gelötet. Die so generierten Signale 
     $U_{Hallsensor}$, $V_{Hallsensor}$, $W_{Hallsensor}$ werden einem FPGA 
@@ -52,7 +52,7 @@
     %\vspace{-10pt}
     \end{figure}
     Die im FPGA enthaltene Logik basiert auf der Wahrheitstabelle, die in 
-    Abbildung \ref{abb:WahrheitstabelleAnsteuerung} abgebildet ist.
+    Tabelle \ref{abb:WahrheitstabelleAnsteuerung} abgebildet ist.
 
 \ifSTANDALONE
 \subsection{Messmittel}
@@ -86,3 +86,21 @@
         \end{tabular}
         \caption{Messmittel des Versuchsaufbaus}
     \end{table}
+
+\ifSTANDALONE
+\subsection{Resultat}
+\fi
+\ifEMBED
+\subsubsection{Resultat}
+\fi
+Mit dem beschriebenen Aufbau konnte ein BLDC-Motor erfolgreich angesteuert werden. Wie in Abbildung
+ \ref{abb:MessplatzAufbau} am linken unteren Rand zu erkennen ist, ist an der Motorwelle eine 
+ Aluminiumplatte montiert. Mit dieser und eines Magneten konnte der Motor mittels einer Wirbelstrombremse 
+ belastet werden. Auf diese weise konnte rund $120 W$ elektrische Leistung umgesetzt werden. Dabei 
+ stellte sich heraus, dass die PWM nachgeregelt werden muss, wenn eine Last getrieben wird. Weiter 
+ bietet der Aufbau, wie er getestet wurde keine Möglichkeit den Motor ohne äussere Manipulation zu 
+ starten.\\
+\\
+Diese beiden Tatsachen sprechen dafür, dass das Prinzip grundsätzlich funktioniert. Für die Realisierung 
+würde sich ein eigenes Board anbieten, auf dem ein eigener Controller die Regelung und die Zwangskommutierung 
+beim Starten des Motors übernimmt.
