@@ -5,9 +5,9 @@
 \usepackage[T1]{fontenc} 
 \usepackage{textcomp}
 \usepackage{lmodern}
-\usepackage{courier}
+%\usepackage{courier}
 
-\usepackage{csquotes}
+%\usepackage{csquotes}
 
 \usepackage[toc,page]{appendix}
 
@@ -21,9 +21,10 @@
 % tables
 \usepackage{longtable}
 \usepackage{multirow}
-        % table coloring
-        \newenvironment{zebratabular}{\rowcolors{1}{lgray}{white}\tabular}{\endtabular}
-	\newenvironment{zebralongtable}{\rowcolors{1}{lgray}{white}\longtable}{\endlongtable}
+%\usepackage{booktabs}
+% custom table coloring
+\newenvironment{zebratabular}{\rowcolors{1}{lgray}{white}\tabular}{\endtabular}
+\newenvironment{zebralongtable}{\rowcolors{1}{lgray}{white}\longtable}{\endlongtable}
 
 % language
 \usepackage[ngerman]{babel}
@@ -31,7 +32,14 @@
 % graphics
 \usepackage{pgf}
 \usepackage{tikz}
-\usetikzlibrary{arrows,automata,positioning}
+\usetikzlibrary{arrows}
+\usetikzlibrary{shapes}
+\usetikzlibrary{automata}
+\usetikzlibrary{positioning}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{decorations.shapes}
+\usetikzlibrary{decorations.text}
 \usepackage[european
            ]{circuitikz}
 \usepackage{bchart}
@@ -39,7 +47,6 @@
 \usepackage{graphics}
 \usepackage{graphicx}
 \usepackage{sidecap}
-%\usepackage{wrapfig}
 \usepackage{floatflt}
 \usepackage{wrapfig}
 
@@ -52,6 +59,7 @@
 % colors
 \usepackage{color}
 \usepackage{colortbl}
+\usepackage{xcolor}
 \definecolor{gray}{gray}{0.749}
 \definecolor{lgray}{gray}{0.85}
 \definecolor{red}{rgb}{1, 0, 0}
