@@ -38,41 +38,43 @@ Wie bereits im Kapitel \ref*{subsec:Ansteuerung} erwähnt, wird der L6480 von ST
 \fi
 Der steuernde Mikrocontroller benötigt 8 Pins für die Kommunikation mit dem 
 L6480 \cite{Datasheet:L6480} : 
-\begin{zebralongtable}{l l p{7cm}}
-    \rowcolor{gray}\textbf{Pin} &
-        \textbf{IO} &
-        \textbf{Funktion} \\
-    $\overline{FLAG}$ &
-        Output &
-        Wird bei einem Fehler intern auf GND gezogen. \\
-    $\overline{BUSY}$ / SYNC &
-        Output &
-        Wird während dem Ausführen eines Befehls intern auf GND gezogen.\\
-    $\overline{STBY / RESET}$ &
-        Input &
-        Standby- und Resetmodus, falls extern GND anliegt. \\
-    STCK &
-        Input &
-        Im Step-Clock- Mode führt jede positive Flanke an diesem Pin zu einem 
-            Schritt. \\
-    \rowcolor{gray}\textbf{SPI} & & \\
-    $\overline{CS}$ &
-        Input &
-        Chip Select: Falls extern GND anliegt, startet die Kommunikation. Um 
-            die Kommunikation zu beenden, muss $\overline{CS}$ extern auf High 
-            gehalten werden. \\
-    CK &
-        Input &
-        Serial Clock: Synchronisierung der Kommunikation. \\
-    SDO &
-        Output &
-        Slave Data Out: Daten für den Mikrocontroller. \\
-    SDI &
-        Input &
-        Slave Data In: Befehle und Daten für den L6480. \\
-    \caption{Schnittstelle} 
+\begin{table}[h!]
+    \begin{zebralongtable}{l l p{7cm}}
+        \rowcolor{gray}\textbf{Pin} &
+            \textbf{IO} &
+            \textbf{Funktion} \\
+        $\overline{FLAG}$ &
+            Output &
+            Wird bei einem Fehler intern auf GND gezogen. \\
+        $\overline{BUSY}$ / SYNC &
+            Output &
+            Wird während dem Ausführen eines Befehls intern auf GND gezogen.\\
+        $\overline{STBY / RESET}$ &
+            Input &
+            Standby- und Resetmodus, falls extern GND anliegt. \\
+        STCK &
+            Input &
+            Im Step-Clock- Mode führt jede positive Flanke an diesem Pin zu einem 
+                Schritt. \\
+        \rowcolor{gray}\textbf{SPI} & & \\
+        $\overline{CS}$ &
+            Input &
+            Chip Select: Falls extern GND anliegt, startet die Kommunikation. Um 
+                die Kommunikation zu beenden, muss $\overline{CS}$ extern auf High 
+                gehalten werden. \\
+        CK &
+            Input &
+            Serial Clock: Synchronisierung der Kommunikation. \\
+        SDO &
+            Output &
+            Slave Data Out: Daten für den Mikrocontroller. \\
+        SDI &
+            Input &
+            Slave Data In: Befehle und Daten für den L6480. \\
+    \end{zebralongtable}
+    \caption{Schnittstelle des Treibers L6480}
     \label{Schnittstelle}
-\end{zebralongtable} 
+\end{table}
 %\begin{longtable}{l l p{7cm}} \toprule
 %    \textbf{Pin}    & \textbf{IO}   & \textbf{Funktion} \\
 %    \midrule
