@@ -34,7 +34,9 @@
         	\item \textbf{Steuerfunktionen:} Einzelne Schritte oder Bewegungsabläufe (Motion Control Functiona)
         	\item \textbf{Schaltungsintegration:} Steuerung und Treiberstufe als getrennte Schaltkreise, oder in einem Schaltkreis zusammengefasst. 
         \end{itemize}
-        Der gewählte integrierte Schaltkreis ist der L6480 von STMicroelectronics. Dieser wird über die SPI Schnittstelle gesteuert und besitzt eine Motion Contol Engine. Die Treiberstufe wird extern realisiert. (Vgl. Kapitel \ref{sec:L6480} 
+        \cite{Doku:Stepper} 
+        
+        Der gewählte integrierte Schaltkreis ist der L6480 von STMicroelectronics. Dieser wird über die SPI Schnittstelle gesteuert und besitzt eine Motion Contol Engine. Die Treiberstufe wird extern realisiert. (Vgl. Kapitel \ref{sec:L6480}) 
         
     \ifSTANDALONE
     \subsection{Treiberstufe}
@@ -46,7 +48,7 @@
     	 \begin{figure}[h!]
     	 	\centering
     	 	\includegraphics[width=8cm]{\EtPath/Bilder/spannungsumschaltung.jpg}
-    	 	\caption{Spannungsumschaltung}
+    	 	\caption[Spannungsumschaltung]{Spannungsumschaltung \cite{AppNote:Stepper}}
     	 	\label{fig:spannungsumschaltung}
     	 \end{figure}
     	Der Schrittmotor kann alternativ auch stromgesteuert betrieben werden. Dabei folgt der Stromverlauf dem Verlauf einer Referenzspannung (Sollwert). Der Stromverlauf wird auf den Sollwert geregelt. Die Betriebsspannung muss so nicht stabilisiert werden. \label{stromgesteuert} 
