@@ -1,0 +1,53 @@
+% title page
+\ifSTANDALONE
+    \ifDC
+        \input{src/DC/title}
+    \fi
+    \ifBLDC
+        \input{src/BLDC/title}
+    \fi
+    \ifSTEPPER
+        \input{src/Stepper/title}
+    \fi
+\else
+    \author{PREN-ET}
+    \maketitle
+\fi
+
+% Content
+\tableofcontents
+\clearpage
+\input{src/common/Hardwarezusammenarbeit}
+\ifDC
+    \renewcommand{\EtPath}{src/DC}
+    \input{src/DC/concept}
+    \newpage
+\fi
+
+\ifBLDC
+    \renewcommand{\EtPath}{src/BLDC}
+    \input{src/BLDC/Ansteuerung}
+    \clearpage
+    \input{src/BLDC/Testbericht}
+    \clearpage
+    \input{src/BLDC/fallback}
+    \clearpage
+    \input{src/BLDC/encoder}
+    \clearpage
+\fi
+
+\ifSTEPPER
+    \renewcommand{\EtPath}{src/Stepper}
+    \input{src/Stepper/Wirkungsweise}
+    \clearpage
+    \input{src/Stepper/Ansteuerung}
+    \clearpage
+    \input{src/Stepper/L6480}
+    \clearpage
+    \input{src/Stepper/Ausblick}
+    \clearpage
+\fi
+
+\input{src/common/quellen}
+\listoffigures
+\listoftables

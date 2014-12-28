@@ -4,17 +4,18 @@ STEPPER_STANDALONE  = Stepper_StandaloneDoc
 STEPPER_EMBEDDED    = Stepper_EmbeddedDoc
 DC_STANDALONE       = DC_StandaloneDoc
 DC_EMBEDDED         = DC_EmbeddedDoc
+EMBEDDED            = PREN-ET_EmbeddedDoc
 RELEASE_DIR         = ./release
 
 .PHONY: all all_log release release_log bldc_standalone bldc_embedded stepper_standalone stepper_embedded dc_standalone dc_embedded release_copy clean
 
-all:	bldc_standalone bldc_embedded stepper_standalone stepper_embedded dc_standalone clean
+all:	bldc_standalone bldc_embedded stepper_standalone stepper_embedded dc_standalone embedded clean
 
-all_log:	bldc_standalone bldc_embedded stepper_standalone stepper_embedded dc_standalone
+all_log:	bldc_standalone bldc_embedded stepper_standalone stepper_embedded dc_standalone embedded
 
-release:	bldc_standalone bldc_embedded stepper_standalone stepper_embedded dc_standalone release_copy clean
+release:	bldc_standalone bldc_embedded stepper_standalone stepper_embedded dc_standalone embedded release_copy clean
 
-release_log:	bldc_standalone bldc_embedded stepper_standalone stepper_embedded dc_standalone release_copy
+release_log:	bldc_standalone bldc_embedded stepper_standalone stepper_embedded dc_standalone embedded release_copy
 
 bldc_standalone:
 	pdflatex $(BLDC_STANDALONE).tex
@@ -58,8 +59,16 @@ dc_embedded:
 	pdflatex $(DC_EMBEDDED).tex
 	pdflatex $(DC_EMBEDDED).tex
 
+embedded:
+	pdflatex $(EMBEDDED).tex
+	bibtex   $(EMBEDDED).aux
+	pdflatex $(EMBEDDED).tex
+	pdflatex $(EMBEDDED).tex
+	pdflatex $(EMBEDDED).tex
+
 release_copy:
 	cp *_StandaloneDoc.pdf $(RELEASE_DIR)/.
+	#cp *_EmbeddedDoc.pdf $(RELEASE_DIR)/.
 
 clean:
 	rm -f *.aux

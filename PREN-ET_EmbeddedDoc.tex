@@ -3,19 +3,22 @@
 \usepackage{src/common/layout}
 
 \input{src/common/variables}
+\setcounter{tocdepth}{4}   %= Aufnahme in das Inhaltsverzeichnis *
+\setcounter{secnumdepth}{4}  % = Nummerierung vertiefen *
 
-\setboolean{STANDALONE}{true}
-\setboolean{EMBED}{false}
-\setboolean{DC}{false}
-\setboolean{BLDC}{false}
+\setboolean{STANDALONE}{false}
+\setboolean{EMBED}{true}
+\setboolean{DC}{true}
+\setboolean{BLDC}{true}
 \setboolean{STEPPER}{true}
 
-\newcommand{\EtPath}{src/Stepper}
+\title{Dokumentation PREN-ET}
+\newcommand{\EtPath}{src/BLDC}
 \newcommand{\BIBLIOGRAPHY}{src/common/ET-Gruppe_Source}
-\newcommand{\DasAndereTeam}{T27}
+\newcommand{\DasAndereTeam}{T27 }
 \newcommand{\BLDCTeams}{T27 und T32}
 \newcommand{\BLDCcollab}{Dieses Kapitel ist eine Zusammenarbeit der Gruppen \BLDCTeams. }
 
 \begin{document}
-	\input{content}
+    \input{content}
 \end{document}

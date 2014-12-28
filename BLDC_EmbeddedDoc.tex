@@ -2,40 +2,23 @@
 
 \usepackage{src/common/layout}
 
-\input{src/common/booleans}
+\input{src/common/variables}
 \setcounter{tocdepth}{4}   %= Aufnahme in das Inhaltsverzeichnis *
 \setcounter{secnumdepth}{4}  % = Nummerierung vertiefen *
 
+\setboolean{STANDALONE}{false}
 \setboolean{EMBED}{true}
+\setboolean{DC}{false}
+\setboolean{BLDC}{true}
+\setboolean{STEPPER}{false}
 
 \title{Dokumentation BLDC}
 \newcommand{\EtPath}{src/BLDC}
+\newcommand{\BIBLIOGRAPHY}{src/common/ET-Gruppe_Source}
 \newcommand{\DasAndereTeam}{T27 }
 \newcommand{\BLDCTeams}{T27 und T32}
 \newcommand{\BLDCcollab}{Dieses Kapitel ist eine Zusammenarbeit der Gruppen \BLDCTeams. }
 
 \begin{document}
-
-\maketitle
-\clearpage
-\tableofcontents
-\clearpage
-
-\input{src/common/Hardwarezusammenarbeit}
-\newpage
-\input{src/BLDC/Ansteuerung}
-\newpage
-\input{src/BLDC/Testbericht}
-\newpage
-\input{src/BLDC/fallback}
-\newpage
-\input{src/BLDC/encoder}
-\clearpage
-
-\begin{flushleft}
-    \renewcommand{\refname}{Literatur- und Quellenverzeichnis}
-%        \{\refname}{Quellenverzeichnis}
-    \bibliography{src/common/ET-Gruppe_Source}{} %!!! Kein Leerzeichen nach dem , !!!!
-\end{flushleft}
-
+    \input{content}
 \end{document}

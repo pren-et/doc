@@ -2,24 +2,20 @@
 
 \usepackage{src/common/layout}
 
-\input{src/common/booleans}
+\input{src/common/variables}
 
 \setboolean{STANDALONE}{true}
+\setboolean{EMBED}{false}
+\setboolean{DC}{true}
+\setboolean{BLDC}{false}
+\setboolean{STEPPER}{false}
 
 \newcommand{\EtPath}{src/DC}
 \newcommand{\BIBLIOGRAPHY}{src/common/ET-Gruppe_Source}
-%\newcommand{\DasAndereTeam}{T27}
-%\newcommand{\BLDCTeams}{T27 und T32}
+\newcommand{\DasAndereTeam}{T27}
+\newcommand{\BLDCTeams}{T27 und T32}
 \newcommand{\BLDCcollab}{Dieses Kapitel ist eine Zusammenarbeit der Gruppen \BLDCTeams. }
 
 \begin{document}
-	\input{src/DC/title}
-	\tableofcontents
-	\newpage
-	\input{src/common/Hardwarezusammenarbeit}
-	\input{src/DC/concept}
-	\newpage
-	\input{src/DC/quellen}
-	\listoffigures
-	\listoftables
+	\input{content}
 \end{document}

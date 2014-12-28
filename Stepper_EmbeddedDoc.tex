@@ -1,12 +1,14 @@
 \documentclass[a4paper,10pt,fleqn]{article}
 
 \usepackage{src/common/layout}
-%\usepackage{booktabs}           % Tabellen
-% Spezialpakete
-%\usepackage{fp}
-\input{src/common/booleans}
 
+\input{src/common/variables}
+
+\setboolean{STANDALONE}{false}
 \setboolean{EMBED}{true}
+\setboolean{DC}{false}
+\setboolean{BLDC}{false}
+\setboolean{STEPPER}{true}
 
 \title{Dokumentation Stepper}
 \newcommand{\EtPath}{src/Stepper}
@@ -16,29 +18,5 @@
 \newcommand{\BLDCcollab}{Dieses Kapitel ist eine Zusammenarbeit der Gruppen \BLDCTeams. }
 
 \begin{document}
-
-    \maketitle
-    \clearpage
-    \tableofcontents
-    \clearpage
-    
-    \input{src/common/Hardwarezusammenarbeit}
-    \newpage
-    \input{src/Stepper/Wirkungsweise}
-    \newpage
-    \input{src/Stepper/Ansteuerung}
-    \newpage
-    \input{src/Stepper/L6480}
-    \newpage
-    \input{src/Stepper/Ausblick}
-    \newpage
-    \input{src/Stepper/quellen}
-
-
-%\begin{flushleft}
-%    \renewcommand{\refname}{Literatur- und Quellenverzeichnis}
-%%        \{\refname}{Quellenverzeichnis}
-%    \bibliography{src/common/ET-Gruppe_Source}{} %!!! Kein Leerzeichen nach dem , !!!!
-%\end{flushleft}
-
+    \input{content}
 \end{document}
