@@ -16,14 +16,14 @@
 	  	 \ifEMBED
 	  	 \subsubsection{Funktionsbeschreibung}
 	  	 \fi
-		 	Diese Schrittmotorensteuerung ist für den Betrieb von zweiphasigen (Vgl. Kpaitel \ref{wirkungsweise}) Schrittmotoren mit Mikrosteps (Vgl. Kapitel \ref{wirkungsweise}) geeignet. Der L6480 erreicht eine maximale Auflösung von einem 1/128 Schritt. Die Steuerung generiert intern die PWM- Signale für die Motorenansteuerung. Alternativ kann auch mit Einzelschritten oder Halbschritten gearbeitet werden. Die beiden H- Brücken werden extern mit N-Kanal MOSFETs realisiert. Es können Bewegungsprofile konfiguriert werden, so dass die Motoren definiert Anfahren, Abbremsen oder ein Punkt direkt angefahren werden kann. So kann der Aufwand bei der Mikrokontrollerprogrammierung verringert werden. Die Befehle werden über eine SPI- Schnittstelle übertragen. Die absolute Position ist in einem 22- Bit Register gespeichert. Der Bereich liegt dementsprechend zwischen \(-2^{21}\) und \(2^{21}-1\).
+		 	Diese Schrittmotorensteuerung ist für den Betrieb von zweiphasigen (Vgl. Kpaitel \ref{wirkungsweise}) Schrittmotoren mit Mikrosteps (Vgl. Kapitel \ref{wirkungsweise}) geeignet. Der L6480 erreicht eine maximale Auflösung von einem 1/128 Schritt. Die Steuerung generiert intern die PWM- Signale für die Motorenansteuerung. Alternativ kann auch mit Einzelschritten oder Halbschritten gearbeitet werden. Die beiden H- Brücken werden extern mit N-Kanal MOSFETs realisiert. Es können Bewegungsprofile konfiguriert werden, so dass die Motoren definiert Anfahren, Abbremsen oder ein Punkt direkt angefahren werden kann. So kann der Aufwand bei der Mikrokontrollerprogrammierung verringert werden. Die Befehle werden über eine SPI- Schnittstelle übertragen. Die absolute Position ist in einem 22- Bit Register gespeichert. Der Bereich liegt dementsprechend zwischen \(-2^{21}\) und \(2^{21}-1\). \cite{Datasheet:L6480} 
 		 \ifSTANDALONE
 		 \subsection{Schnitstelle}
 		 \fi
 		 \ifEMBED
 		 \subsubsection{Schnittstelle}
 		 \fi
-	  		Der steuernde Mikrocontroller benötigt 8 Pins für die Kommunikation mit dem L6480: 
+	  		Der steuernde Mikrocontroller benötigt 8 Pins für die Kommunikation mit dem L6480 \cite{Datasheet:L6480} : 
 	  		\begin{longtable}{l l p{7cm}} \toprule
 	  			\textbf{Pin} 	& \textbf{IO} 	& \textbf{Funktion} \\
 	  			\midrule
