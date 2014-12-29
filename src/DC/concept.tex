@@ -9,7 +9,7 @@ Das Stellen eines fremderregten Gleichstrommotors erfolgt über die
 angelegte Ankerspannung. Eine variable Ankerspannung kann mittels einer 
 zeitlichen Mittelung der anliegenden Spannung realisert werden. Somit
 ist es möglich eine fremderregte Gleichstrommaschine mittels einer
-kosntatnen Gleichspannung einzustellen. Die Mittelung der Ankerspannung
+konstanten Gleichspannung einzustellen. Die Mittelung der Ankerspannung
 bildet die Basis des vorliegenden Konzepts für den DC-Motor Treiber.
 
 \ifSTANDALONE
@@ -18,7 +18,7 @@ bildet die Basis des vorliegenden Konzepts für den DC-Motor Treiber.
 \ifEMBED
 \subsubsection{Annahmen und Abschätzungen}\label{sec:annahmen}
 \fi
-Für das vorliegende Konzpept gilt die Annahme, dass das Erregerfeld mittels
+Für das vorliegende Konzept gilt die Annahme, dass das Erregerfeld mittels
 Permanentmagneten realisiert ist und das Erregerfeld konstant ist. Diese
 Annahme ist gewählt, da fremderregte Gleichstrommaschinen ohne
 Permanentmagneten einen Erregerstrom benötigen, welcher das Erregerfeld
@@ -29,7 +29,7 @@ Hardwareaufwand.
 Die Drehzahl einer idealen fremderregten Gleichstrommaschine mit konstantem
 Erregerfeld korreliert mit $-1$ zum Strom. Der Strom einer solchen Maschine
 korreliert widerum mit der Belastung \cite[p.163]{smps}. Dieses Verahalten
-zwischen Belastung und Drehzahl ist in der Abbildung \ref{fig:ideal-dc-curve}
+zwischen Belastung und Drehzahl ist in Abbildung \ref{fig:ideal-dc-curve}
 dargestellt.
 
 \begin{figure}[h!]
@@ -71,7 +71,7 @@ Um die Klemmenspannung der Gleichstrommaschine zu stellen, wird eine
 H-Brücke verwendet. Diese kann je nach Bedarf individuell ausgelegt
 werden. Die Ansteuerung der H-Brücke erfolgt mittels des Treiberschips
 A3941 von Allegro Microsystems. Das Interfaces, welches der
-Treiberchip zu verfügung stellt, wird mittels eines Mikrocontrollers
+Treiberchip zur Verfügung stellt, wird mittels eines Mikrocontrollers
 bedient, welcher ebenfalls individuell gewählt ist.
 
 \begin{figure}[h!]
@@ -87,7 +87,7 @@ Stellgrösse, welche durch das PWM Signal gegeben ist, als auch die
 Winkelgeschwindigkeit der Maschine, welche die Regelgrösse darstellt.
 
 Die Regelung muss auf einem Feedback der Winkelgeschwindigkeit basieren.
-Wird von einer idealen Maschine ausgegeangen, muss dieses Feedback nicht
+Wird von einer idealen Maschine ausgegangen, muss dieses Feedback nicht
 zwingend durch einen Encoder generiert werden, sondern kann implizit durch
 den Strom gegeben sein, wie in der Abbildung \ref{fig:ideal-dc-curve}
 dargestellt. Mit den getroffenen Annahmen aus dem Abschnitt

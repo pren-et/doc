@@ -4,18 +4,18 @@ STEPPER_STANDALONE  = Stepper_StandaloneDoc
 STEPPER_EMBEDDED    = Stepper_EmbeddedDoc
 DC_STANDALONE       = DC_StandaloneDoc
 DC_EMBEDDED         = DC_EmbeddedDoc
-EMBEDDED            = PREN-ET_EmbeddedDoc
+PREN_ET_EMBEDDED    = PREN-ET_EmbeddedDoc
 RELEASE_DIR         = ./release
 
 .PHONY: all all_log release release_log bldc_standalone bldc_embedded stepper_standalone stepper_embedded dc_standalone dc_embedded release_copy clean
 
 all:	bldc_standalone bldc_embedded stepper_standalone stepper_embedded dc_standalone embedded clean
 
-all_log:	bldc_standalone bldc_embedded stepper_standalone stepper_embedded dc_standalone embedded
+all_log:	clean bldc_standalone_log bldc_embedded_log stepper_standalone_log stepper_embedded_log dc_standalone_log embedded_log
 
 release:	bldc_standalone bldc_embedded stepper_standalone stepper_embedded dc_standalone embedded release_copy clean
 
-release_log:	bldc_standalone bldc_embedded stepper_standalone stepper_embedded dc_standalone embedded release_copy
+release_log:	clean bldc_standalone_log bldc_embedded_log stepper_standalone_log stepper_embedded_log dc_standalone_log embedded_log release_copy
 
 bldc_standalone:
 	pdflatex $(BLDC_STANDALONE).tex
@@ -60,11 +60,60 @@ dc_embedded:
 	pdflatex $(DC_EMBEDDED).tex
 
 embedded:
-	pdflatex $(EMBEDDED).tex
-	bibtex   $(EMBEDDED).aux
-	pdflatex $(EMBEDDED).tex
-	pdflatex $(EMBEDDED).tex
-	pdflatex $(EMBEDDED).tex
+	pdflatex $(PREN_ET_EMBEDDED).tex
+	bibtex   $(PREN_ET_EMBEDDED).aux
+	pdflatex $(PREN_ET_EMBEDDED).tex
+	pdflatex $(PREN_ET_EMBEDDED).tex
+	pdflatex $(PREN_ET_EMBEDDED).tex
+
+bldc_standalone_log:
+	pdflatex $(BLDC_STANDALONE).tex     >> make.log
+	bibtex   $(BLDC_STANDALONE).aux     >> make.log
+	pdflatex $(BLDC_STANDALONE).tex     >> make.log
+	pdflatex $(BLDC_STANDALONE).tex     >> make.log
+	pdflatex $(BLDC_STANDALONE).tex     >> make.log
+
+bldc_embedded_log:
+	pdflatex $(BLDC_EMBEDDED).tex       >> make.log
+	bibtex   $(BLDC_EMBEDDED).aux       >> make.log
+	pdflatex $(BLDC_EMBEDDED).tex       >> make.log
+	pdflatex $(BLDC_EMBEDDED).tex       >> make.log
+	pdflatex $(BLDC_EMBEDDED).tex       >> make.log
+
+stepper_standalone_log:
+	pdflatex $(STEPPER_STANDALONE).tex  >> make.log
+	bibtex   $(STEPPER_STANDALONE).aux  >> make.log
+	pdflatex $(STEPPER_STANDALONE).tex  >> make.log
+	pdflatex $(STEPPER_STANDALONE).tex  >> make.log
+	pdflatex $(STEPPER_STANDALONE).tex  >> make.log
+
+stepper_embedded_log:
+	pdflatex $(STEPPER_EMBEDDED).tex    >> make.log
+	bibtex   $(STEPPER_EMBEDDED).aux    >> make.log
+	pdflatex $(STEPPER_EMBEDDED).tex    >> make.log
+	pdflatex $(STEPPER_EMBEDDED).tex    >> make.log
+	pdflatex $(STEPPER_EMBEDDED).tex    >> make.log
+
+dc_standalone_log:
+	pdflatex $(DC_STANDALONE).tex       >> make.log
+	bibtex   $(DC_STANDALONE).aux       >> make.log
+	pdflatex $(DC_STANDALONE).tex       >> make.log
+	pdflatex $(DC_STANDALONE).tex       >> make.log
+	pdflatex $(DC_STANDALONE).tex       >> make.log
+
+dc_embedded_log:
+	pdflatex $(DC_EMBEDDED).tex         >> make.log
+	bibtex   $(DC_EMBEDDED).aux         >> make.log
+	pdflatex $(DC_EMBEDDED).tex         >> make.log
+	pdflatex $(DC_EMBEDDED).tex         >> make.log
+	pdflatex $(DC_EMBEDDED).tex         >> make.log
+
+embedded_log:
+	pdflatex $(PREN_ET_EMBEDDED).tex    >> make.log
+	bibtex   $(PREN_ET_EMBEDDED).aux    >> make.log
+	pdflatex $(PREN_ET_EMBEDDED).tex    >> make.log
+	pdflatex $(PREN_ET_EMBEDDED).tex    >> make.log
+	pdflatex $(PREN_ET_EMBEDDED).tex    >> make.log
 
 release_copy:
 	cp *_StandaloneDoc.pdf $(RELEASE_DIR)/.

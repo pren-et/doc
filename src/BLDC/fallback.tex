@@ -21,7 +21,7 @@ Abbildung \ref{fig:rc-pwm} dargestellt.
 			(2,0) -- (7,0) -- (7,2) -- (8,2) -- (8,0) -- (9,0);
 		% Zeiten
 		\draw[<->] (1,1.5) -- (7,1.5) node[midway, above] {$T=20$ms};
-		\draw[<->] (1,0.5) -- (2,0.5) node[right] {$1$ms$<t_{ON}<2$ms};
+		\draw[<->] (1,0.5) -- (2,0.5) node[right] {$1$ms$ \leq t_{ON} \leq 2$ms};
 	\end{tikzpicture}
 	\caption{Signalverlauf eines typischen Modellbau-PWM Signals}
 	\label{fig:rc-pwm}
@@ -37,7 +37,7 @@ Mikrocontroller. Solche BLDC-Steuerungen werden im Modellbau typischerweise als
 \subsection{Konzeptbeschreibung}
 \fi
 \ifEMBED
-\newpage
+%\newpage
 \paragraph{Konzeptbeschreibung}$~~$\vspace{2mm}\\
 \fi
 Um eine Regelung der Drehzahl des BLDC-Motors zu ermöglichen, bedarf es eines

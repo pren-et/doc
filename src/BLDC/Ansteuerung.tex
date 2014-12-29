@@ -79,7 +79,9 @@
         bis zum Durchschreiten des Sternpunktes gemessen werden. Diese Zeit 
         muss noch einmal abgewartet werden, bevor die Kommutierung durchgeführt 
         wird. Falls der Motor über einen Anschluss für den Sternpunkt 
-        verfügt, kann auch dieser verwendet werden. 
+        verfügt, kann auch dieser verwendet werden. Da die Position des Rotors 
+        auf diese Weise beim Stillstand nicht ermittelt werden kann, muss der 
+        Motor mit einer Zwangskommutierung gestartet werden. 
 \ifSTANDALONE
     \subsection{Neuer Ansatz}
 \fi
@@ -169,9 +171,9 @@
         Regelung implementiert, um die Drehzahl des Motors zu regeln. Zusätzlich kann der Winkel 
         zwischen Detektion und Kommutierung angepasst werden, wenn dies notwendig ist.\\
         \\
-        Die Idee der Kommunikation mit dem Controller ist, dass über SPI die Solldrehzahl und gegebenenfalls 
-        Parameter eingestellt werden können. Alle weiteren Schritte, wie die benötigte Zwangskommutierung am 
-        Anfang und die Regelung, werden eigenständig vom Boardcontroller vorgenommen.
+        Die Kommunikation mit dem Controller soll über SPI geschehen. Darüber sollen die Solldrehzahl 
+        und gegebenenfalls Parameter eingestellt werden können. Alle weiteren Schritte, wie die benötigte 
+        Zwangskommutierung am Anfang und die Regelung, werden eigenständig vom Boardcontroller vorgenommen.
         %
         \begin{table}[h!]
             \begin{tabular}{ll}

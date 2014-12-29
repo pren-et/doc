@@ -20,12 +20,12 @@ Wie bereits im Kapitel \ref*{subsec:Ansteuerung} erwähnt, wird der L6480 von ST
     Kpaitel \ref{wirkungsweise}) Schrittmotoren mit Mikrosteps (Vgl. Kapitel 
     \ref{wirkungsweise}) geeignet. Der L6480 erreicht eine maximale Auflösung 
     von einem 1/128 Schritt. Die Steuerung generiert intern die PWM- Signale 
-    für die Motorenansteuerung. Alternativ kann auch mit Einzelschritten oder 
+    für die Motorenansteuerung. Alternativ kann auch mit Vollschritten oder 
     Halbschritten gearbeitet werden. Die beiden H- Brücken werden extern mit 
     N-Kanal MOSFETs realisiert. Es können Bewegungsprofile konfiguriert 
-    werden, so dass die Motoren definiert Anfahren, Abbremsen oder ein Punkt 
+    werden, so dass die Motoren definiert anfahren, abbremsen oder ein Punkt 
     direkt angefahren werden kann. So kann der Aufwand bei der 
-    Mikrokontrollerprogrammierung verringert werden. Die Befehle werden über 
+    Mikrocontrollerprogrammierung verringert werden. Die Befehle werden über 
     eine SPI- Schnittstelle übertragen. Die absolute Position ist in einem 22- 
     Bit Register gespeichert. Der Bereich liegt dementsprechend zwischen 
     \(-2^{21}\) und \(2^{21}-1\). \cite{Datasheet:L6480} 
@@ -44,10 +44,10 @@ L6480 \cite{Datasheet:L6480} :
             \textbf{IO} &
             \textbf{Funktion} \\
         $\overline{FLAG}$ &
-            Output &
+            Output (Open Drain) &
             Wird bei einem Fehler intern auf GND gezogen. \\
         $\overline{BUSY}$ / SYNC &
-            Output &
+            Output (Open Drain) &
             Wird während dem Ausführen eines Befehls intern auf GND gezogen.\\
         $\overline{STBY / RESET}$ &
             Input &
