@@ -7,13 +7,13 @@
 % title page
 \ifSTANDALONE
     \ifDC
-        \input{src/DC/title}
+        \input{src/dc/title}
     \fi
     \ifBLDC
-        \input{src/BLDC/title}
+        \input{src/bldc/title}
     \fi
     \ifSTEPPER
-        \input{src/Stepper/title}
+        \input{src/stepper/title}
     \fi
 \else
     \author{PREN-ET}
@@ -23,34 +23,34 @@
 % Content
 \tableofcontents
 \clearpage
-\input{src/common/Hardwarezusammenarbeit}
+\input{src/common/hardwarezusammenarbeit}
 \ifDC
-    \renewcommand{\EtPath}{src/DC}
-    \input{src/DC/concept}
+    \renewcommand{\EtPath}{src/dc}
+    \input{src/dc/concept}
     \newpage
 \fi
 
 \ifBLDC
-    \renewcommand{\EtPath}{src/BLDC}
-    \input{src/BLDC/Ansteuerung}
+    \renewcommand{\EtPath}{src/bldc}
+    \input{src/bldc/ansteuerung}
     \clearpage
-    \input{src/BLDC/Testbericht}
+    \input{src/bldc/testbericht}
     \clearpage
-    \input{src/BLDC/fallback}
+    \input{src/bldc/fallback}
     \clearpage
-    \input{src/BLDC/encoder}
+    \input{src/bldc/encoder}
     \clearpage
 \fi
 
 \ifSTEPPER
-    \renewcommand{\EtPath}{src/Stepper}
-    \input{src/Stepper/Wirkungsweise}
+    \renewcommand{\EtPath}{src/stepper}
+    \input{src/stepper/wirkungsweise}
     \clearpage
-    \input{src/Stepper/Ansteuerung}
+    \input{src/stepper/ansteuerung}
     \clearpage
-    \input{src/Stepper/L6480}
+    \input{src/stepper/l6480}
     \clearpage
-    \input{src/Stepper/Ausblick}
+    \input{src/stepper/ausblick}
     \clearpage
 \fi
 
