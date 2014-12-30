@@ -7,7 +7,7 @@ DC_EMBEDDED         = DC_EmbeddedDoc
 PREN_ET_EMBEDDED    = PREN-ET_EmbeddedDoc
 RELEASE_DIR         = ./release
 
-.PHONY: all all_log release release_log bldc_standalone bldc_embedded stepper_standalone stepper_embedded dc_standalone dc_embedded release_copy clean
+.PHONY: all all_log release release_log bldc_standalone bldc_embedded stepper_standalone stepper_embedded dc_standalone dc_embedded embedded bldc_standalone_log bldc_embedded_log stepper_standalone_log stepper_embedded_log dc_standalone_log dc_embedded_log embedded_log release_copy clean
 
 all:	bldc_standalone bldc_embedded stepper_standalone stepper_embedded dc_standalone embedded clean
 

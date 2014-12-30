@@ -33,22 +33,22 @@ zwischen Belastung und Drehzahl ist in Abbildung \ref{fig:ideal-dc-curve}
 dargestellt.
 
 \begin{figure}[h!]
-	\centering
-	\begin{tikzpicture}
-		% Achsen
-		\draw[->] (-0.5,0) -- (8,0) node[anchor=north] {$I, M$};
-		\draw[->] (0,-0.5) -- (0,4) node[anchor=east] {$\omega_m$};
-		% Klemmenspannung
-		\draw[blue, thick] (0,3) -- (7,3) node[anchor=west] {$U_K$};
-		% induzierte Spannung
-		\draw[red, thick] 
-			(0,3) node[anchor=east] {$\omega_0$} -- 
-			(7,0) node[midway, above right] {$\omega \sim U_i$};
-		
-	\end{tikzpicture}
-	\caption{Winkelgeschwindigkeit einer idealen fremderregten 
-		Gleichstrommaschine}
-	\label{fig:ideal-dc-curve}
+    \centering
+    \begin{tikzpicture}
+        % Achsen
+        \draw[->] (-0.5,0) -- (8,0) node[anchor=north] {$I, M$};
+        \draw[->] (0,-0.5) -- (0,4) node[anchor=east] {$\omega_m$};
+        % Klemmenspannung
+        \draw[blue, thick] (0,3) -- (7,3) node[anchor=west] {$U_K$};
+        % induzierte Spannung
+        \draw[red, thick] 
+            (0,3) node[anchor=east] {$\omega_0$} -- 
+            (7,0) node[midway, above right] {$\omega \sim U_i$};
+        
+    \end{tikzpicture}
+    \caption{Winkelgeschwindigkeit einer idealen fremderregten 
+        Gleichstrommaschine}
+    \label{fig:ideal-dc-curve}
 \end{figure}
 
 \ifSTANDALONE
@@ -75,10 +75,10 @@ Treiberchip zur Verfügung stellt, wird mittels eines Mikrocontrollers
 bedient, welcher ebenfalls individuell gewählt ist.
 
 \begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.75\textwidth]{\DCPath/fig/a3941-functional.png}
-	\caption{Blockaschltbild des A3941}
-	\label{fig:a3941-functional}
+    \centering
+    \includegraphics[width=0.75\textwidth]{\DCPath/fig/a3941-functional.png}
+    \caption[Blockschaltbild des A3941]{Blockschaltbild des A3941 \cite{Datasheet:A3941}}
+    \label{fig:a3941-functional}
 \end{figure}
 
 Die Regelung der Winkelgeschwindigkeit eines angeschlossenen Motors kann
@@ -111,30 +111,30 @@ Mikrocontroller geführt werden, welcher dieses auswertet und ein passendes
 PWM Signal generiert.
 
 \begin{figure}[h!]
-	\centering
-	\begin{subfigure}[b]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{\DCPath/sim/sch-pwm-01.jpg}
-		\caption{Prinzipschema mit dem Komparator TLC393}
-	\end{subfigure}
-	\begin{subfigure}[b]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{\DCPath/sim/pwm-01.jpg}
-		\caption{Simulationsergebnisse für lineares Feedback}
-	\end{subfigure}
-	\caption{Simulation eines PWM-Generator mit Komparator}
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{\DCPath/sim/sch-pwm-01.jpg}
+        \caption{Prinzipschema mit dem Komparator TLC393}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{\DCPath/sim/pwm-01.jpg}
+        \caption{Simulationsergebnisse für lineares Feedback}
+    \end{subfigure}
+    \caption{Simulation eines PWM-Generator mit Komparator}
 \end{figure}
 
 \begin{figure}[h!]
-	\centering
-	\begin{subfigure}[b]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{\DCPath/sim/sch-sawtooth-01.jpg}
-		\caption{Sägezahntgenerator mit Timer TLC555}
-	\end{subfigure}
-	\begin{subfigure}[b]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{\DCPath/sim/sawtooth-01.jpg}
-		\caption{Simulationsergebnisse ($f_{ST} \approx 9.3$kHz)}
-	\end{subfigure}
-	\caption{Simulation eines Sägezahngenerators}
-	\label{fig:sawtooth}
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{\DCPath/sim/sch-sawtooth-01.jpg}
+        \caption{Sägezahntgenerator mit Timer TLC555}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{\DCPath/sim/sawtooth-01.jpg}
+        \caption{Simulationsergebnisse ($f_{ST} \approx 9.3$kHz)}
+    \end{subfigure}
+    \caption{Simulation eines Sägezahngenerators}
+    \label{fig:sawtooth}
 \end{figure}
 
 Ein passender Baustein zur Erzeugung ist der Timer TLC555, wie in der
@@ -158,17 +158,17 @@ realisieren für das PWM Signal. Eine mögliche Implementation ist in der
 Abbildung \ref{fig:and} dargestellt.
 
 \begin{figure}[h!]
-	\centering
-	\begin{subfigure}[b]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{\DCPath/sim/sch-and-01.jpg}
-		\caption{AND-Schaltung mit NPN-Transistoren}
-	\end{subfigure}
-	\begin{subfigure}[b]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{\DCPath/sim/and-01.jpg}
-		\caption{Simulationsergebnisse}
-	\end{subfigure}
-	\caption{Simulation einer AND-Schaltung realisiert mit
-		Bipolartransistoren}
-	\label{fig:and}
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{\DCPath/sim/sch-and-01.jpg}
+        \caption{AND-Schaltung mit NPN-Transistoren}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{\DCPath/sim/and-01.jpg}
+        \caption{Simulationsergebnisse}
+    \end{subfigure}
+    \caption{Simulation einer AND-Schaltung realisiert mit
+        Bipolartransistoren}
+    \label{fig:and}
 \end{figure}
 
