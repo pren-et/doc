@@ -17,7 +17,7 @@
     \fi
     \ifEMBED
         \begin{wrapfigure}{r}{0.50\textwidth}
-           	\includegraphics[scale=0.45]{\EtPath/Bilder/ZeitlicheHallSensorAnsteuerung.jpg}
+           	\includegraphics[scale=0.45]{\BLDCPath/Bilder/ZeitlicheHallSensorAnsteuerung.jpg}
          	\centering
            	\caption[Zeitliche Darstellung der Ansteuerung mit Hall-Sensoren]
            	{Zeitliche Darstellung der Ansteuerung mit Hall-Sensoren \cite{AppNote:BrushlessuC}}
@@ -44,7 +44,7 @@
         Blockkommutierung realisiert. \\
     \ifSTANDALONE
         \begin{figure}[h!]
-            \includegraphics[scale=0.45]{\EtPath/Bilder/ZeitlicheHallSensorAnsteuerung.jpg}
+            \includegraphics[scale=0.45]{\BLDCPath/Bilder/ZeitlicheHallSensorAnsteuerung.jpg}
             \centering
             \caption[Zeitliche Darstellung der Ansteuerung mit Hall-Sensoren]
             {Zeitliche Darstellung der Ansteuerung mit Hall-Sensoren \cite{AppNote:BrushlessuC}}
@@ -90,7 +90,7 @@
 \fi
     \ifEMBED
         \begin{wrapfigure}{r}{0.46\textwidth}
-            \includegraphics[scale=0.46]{\EtPath/Bilder/PrinzipDerRekonstruktion.png}
+            \includegraphics[scale=0.46]{\BLDCPath/Bilder/PrinzipDerRekonstruktion.png}
             \centering
             \caption[Schema des Rekonstruktionsprinzip]{Schema des Rekonstruktionsprinzip \cite{HSLU:Pluess}}
             \label{abb:PrinzipRekonstruktion}
@@ -105,7 +105,7 @@
     \ifSTANDALONE
     	\begin{figure}[h!]
             \centering
-            \includegraphics[scale=0.46]{\EtPath/Bilder/PrinzipDerRekonstruktion.png}
+            \includegraphics[scale=0.46]{\BLDCPath/Bilder/PrinzipDerRekonstruktion.png}
            	\caption{Schema des Rekonstruktionsprinzip \protect\cite{HSLU:Pluess}}
             \label{abb:PrinzipRekonstruktion}
         \end{figure}
@@ -118,7 +118,10 @@
         \ref{abb:ZeitlicheAnsteuerungBrushlessMotor} zu entnehmen ist und der 
         Ansteuerung einer H-Brücke, ergibt sich die Wahrheitstabelle, die in 
         Tabelle \ref{abb:WahrheitstabelleAnsteuerung} ersichtlich ist. Das 
-        Signal $U_h$ symbolisiert den Highside-Transistor der Phase U auf der 
+        Signal $U_h$ symbolisiert den Highside\footnote{Transistor, der gegen 
+        die Versorgungsspannung schaltet. Typischerweise aufwendiger 
+        anzusteuern, da am Gate eine Spannung von einigen Volt über der 
+        Versorgungsspannung angelegt werden muss. }-Transistor der Phase U auf der 
         H-Brücke und die Spalte $U_l$ entspricht dem Lowside-Transistor.\\      
         
         \begin{table}[h!]
