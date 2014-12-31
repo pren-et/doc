@@ -17,8 +17,8 @@ Wie bereits im Kapitel \ref*{subsec:Ansteuerung} erwähnt, wird der L6480 von ST
     \subsubsection{Funktionsbeschreibung}
 \fi
     Diese Schrittmotorensteuerung ist für den Betrieb von zweiphasigen (Vgl. 
-    Kpaitel \ref{wirkungsweise}) Schrittmotoren mit Mikrosteps (Vgl. Kapitel 
-    \ref{wirkungsweise}) geeignet. Der L6480 erreicht eine maximale Auflösung 
+    Kpaitel \ref{sec:stepper}) Schrittmotoren mit Mikrosteps (Vgl. Kapitel 
+    \ref{sec:stepper}) geeignet. Der L6480 erreicht eine maximale Auflösung 
     von einem 1/128 Schritt. Die Steuerung generiert intern die PWM- Signale 
     für die Motorenansteuerung. Alternativ kann auch mit Vollschritten oder 
     Halbschritten gearbeitet werden. Die beiden H- Brücken werden extern mit 
@@ -73,7 +73,7 @@ L6480 \cite{Datasheet:L6480} :
             Slave Data In: Befehle und Daten für den L6480. \\
     \end{zebralongtable}
     \caption{Schnittstelle des Treibers L6480}
-    \label{Schnittstelle}
+    \label{tab:Schnittstelle}
 \end{table}
 %\begin{longtable}{l l p{7cm}} \toprule
 %    \textbf{Pin}    & \textbf{IO}   & \textbf{Funktion} \\
@@ -96,7 +96,7 @@ L6480 \cite{Datasheet:L6480} :
 %    \bottomrule
 %    \\
 %    \caption{Schnittstelle} 
-%    \label{Schnittstelle}
+%    \label{tab:Schnittstelle}
 %\end{longtable} 
 
 \ifSTANDALONE  
@@ -109,6 +109,6 @@ L6480 \cite{Datasheet:L6480} :
 \begin{figure}[h]
     \centering
     \includegraphics[width=12cm]{\EtPath/Bilder/typicalApp.jpg}
-    \label{fig:typApp}
     \caption[Typical Application]{Typical Application \cite{Datasheet:L6480}}
+    \label{fig:typApp}
 \end{figure}

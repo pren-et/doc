@@ -1,8 +1,8 @@
 \ifSTANDALONE
-\section{Wirkungsweise} \label{wirkungsweise}
+    \section{Schrittmotor} \label{sec:stepper}
 \fi
 \ifEMBED
-\subsection{Wirkungsweise} \label{wirkungsweise}
+    \subsection{Schrittmotor} \label{sec:stepper}
 \fi
 
 \ifEMBED
@@ -26,8 +26,14 @@
     Permanentmagnetmotoren erreichen eine kleinere Schrittfrequenz, besitzen 
     jedoch ein grösseres Drehmoment als der Reluktanzmotor. Die Kombination 
     aus Reluktanzmotor und Permanentmagnetmotor ist ein Hybridmotor. Ein 
-    Hybridmotor verbindet die Vorteile von Reluktanz- und Permagnentmotor.\\
-    \\
+    Hybridmotor verbindet die Vorteile von Reluktanz- und Permagnentmotor. 
+
+\ifSTANDALONE
+    \subsection{Schritte} \label{sec:steps}
+\fi
+\ifEMBED
+    \subsubsection{Schritte} \label{sec:steps}
+\fi
     Der Vollschrittbetrieb kann einphasig oder auch zweiphasig gesteuert 
     werden. Beim einphasigen Vollschrittbetrieb sind immer zwei gegenüber 
     liegende Pole aktiv. Beim zweiphasigen Vollschrittbetrieb werden jeweils 
@@ -35,7 +41,7 @@
     beiden Vollschrittbetriebsarten kombiniert. So kann der Schrittwinkel 
     halbiert werden. Zusätzlich kann der Schrittmotor mit Mikroschritten 
     betrieben werden. Dabei folgt der Strom der sinusförmigen 
-    Referenzspannung. (Vgl. Seite \pageref{stromgesteuert})
+    Referenzspannung. (Vgl. Seite \pageref{stromgesteuert}) \\
     \begin{figure}[h!]
     	\centering
     	\begin{tikzpicture}
@@ -91,7 +97,6 @@
     	\caption{Vollschritt}
     	\label{fig:vollschritt}
     \end{figure}
-    
     \begin{figure}[h!]
      	\centering
      	\begin{tikzpicture}
@@ -171,16 +176,41 @@
     	\caption{Mikroschritt}
     	\label{fig:mikroschritt}
     \end{figure}
-    \parindent 0pt Eine Phase sind jeweils die zusammengeschalteten Statorwicklungen. Der 
-    unipolare Schrittmotor besteht aus vier Phasen. Ein Elektromagnet besteht 
-    aus zwei Phasen, welche gegenseitig gewickelt sind. So kann vermieden 
-    werden, dass der Stromfluss durch die Wicklung gedreht werden muss. Der 
-    bipolare Schrittmotor besteht aus nur zwei Phasen. Es muss mit einer 
-    Brückenschaltung die Richtung des Stromes gedreht werden. In den meisten 
-    Anwendungen werden Bipolare Schrittmotoren verwendet, da ein bipolarer 
-    Schrittmotor ein grössseres Drehmoment erzeugt als ein gleich grosser 
-    unipolarer Schrittmotor. Die beiden Betriebsarten sind in der 
-    \autoref{fig:uniVsbi} ersichtlich. \cite{Doku:Stepper}
+    Wie bei anderen Motoren hat auch bei Schrittmotoren die Anzahl Polpaare 
+    einen Einfluss auf dessen Drehzahl. Die Polpaare bilden eine Untersetzung 
+    zwischen der elektrischen und der mechanischen Rotation. Die meisten 
+    gängigen Schrittmotoren besitzen 50 Polpaare. Da eine elektrische 
+    Umdrehung aus vier Schritten besteht ergeben sich bei 50 Polpaaren 200 
+    Schritte für eine Umdrehung. Dies ergibt eine Schrittauflösung von 
+    1.8$^\circ$. 
+
+\ifSTANDALONE
+    \subsection{Wicklungen} \label{sec:windings}
+\fi
+\ifEMBED
+    \subsubsection{Wicklungen} \label{sec:windings}
+\fi
+    Ein Schrittmotor besitzt zwei getrennte Wicklungen. Diese sind 
+    rechtwinklig zueinander angeordnet. Bei Motoren mit mehr als einem Polpaar 
+    sind entsprechend mehr die Wicklungen verbaut. Beim Aufbau der Wicklungen 
+    wird zwischen unipolaren und bipolaren Wicklungen unterschieden. 
+    %
+    Die unipolare Wicklung besitzt einen Mittelabgriff. Dieser wird meistens 
+    mit der Versorgungsspannung verbunden. Die beiden anderen Enden werden nun 
+    mit einer Lowside Treiberstufe angesteuert. Dadurch kann der magnetische 
+    Fluss mit einem geringen elektronischen Aufwand umgekehrt werden. Jedoch 
+    ist immer nur eine Hälfte der Wicklung aktiv. Zudem ist die Herstellung 
+    aufwendiger und somit auch teuerer. 
+    %
+    Bei einer bipolaren Wicklung fehlt der mittlere Abgriff. Die Umkehrung des 
+    magnetischen Flusses muss über die Umkehrung der angelegten Spannung 
+    erfolgen. Deshalb muss für beide Wicklungen jeweils eine Brückenschaltung 
+    verwendet werden. Da bei bipolaren Schrittmotoren immer die gesamte 
+    Wicklung verwendet wird, kann damit ein grösseres Drehmoment erzeugt 
+    werden als mit einem gleich grossen unipolaren Schrittmotor. 
+    %
+    Die Ansteuerung der beiden Wicklungsarten sind in \autoref{fig:uniVsbi} 
+    ersichtlich. \cite{Doku:Stepper}
     \begin{figure}[h!]
        	\centering
        	\includegraphics[width=12cm]{\EtPath/Bilder/uniVsbi.jpg}
