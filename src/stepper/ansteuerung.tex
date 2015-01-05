@@ -17,18 +17,6 @@
 \fi
 	Grundsätzlich besteht die Ansteuerung aus drei Teilen, wie in 
     \autoref*{fig:ansteuerung} gezeigt. 
-	\begin{figure}[h!]
-		\centering
-		\begin{tikzpicture}
-		\draw[line width=1.5pt](0, 0) rectangle node{Mikrocontroller} (3, 1)  ;
-		\draw[line width=1.5pt, ->]	(3, 0.5) -- (4, 0.5);
-		\draw[line width=1.5pt](4, 0) rectangle node{Steuerung}(7, 1);
-		\draw[line width=1.5pt, ->]	(7, 0.5) -- (8, 0.5);
-		\draw[line width=1.5pt](8, 0) rectangle node{Treibertufen}(11, 1);
-		\end{tikzpicture}
-		\caption{Komponenten der Ansteuerung eines Schrittmotores}
-		\label{fig:ansteuerung}
-	\end{figure}
     Um die Ansteuerung zu realisieren, gibt es eine Vielzahl von 
     integrierten Schaltkreisen. Diese unterscheiden sich wie folgt: 
     \begin{itemize}
@@ -46,6 +34,18 @@
     STMicroelectronics. Dieser wird über die SPI Schnittstelle gesteuert 
     und besitzt eine Motion Contol Engine. Die Treiberstufe wird extern 
     realisiert. (Vgl. Kapitel \ref{sec:L6480}) 
+	\begin{figure}[h!]
+		\centering
+		\begin{tikzpicture}
+		\draw[line width=1.5pt](0, 0) rectangle node{Mikrocontroller} (3, 1)  ;
+		\draw[line width=1.5pt, ->]	(3, 0.5) -- (4, 0.5);
+		\draw[line width=1.5pt](4, 0) rectangle node{Steuerung}(7, 1);
+		\draw[line width=1.5pt, ->]	(7, 0.5) -- (8, 0.5);
+		\draw[line width=1.5pt](8, 0) rectangle node{Treibertufen}(11, 1);
+		\end{tikzpicture}
+		\caption{Komponenten der Ansteuerung eines Schrittmotores}
+		\label{fig:ansteuerung}
+	\end{figure}
     
 \ifSTANDALONE
 \subsection{Treiberstufe}

@@ -10,7 +10,7 @@ angelegte Ankerspannung. Eine variable Ankerspannung kann mittels einer
 zeitlichen Mittelung der anliegenden Spannung realisert werden. Somit
 ist es möglich eine fremderregte Gleichstrommaschine mittels einer
 konstanten Gleichspannung einzustellen. Die Mittelung der Ankerspannung
-bildet die Basis des vorliegenden Konzepts für den DC-Motor Treiber.
+bildet die Basis des vorliegenden Konzepts für den DC-Motor-Treiber.
 
 \ifSTANDALONE
 \subsection{Annahmen und Abschätzungen}\label{sec:annahmen}
@@ -19,18 +19,18 @@ bildet die Basis des vorliegenden Konzepts für den DC-Motor Treiber.
 \subsubsection{Annahmen und Abschätzungen}\label{sec:annahmen}
 \fi
 Für das vorliegende Konzept gilt die Annahme, dass das Erregerfeld mittels
-Permanentmagneten realisiert ist und das Erregerfeld konstant ist. Diese
+Permanentmagneten realisiert und das Erregerfeld konstant ist. Diese
 Annahme ist gewählt, da fremderregte Gleichstrommaschinen ohne
 Permanentmagneten einen Erregerstrom benötigen, welcher das Erregerfeld
-erzeugt. Im einfachsten Fall ist dies eine Kosntantstromquelle. Eine solche
+erzeugt. Im einfachsten Fall ist dies eine Konstantstromquelle. Eine solche
 Maschine benötigt mehr elektrische Energie und erfordert zusätzlichen
 Hardwareaufwand.
 
-Die Drehzahl einer idealen fremderregten Gleichstrommaschine mit konstantem
-Erregerfeld korreliert mit $-1$ zum Strom. Der Strom einer solchen Maschine
-korreliert widerum mit der Belastung \cite[p.163]{smps}. Dieses Verahalten
-zwischen Belastung und Drehzahl ist in Abbildung \ref{fig:ideal-dc-curve}
-dargestellt.
+\noindent Die Drehzahl einer idealen fremderregten Gleichstrommaschine mit 
+konstantem Erregerfeld korreliert mit dem Faktor $-1$ zum Strom. Der Strom 
+einer solchen Maschine korreliert wiederum mit der Belastung 
+\cite[p.163]{smps}. Dieses Verhalten zwischen Belastung und Drehzahl ist in 
+Abbildung \ref{fig:ideal-dc-curve} dargestellt.
 
 \begin{figure}[h!]
     \centering
@@ -58,7 +58,7 @@ dargestellt.
 \subsubsection{Ziel}
 \fi
 Es ist eine Hardware zu entwicklen, welche es ermöglicht, die
-Winkelgeschwindigkeit einer fremerregten Gleichstrommaschine mit
+Winkelgeschwindigkeit einer fremderregten Gleichstrommaschine mit
 Permanentmagneten zu regeln.
 
 \ifSTANDALONE
@@ -69,8 +69,8 @@ Permanentmagneten zu regeln.
 \fi
 Um die Klemmenspannung der Gleichstrommaschine zu stellen, wird eine
 H-Brücke verwendet. Diese kann je nach Bedarf individuell ausgelegt
-werden. Die Ansteuerung der H-Brücke erfolgt mittels des Treiberschips
-A3941 von Allegro Microsystems. Das Interfaces, welches der
+werden. Die Ansteuerung der H-Brücke erfolgt mittels des Treiberchips
+A3941 von Allegro Microsystems. Das Interface, welches der
 Treiberchip zur Verfügung stellt, wird mittels eines Mikrocontrollers
 bedient, welcher ebenfalls individuell gewählt ist.
 
@@ -81,18 +81,18 @@ bedient, welcher ebenfalls individuell gewählt ist.
     \label{fig:a3941-functional}
 \end{figure}
 
-Die Regelung der Winkelgeschwindigkeit eines angeschlossenen Motors kann
-mit verschiedenen Ansätzen realisert werden. Gemeinsam ist dabei stets die
+\noindent Die Regelung der Winkelgeschwindigkeit eines angeschlossenen Motors 
+kann mit verschiedenen Ansätzen realisiert werden. Gemeinsam ist dabei stets die
 Stellgrösse, welche durch das PWM Signal gegeben ist, als auch die
 Winkelgeschwindigkeit der Maschine, welche die Regelgrösse darstellt.
 
-Die Regelung muss auf einem Feedback der Winkelgeschwindigkeit basieren.
-Wird von einer idealen Maschine ausgegangen, muss dieses Feedback nicht
-zwingend durch einen Encoder generiert werden, sondern kann implizit durch
-den Strom gegeben sein, wie in der Abbildung \ref{fig:ideal-dc-curve}
-dargestellt. Mit den getroffenen Annahmen aus dem Abschnitt
-\ref{sec:annahmen} kann somit auf ein explizites Feedback der
-Winkelgeschwindigkeit verzichtet werden. 
+\noindent Die Regelung muss auf einem Feedback der Winkelgeschwindigkeit 
+basieren. Wird von einer idealen Maschine ausgegangen, muss dieses Feedback 
+nicht zwingend durch einen Encoder generiert werden, sondern kann implizit 
+durch den Strom gegeben sein, wie in Abbildung \ref{fig:ideal-dc-curve} 
+dargestellt. Mit den getroffenen Annahmen aus Abschnitt \ref{sec:annahmen} 
+kann somit auf ein explizites Feedback der Winkelgeschwindigkeit verzichtet 
+werden. 
 
 \ifSTANDALONE
 \subsection{Regelung}
@@ -102,12 +102,12 @@ Winkelgeschwindigkeit verzichtet werden.
 \fi
 Für die Ansteuerung der H-Brücke bzw. des Treiberchips A3941 wird ein PWM
 Signal benötigt. Dieses kann in Hardware auf dem Treiberboard implementiert
-werden mittels eines Sägezahngenerators und einem Komparator. Der zweite
+werden, mittels eines Sägezahngenerators und einem Komparator. Der zweite
 Komparatoreingang wird dazu an das Feedback des Stromes angeschlossen, was
 ein zur Winkelgeschwindigkeit angepasstes PWM Signal generiert.
 
-Alternativ zu dieser Regelung kann das Feedback des Stromes auch zum
-Mikrocontroller geführt werden, welcher dieses auswertet und ein passendes
+\noindent Alternativ zu dieser Regelung kann das Feedback des Stromes auch zu 
+einem Mikrocontroller geführt werden, welcher dieses auswertet und ein passendes
 PWM Signal generiert.
 
 \begin{figure}[h!]
@@ -137,24 +137,24 @@ PWM Signal generiert.
     \label{fig:sawtooth}
 \end{figure}
 
-Ein passender Baustein zur Erzeugung ist der Timer TLC555, wie in der
+\noindent Ein passender Baustein zur Erzeugung ist der Timer TLC555, wie in der
 Abbildung \ref{fig:sawtooth} dargestellt. Das Feedback des Stromes kann
-dabei auf verschiedene Weise implementiert werden. Einerseits gibt es eine
+dabei auf verschiedene Weisen implementiert werden. Einerseits gibt es eine
 kostengünstige Variante mittels dem Einsatz eines Shunt-Widerstands. Dieser
 bietet im Idealfall ein lineares Varhalten. In der Realität führt der
-Einfluss der Temperatur zu einer deutlichen nichtlinearität dieses
+Einfluss der Temperatur zu einer deutlichen Nichtlinearität dieses
 Messmittels. Eine Alternative zum Shunt-Widerstands bietet der Einsatz von
 Hall-Effekt-Stromwandlern, welche den Strom linearisiert als Spannungssignal
 ausgeben. Ein solcher Baustein ist der ACS712 der Allegro Microsystems,
-welcher im SMD Format verfügbar ist bis zu einem Strom von 30A.
+welcher im SMD Format verfügbar ist, bis zu einem Strom von 30A.
 
-Ist eine genaue Drehzahl nicht von Bedeutung kann auf die Regelung der
+\noindent Ist eine genaue Drehzahl nicht von Bedeutung, kann auf die Regelung der
 Winkelgeschwindigkeit verzichtet werden. Dies gilt insbesondere, wenn eine
 hohe Übersetzung vorliegt, welche verhindert, dass die Winkelgeschwindigkeit
-der Gleichstrommaschine einbricht bei entsprechender Belastung. Für diesen
+der Gleichstrommaschine einbricht, bei entsprechender Belastung. Für diesen
 Fall kann das PWM fix eingestellt werden und lediglich mit einem Enable
 Signal gearbeitet werden. Dies lässt sich mit einer logischen AND Funktion
-realisieren für das PWM Signal. Eine mögliche Implementation ist in der
+realisieren für das PWM Signal. Eine mögliche Implementierung ist in der
 Abbildung \ref{fig:and} dargestellt.
 
 \begin{figure}[h!]

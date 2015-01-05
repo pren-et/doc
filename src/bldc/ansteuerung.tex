@@ -36,8 +36,8 @@
         erreicht sein Maximum bei einem Polradwinkel von 90$^\circ$. Die 
         Kommutierung wird entweder als Sinuskommutierung oder als 
         Blockkommutierung ausgeführt. Die Sinuskommutierung bildet die 
-        Sinusform eines dreiphasigen Netzes nach. Die Sinusform kann mit einem 
-        Rechtecksignal angenähert werden. Dabei spricht man von einer 
+        Sinusform eines dreiphasigen Netzes nach. Die Sinusform kann auch mit 
+        einem Rechtecksignal angenähert werden. Dabei spricht man von einer 
         Blockkommutierung. Diese ist einfacher zu realisieren, aber erreicht 
         nicht das selbe Drehmoment wie eine Sinuskommutierung. In diesem 
         Projekt wird aufgrund der einfacheren Implementierung eine 
@@ -52,7 +52,7 @@
         \end{figure}
     \fi
         \\
-        Es gibt hauptsächlich drei Methoden das Drehfeld zu generieren und zu 
+        Es gibt hauptsächlich drei Methoden, das Drehfeld zu generieren und zu 
         regeln. Die einfachste Methode ist die Zwangskommutierung: 
         Dabei wird ein Drehfeld erzeugt und dem Motor aufgezwungen. Der Läufer 
         muss dem Drehfeld folgen, der maximal zulässige Winkel von 90$^\circ$
@@ -105,7 +105,7 @@
     \ifSTANDALONE
     	\begin{figure}[h!]
             \centering
-            \includegraphics[scale=0.46]{\BLDCPath/Bilder/PrinzipDerRekonstruktion.png}
+            \includegraphics[scale=0.50]{\BLDCPath/Bilder/PrinzipDerRekonstruktion.png}
            	\caption{Schema des Rekonstruktionsprinzip \protect\cite{HSLU:Pluess}}
             \label{abb:PrinzipRekonstruktion}
         \end{figure}
@@ -125,9 +125,10 @@
         H-Brücke und die Spalte $U_l$ entspricht dem Lowside-Transistor.\\      
         
         \begin{table}[h!]
-            \begin{tabular}{ccc||cc|cc|cc||c}
+            \begin{zebratabular}{ccc||cc|cc|cc||c}
+                 \rowcolor{gray} 
                  $H_1$ & $H_2$ & $H_3$ & $U_h$ & $U_l$ & $V_h$ & $V_l$ & $W_h$ & $W_l$ & Illegal\\
-            \hline 0   &   0   &   0   &   0   &   0   &   0   &   0   &   0   &   0   &   1\\
+                   0   &   0   &   0   &   0   &   0   &   0   &   0   &   0   &   0   &   1\\
                    0   &   0   &   1   &   0   &   0   &   0   &   1   &   1   &   0   &   0\\
                    0   &   1   &   0   &   0   &   1   &   1   &   0   &   0   &   0   &   0\\
                    0   &   1   &   1   &   0   &   1   &   0   &   0   &   1   &   0   &   0\\
@@ -135,14 +136,14 @@
                    1   &   0   &   1   &   1   &   0   &   0   &   1   &   0   &   0   &   0\\
                    1   &   1   &   0   &   0   &   0   &   1   &   0   &   0   &   1   &   0\\
                    1   &   1   &   1   &   0   &   0   &   0   &   0   &   0   &   0   &   1\\
-            \end{tabular}
+            \end{zebratabular}
            	\centering
            	\caption{Wahrheitstabelle der Ansteuerung} 
             \label{abb:WahrheitstabelleAnsteuerung}
         \end{table}
         \parindent 0pt Die Tabelle in Abbildung 
         \ref{abb:WahrheitstabelleAnsteuerung} kann pro Signal zu folgenden 
-        logischen Verknüpfung vereinfacht werden\\
+        logischen Verknüpfung vereinfacht werden. \\
         \\
     \ifSTANDALONE
         \begin{table}
@@ -179,15 +180,16 @@
         Zwangskommutierung am Anfang und die Regelung, werden eigenständig vom Boardcontroller vorgenommen.
         %
         \begin{table}[h!]
-            \begin{tabular}{ll}
+            \begin{zebratabular}{ll}
+                \rowcolor{gray} 
                 Pin     & Funktion \\
-            \hline  SCK & Bustakt \\
+                SCK     & Bustakt \\
                 MISO    & Master in Slave out \\
                 MOSI    & Master out Slave in \\
                 CS      & Chip select \\
                 Int     & Interrupt \\
                 Reset   & Reset \\
-            \end{tabular}
+            \end{zebratabular}
            	\centering
            	\caption{Schnittstelle des Brushless-Boards} 
             \label{abb:SchnittstelleBrushlessBoard}
