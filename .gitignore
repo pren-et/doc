@@ -10,3 +10,7 @@
 *.toc
 
 *.swp
+
+!src/bldc/Bilder/*.pdf
+!src/stepper/Bilder/*.pdf
+!src/dc/fig/*.pdf
