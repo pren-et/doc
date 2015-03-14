@@ -7,7 +7,7 @@ DC_EMBEDDED         = DC_EmbeddedDoc
 PREN_ET_EMBEDDED    = PREN-ET_EmbeddedDoc
 RELEASE_DIR         = ./release
 
-.PHONY: all all_log release release_log bldc_standalone bldc_embedded stepper_standalone stepper_embedded dc_standalone dc_embedded embedded bldc_standalone_log bldc_embedded_log stepper_standalone_log stepper_embedded_log dc_standalone_log dc_embedded_log embedded_log release_copy clean
+.PHONY: all all_log release release_log bldc stepper dc bldc_log stepper_log dc_log bldc_standalone bldc_embedded stepper_standalone stepper_embedded dc_standalone dc_embedded embedded bldc_standalone_log bldc_embedded_log stepper_standalone_log stepper_embedded_log dc_standalone_log dc_embedded_log embedded_log release_copy clean
 
 all:	bldc_standalone bldc_embedded stepper_standalone stepper_embedded dc_standalone embedded clean
 
@@ -16,6 +16,18 @@ all_log:	clean bldc_standalone_log bldc_embedded_log stepper_standalone_log step
 release:	bldc_standalone bldc_embedded stepper_standalone stepper_embedded dc_standalone embedded release_copy clean
 
 release_log:	clean bldc_standalone_log bldc_embedded_log stepper_standalone_log stepper_embedded_log dc_standalone_log embedded_log release_copy
+
+bldc:	bldc_standalone bldc_embedded
+
+stepper:	stepper_standalone stepper_embedded
+
+dc:	dc_standalone dc_embedded
+
+bldc_log:	clean bldc_standalone_log bldc_embedded_log
+
+stepper_log:	clean stepper_standalone_log stepper_embedded_log
+
+dc_log:	clean dc_standalone_log dc_embedded_log
 
 bldc_standalone:
 	pdflatex $(BLDC_STANDALONE).tex
