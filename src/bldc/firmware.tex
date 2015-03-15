@@ -28,8 +28,8 @@ Takt benötigt. Dafür wird der RTC\footnote{\textbf{R}eal \textbf{T}ime
 Referenztakt mit einer Frequenz von 16\si{\mega\hertz}. Dieser wird mit dem 
 Prescaler auf eine Frequenz von 16\si{\kilo\hertz} geteilt. Über das Modulo 
 Register kann eine Periodendauer im Bereich 62.5\si{\micro\second} \ldots 
-16\si{milli\second} eingestellt werden. Es wird zunächst eine Periodendauer 
-von 1\si{milli\second} verwendet. In der ISR\footnote{\textbf{I}nterrupt 
+16\si{\milli\second} eingestellt werden. Es wird zunächst eine Periodendauer 
+von 1\si{\milli\second} verwendet. In der ISR\footnote{\textbf{I}nterrupt 
 \textbf{S}ervice \textbf{Routine}} wird ein Flag gesetzt, welches in der 
 Hauptschlaufe abgefragt wird. 
 
@@ -38,6 +38,6 @@ Mit der PWM\footnote{\textbf{P}ulse \textbf{W}idth \textbf{M}odulation} werden
 die Ausgangsstufen angesteuert. Über das Puls - Pausenverhältnis wird die 
 Leistung eingestellt. Damit diese Ansteuerung jedoch nicht hörbar wird, muss 
 der Motor mit einer PWM Frequenz oberhalb des hörbaren Frequenzbereichs des 
-Menschen angesteuert werden. Es wird eine Frequenz von 24\si{\kilo\second} 
+Menschen angesteuert werden. Es wird eine Frequenz von 24\si{\kilo\hertz} 
 verwendet.  Für das Erzeugen der PWM wird der Timer TPM2 verwendet. 
 
