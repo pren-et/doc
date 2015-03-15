@@ -5,3 +5,17 @@
 \subsection{Firmware}
 \fi
 
+\subsection{Übersicht}
+
+\subsection{Takt}
+Der Referenztakt wird durch einen Quarz mit einer Frequenz von 12 MHz erzeugt. 
+Dieser Takt dient als Referenztakt für die PLL des HS9S08JM60. Dazu wird er 
+durch 8 geteilt um im erlaubten Bereich \footnote{Die Frequenz des 
+Eingangssignals der PLL muss im Bereich 1 \ldots 2 MHZ liegen. \cite[p. 
+195]{Datasheet:HCS08}} für die PLL zu liegen. In der PLL wird der Takt mit 32 
+multipliziert. Dies ergibt einen CPU Takt von 48 MHz. Da der Bustakt der 
+Hälfte des CPUtakts entspricht, weist dieser eine Frequenz von 24 MHz auf. 
+Der Externe Takt (16 MHz) wird zusätzlich als externer Referenztakt zur 
+Verfügung gestellt und vom RTC verwendet. 
+(siehe auch \ref{sec:rtc} \nameref{sec:rtc})
+
