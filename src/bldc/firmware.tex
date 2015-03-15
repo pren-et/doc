@@ -21,8 +21,8 @@ Verfügung gestellt und vom RTC verwendet.
 
 \subsection{RTC}
 \label{sec:rtc}
-Um regelmässig ablaufende Aufgaben zu steuern wird ein entsprechender Takt 
-benötigt. Dafür wird der RTC\footnote{\textbf{R}eal \textbf{T}ime 
+Um regelmässig abzuarbeitende Aufgaben zu steuern, wird ein entsprechender 
+Takt benötigt. Dafür wird der RTC\footnote{\textbf{R}eal \textbf{T}ime 
 \textbf{Counter}} verwendet. Dieser verwendet als Takt den externen 
 Referenztakt mit einer Frequenz von 16 MHz. Dieser wird mit dem Prescaler auf 
 eine Frequenz von 16 kHz geteilt. Über das Modulo Register kann eine 
@@ -30,4 +30,12 @@ Periodendauer im Bereich 62.5 $\mu$s \ldots 16 ms eingestellt werden. Es wird
 zunächst eine Periodendauer von 1 ms verwendet. In der 
 ISR\footnote{\textbf{I}nterrupt \textbf{S}ervice \textbf{Routine}} wird ein 
 Flag gesetzt, welches in der Hauptschlaufe abgefragt wird. 
+
+\subsection{PWM}
+Mit der PWM\footnote{\textbf{P}ulse \textbf{W}idth \textbf{M}odulation} 
+werden die Ausgangsstufen angesteuert. Über das Puls - Pausenverhältnis wird 
+die Leistung eingestellt. Damit diese Ansteuerung jedoch nicht hörbar wird, 
+muss der Motor mit einer PWM Frequenz oberhalb des hörbaren Frequenzbereichs 
+des Menschen angesteuert werden. Es wird eine Frequenz von 24 kHz verwendet. 
+Für das Erzeugen der PWM wird der Timer TPM2 verwendet. 
 
