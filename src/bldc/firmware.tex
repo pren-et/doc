@@ -41,3 +41,12 @@ der Motor mit einer PWM Frequenz oberhalb des hörbaren Frequenzbereichs des
 Menschen angesteuert werden. Es wird eine Frequenz von 24\si{\kilo\hertz} 
 verwendet.  Für das Erzeugen der PWM wird der Timer TPM2 verwendet. 
 
+\subsection{Kommutierungsverzögerung / Zeitmessung}
+Um den exakten Kommutierungszeitpunkt einstellen zu können, und um die Zeit 
+zwischen zwei Kommutierungen zu messen wird ein weiterer Timer benötigt. Dafür 
+wird TPM1 verwendet. Als Taktquelle für den Timer wird der Bustakt mit einer 
+Frequenz von 24\si{\mega\hertz} verwendet. Dieser wird mit dem maximalen 
+Prescaler von 128 geteilt. Dies ergibt eine Frequenz von 187.5\si{\kilo\hertz} 
+und eine Auflösung von 5.33\si{\micro\second}. Damit ist eine maximale 
+Messdauer von 349.5\si{\milli\second}. 
+
