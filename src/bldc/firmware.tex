@@ -32,6 +32,21 @@ Register kann eine Periodendauer im Bereich 62.5\si{\micro\second} \ldots
 von 1\si{\milli\second} verwendet. In der ISR\footnote{\textbf{I}nterrupt 
 \textbf{S}ervice \textbf{Routine}} wird ein Flag gesetzt, welches in der 
 Hauptschlaufe abgefragt wird. 
+\begin{table}[h!]
+    \begin{zebratabular}{p{0.07\textwidth}p{0.05\textwidth}p{0.25\textwidth}p{0.5\textwidth}}
+    \rowcolor{gray} Register & Wert & Beschreibung & Bemerkungen \\
+    RTCSC &
+        \verb!0x38! &
+        RTC Status and Control Register &
+        ERCLK, Interrupts enabled, Prescaler = $10^3$ $\to$ T$_{\text{Count}}$ = $\frac{1}{16}$\si{\milli\second} \\
+    RTCMOD &
+        \verb!0x0F! &
+        RTC Modulo Register &
+        Modulo = 15 \\
+    \end{zebratabular}
+    \caption{Registerinitialisierung RTC Modul}
+    \label{tab:rtc_init}
+\end{table}
 
 \subsection{PWM}
 Mit der PWM\footnote{\textbf{P}ulse \textbf{W}idth \textbf{M}odulation} werden 
@@ -45,8 +60,8 @@ verwendet.  Für das Erzeugen der PWM wird der Timer TPM2 verwendet.
 Um den exakten Kommutierungszeitpunkt einstellen zu können, und um die Zeit 
 zwischen zwei Kommutierungen zu messen wird ein weiterer Timer benötigt. Dafür 
 wird TPM1 verwendet. Als Taktquelle für den Timer wird der Bustakt mit einer 
-Frequenz von 24\si{\mega\hertz} verwendet. Dieser wird mit dem maximalen 
+Frequenz von 24\si{\mega\hertz} verwendet. Dieser wird mit dem maximal möglichen 
 Prescaler von 128 geteilt. Dies ergibt eine Frequenz von 187.5\si{\kilo\hertz} 
 und eine Auflösung von 5.33\si{\micro\second}. Damit ist eine maximale 
-Messdauer von 349.5\si{\milli\second}. 
+Messdauer von 349.5\si{\milli\second} möglich. 
 
