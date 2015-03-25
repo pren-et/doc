@@ -33,7 +33,7 @@ von 1\si{\milli\second} verwendet. In der ISR\footnote{\textbf{I}nterrupt
 \textbf{S}ervice \textbf{Routine}} wird ein Flag gesetzt, welches in der 
 Hauptschlaufe abgefragt wird. 
 \begin{table}[h!]
-    \begin{zebratabular}{p{0.07\textwidth}p{0.05\textwidth}p{0.25\textwidth}p{0.5\textwidth}}
+    \begin{zebratabular}{p{0.10\textwidth}p{0.06\textwidth}p{0.25\textwidth}p{0.5\textwidth}}
     \rowcolor{gray} Register & Wert & Beschreibung & Bemerkungen \\
     RTCSC &
         \verb!0x38! &
@@ -42,9 +42,9 @@ Hauptschlaufe abgefragt wird.
     RTCMOD &
         \verb!0x0F! &
         RTC Modulo Register &
-        Modulo = 15 \\
+        Modulo = 15 $\to$ T$_{\text{Interrupt}}$ = 1\si{\milli\second} \\
     \end{zebratabular}
-    \caption{Registerinitialisierung RTC Modul}
+    \caption{Registerinitialisierung RTC}
     \label{tab:rtc_init}
 \end{table}
 
@@ -55,6 +55,42 @@ Leistung eingestellt. Damit diese Ansteuerung jedoch nicht hörbar wird, muss
 der Motor mit einer PWM Frequenz oberhalb des hörbaren Frequenzbereichs des 
 Menschen angesteuert werden. Es wird eine Frequenz von 24\si{\kilo\hertz} 
 verwendet.  Für das Erzeugen der PWM wird der Timer TPM2 verwendet. 
+\begin{table}[h!]
+    \begin{zebratabular}{p{0.10\textwidth}p{0.06\textwidth}p{0.25\textwidth}p{0.5\textwidth}}
+    \rowcolor{gray} Register & Wert & Beschreibung & Bemerkungen \\
+    TPM2SC &
+        \verb!0x08! &
+        TPM2 Status and Control Register &
+        Overflow interrupt disabled, no Center-aligned PWM, Bus clock as clock 
+            source, Prescaler = 1\\
+    TPM2CNT &
+        \verb!0x????! &
+        TPM2 Counter Register &
+        No initialisation \\
+    TPM2MOD &
+        \verb!0x03FF! &
+        TPM2 Counter Modulo Register &
+        1023 $\to$ $\frac{24\si{\mega\hertz}}{1024} = 23.4375\si{\kilo\hertz}$  \\
+    TPM2C0SC &
+        \verb!0x28! &
+        TPM2 Channel 0 Status and Control Register &
+        Interrupt disabled, edge aligned PWM, High-true\\
+    TPM2C0V &
+        \verb!0x0033! &
+        TPM2 Channel 0 Value Register &
+        5\si{\percent} \\
+    TPM2C1SC &
+        \verb!0x24! &
+        TPM2 Channel 1 Status and Control Register &
+        Interrupt disabled, edge aligned PWM, Low-true\\
+    TPM2C1V &
+        \verb!0x03CD! &
+        TPM2 Channel 1 Value Register &
+        5\si{\percent} \\
+    \end{zebratabular}
+    \caption{Registerinitialisierung TPM2}
+    \label{tab:rtc_init}
+\end{table}
 
 \subsection{Kommutierungsverzögerung / Zeitmessung}
 Um den exakten Kommutierungszeitpunkt einstellen zu können, und um die Zeit 
