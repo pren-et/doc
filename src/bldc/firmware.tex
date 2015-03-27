@@ -64,7 +64,7 @@ verwendet.  Für das Erzeugen der PWM wird der Timer TPM2 verwendet.
         Overflow interrupt disabled, no Center-aligned PWM, Bus clock as clock 
             source, Prescaler = 1\\
     TPM2CNT &
-        \verb!0x????! &
+        \verb!0x____! &
         TPM2 Counter Register &
         No initialisation \\
     TPM2MOD &
@@ -100,4 +100,72 @@ Frequenz von 24\si{\mega\hertz} verwendet. Dieser wird mit dem maximal mögliche
 Prescaler von 128 geteilt. Dies ergibt eine Frequenz von 187.5\si{\kilo\hertz} 
 und eine Auflösung von 5.33\si{\micro\second}. Damit ist eine maximale 
 Messdauer von 349.5\si{\milli\second} möglich. 
+\begin{table}[h!]
+    \begin{zebratabular}{p{0.10\textwidth}p{0.06\textwidth}p{0.25\textwidth}p{0.5\textwidth}}
+    \rowcolor{gray} Register & Wert & Beschreibung & Bemerkungen \\
+    TPM1SC &
+        \verb!0x0F! &
+        TPM1 Status and Control Register &
+        Overflow interrupt disabled, no Center-aligned PWM, Bus clock as clock 
+            source, Prescaler = 128\\
+    TPM1CNT &
+        \verb!0x____! &
+        TPM1 Counter Register &
+        No initialisation \\
+    TPM1MOD &
+        \verb!0x0000! &
+        TPM1 Counter Modulo Register &
+        Free running \\
+    TPM1C0SC &
+        \verb!0x40! &
+        TPM1 Channel 0 Status and Control Register &
+        Interrupt enabled \\
+    TPM1C0V &
+        \verb!0x0000! &
+        TPM1 Channel 0 Value Register &
+        Used for commutation delay for phase U \\
+    TPM1C1SC &
+        \verb!0x40! &
+        TPM1 Channel 1 Status and Control Register &
+        Interrupt enabled \\
+    TPM1C1V &
+        \verb!0x0000! &
+        TPM1 Channel 1 Value Register &
+        Used for commutation delay for phase V \\
+    TPM1C2SC &
+        \verb!0x40! &
+        TPM1 Channel 2 Status and Control Register &
+        Interrupt enabled \\
+    TPM1C2V &
+        \verb!0x0000! &
+        TPM1 Channel 2 Value Register &
+        Used for commutation delay for phase W \\
+    TPM1C3SC &
+        \verb!0x44! &
+        TPM1 Channel 3 Status and Control Register &
+        Interrupt enable, input capture \\
+    TPM1C3V &
+        \verb!0x0000! &
+        TPM1 Channel 3 Value Register &
+        Initialized zero, value not used later \\
+    TPM1C4SC &
+        \verb!0x44! &
+        TPM1 Channel 4 Status and Control Register &
+        Interrupt enable, input capture \\
+    TPM1C4V &
+        \verb!0x0000! &
+        TPM1 Channel 4 Value Register &
+        Initialized zero, value not used later \\
+    TPM1C5SC &
+        \verb!0x44! &
+        TPM1 Channel 5 Status and Control Register &
+        Interrupt enable, input capture \\
+    TPM1C5V &
+        \verb!0x0000! &
+        TPM1 Channel 5 Value Register &
+        Initialized zero, value not used later \\
+    \end{zebratabular}
+    \caption{Registerinitialisierung TPM1}
+    \label{tab:rtc_init}
+\end{table}
 
