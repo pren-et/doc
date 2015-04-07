@@ -169,3 +169,94 @@ Messdauer von 349.5\si{\milli\second} möglich.
     \label{tab:rtc_init}
 \end{table}
 
+
+\subsection{Kommunikation zum Host}
+Zur Interaktion mit dem BLDC-Board wird die SPI1-Schnittstelle des $\mu C$ verwendet. Dabei
+ist das SPI-Interface im 8 Bit Mode mit LSB-First konfiguriert. Zusätzlich zu dieser Schnittstelle
+ist eine IRQ-Leitung vorhanden, mit der das BLDC-Board den Host triggern kann, um auf ein Problem 
+hinzuweisen. Die Steckerbelegung ist in Tabelle \ref{tab:SPI_stecker} ersichtlich.
+\begin{table}[h!]
+    \begin{zebratabular}{p{0.10\textwidth}p{0.06\textwidth}p{0.25\textwidth}p{0.5\textwidth}}
+    \rowcolor{gray} Register & Wert & Beschreibung & Bemerkungen \\
+    SPI1C2 &
+        \verb!0x00! &
+        SPI Control Register 2 & 
+        \\
+    SPI1C1 &
+        \verb!0x85! &
+        SPI Control Register 1 &
+        IRQ-Enable aktiviert und LSB-First konfiguriert\\
+    \end{zebratabular}
+    \caption{Registerinitialisierung SPI1}
+    \label{tab:spi1_init}  
+\end{table}
+
+\begin{table}[h!]
+    \begin{zebratabular}{p{0.10\textwidth}p{0.06\textwidth}}
+    \rowcolor{gray} Pin & Name\\
+    1 & GND\\
+    2 & MISO\\
+    3 & CS\\
+    4 & MOSI\\
+    5 & CLK\\
+    6 & IRQ\\
+    \end{zebratabular}
+    \centering
+    \caption{Steckerbelegung der SPI-Schnittstelle}
+    \label{tab:SPI_stecker}
+\end{table}
+Die Kommunikation zwischen BLDC-Board und Host funktioniert über ein Protokoll zur Interaktion. die 
+Spezifikation dieses ist in der Tabelle \ref{tab:Spi_Int_Table} ersichtlich. Das obere Nibble des
+CMD's enthält den Befehl und das untere Nibble die Anzahl Argumente, die zum CMD gehören.
+Wenn das untere Nibble \verb!0xF! ist, wird die Länge der Übertragung im nächsten Byte signalisiert.
+\begin{table}[h!]
+    \begin{zebratabular}{p{0.12\textwidth}p{0.06\textwidth}p{0.35\textwidth}p{0.4\textwidth}}
+    \rowcolor{gray} Name & Wert & Beschreibung & Parameter\\
+    Dummy &
+        \verb!0x00! & 
+        Byte das benötigt wird, um zu clocken für die Übertragung von Argumenten &
+        \\
+    Start &
+        \verb!0x10! & 
+        Startet den Motor &
+        \\
+    Stop &
+        \verb!0x20! & 
+        Stoppt den Motor &
+        \\
+    setRPM &
+        \verb!0x32! & 
+        16 Bit Zahl um die Drehzahl einzustellen & 
+        1. Byte = High-Byte, 2. Byte = Low-Byte\\
+    setVoltage &
+        \verb!0x41! & 
+        $U_{GS}$ der FET's. & Spannungswert\\
+    setCurrent &
+        \verb!0x51! & 
+        Wert der Strombegrenzung. Der Stromwert ergibt sich nach der Formel $Current = Wert \cdot 10$ &
+        \\
+    getStatus &
+        \verb!0x64! & 
+        Gibt der Board-Status zurück &
+        1. Byte = Motor-Status , 2. Byte = Fehler-Code, 3. Byte = RPM-High-Byte, 4. Byte = RPM-Low-Byte\\
+    areYouAlive &
+        \verb!0x71! & 
+        Damit kann die Kommunikation und das BLDC-Board testen &
+        Das BLDC-Board gibt \verb!0x55! zurück\\
+    startMessung Param &
+        \verb!0xC3! & 
+        Messung parametrisiert starten &
+        1. Byte = Pulsdauer, 2. Byte = RPM-High-Byte, 3. Byte = RPM-Low-Byte\\
+    startMessung &
+        \verb!0xD0! & 
+        Messung mit einem Schritt starten &
+        \\
+    getMessung &
+        \verb!0xEF! & 
+        gibt die gespeicherte Messung zurück &
+        1. Byte = Länge 2. - n. Byte = Daten der Messung\\
+    \end{zebratabular}
+    \caption{Kommunikationsprotokoll}
+    \label{tab:Spi_Int_Table}
+\end{table}
+
