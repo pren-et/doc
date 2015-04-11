@@ -227,18 +227,23 @@ Wenn das untere Nibble \verb!0xF! ist, wird die Länge der Übertragung im näch
     setRPM &
         \verb!0x32! & 
         16 Bit Zahl um die Drehzahl einzustellen & 
-        1. Byte = High-Byte, 2. Byte = Low-Byte\\
+        1. Byte = High-Byte\newline 
+        2. Byte = Low-Byte\\
     setVoltage &
-        \verb!0x41! & 
-        $U_{GS}$ der FET's. & Spannungswert\\
+        \verb!0x42! & 
+        $U_{GS}$ der FET's. & 1. Byte = Spannungswert-High-Byte\newline 
+                              2. Byte = Spannungswert-Low-Byte\\
     setCurrent &
         \verb!0x51! & 
         Wert der Strombegrenzung. Der Stromwert ergibt sich nach der Formel $Current = Wert \cdot 10$ &
-        \\
+        $Registerwert = \frac{Sollwert\; in \;[mA]}{10} $\\
     getStatus &
         \verb!0x64! & 
         Gibt der Board-Status zurück &
-        1. Byte = Motor-Status , 2. Byte = Fehler-Code, 3. Byte = RPM-High-Byte, 4. Byte = RPM-Low-Byte\\
+        1. Byte = Motor-Status\newline
+        2. Byte = Fehler-Code\newline
+        3. Byte = RPM-High-Byte\newline
+        4. Byte = RPM-Low-Byte\\
     areYouAlive &
         \verb!0x71! & 
         Damit kann die Kommunikation und das BLDC-Board testen &
@@ -250,7 +255,9 @@ Wenn das untere Nibble \verb!0xF! ist, wird die Länge der Übertragung im näch
     startMessung Param &
         \verb!0xC3! & 
         Messung parametrisiert starten &
-        1. Byte = Pulsdauer, 2. Byte = RPM-High-Byte, 3. Byte = RPM-Low-Byte\\
+        1. Byte = Pulsdauer\newline
+        2. Byte = RPM-High-Byte\newline
+        3. Byte = RPM-Low-Byte\\
     startMessung &
         \verb!0xD0! & 
         Messung mit einem Schritt starten &
@@ -258,9 +265,24 @@ Wenn das untere Nibble \verb!0xF! ist, wird die Länge der Übertragung im näch
     getMessung &
         \verb!0xEF! & 
         gibt die gespeicherte Messung zurück &
-        1. Byte = Länge 2. - n. Byte = Daten der Messung\\
+        1. Byte = Länge\newline
+        2. - n. Byte = Daten der Messung\\
     \end{zebratabular}
     \caption{Kommunikationsprotokoll}
     \label{tab:Spi_Int_Table}
+\end{table}
+
+
+
+\begin{table}[h!]
+    \begin{zebratabular}{p{0.07\textwidth}p{0.07\textwidth}p{0.07\textwidth}p{0.07\textwidth}p{0.07\textwidth}p{0.07\textwidth}p{0.07\textwidth}p{0.07\textwidth}}
+    \rowcolor{gray} \multicolumn{8}{|c|}{Mögliche Werte als Argument für setVoltage }\\
+    $60 mV$   & $68 mV$   & $76 mV$   & $86 mV$   & $97 mV$   & $109 mV$  & $123 mV$  & $138 mV$  \\
+    $155 mV$  & $175 mV$  & $197 mV$  & $222 mV$  & $250 mV$  & $282 mV$  & $317 mV$  & $358 mV$  \\
+    $403 mV$  & $454 mV$  & $511 mV$  & $576 mV$  & $648 mV$  & $730 mV$  & $822 mV$  & $926 mV$  \\
+    $1046 mV$ & $1175 mV$ & $1324 mV$ & $1491 mV$ & $1679 mV$ & $1892 mV$ & $2131 mV$ & $2400 mV$ \\
+    \end{zebratabular}
+        \centering
+    \caption{Gültige Wert als Argument für setVoltage}
 \end{table}
 
