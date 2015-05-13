@@ -1,0 +1,39 @@
+\ifSTANDALONE
+\section{Hardware}
+\fi
+\ifEMBED
+\subsection{Hardware}
+\fi
+
+\subsection{Übersicht}
+
+
+\subsection{Kommutierung}
+Der Motor wird mit drei Halbbrücken kommutiert. Für die Ansteuerung der MOSFET 
+wird ein Predriver DRV8301 von Texas Instruments eingesetzt. Die Halbbrücken 
+werden einzeln vom Controller geschalten. Damit nur ein 
+PWM\footnote{\textbf{P}ulse \textbf{W}idth \textbf{M}odulation}-Signal erzeugt 
+werden muss, werden die Ansteuerleitungen mittels Widerständen mit dem 
+PWM-Signal verbunden. Werden die Ansteuerungen vom Controller nicht aktiv 
+getrieben, liegt die PWM an. Die Konfiguration der Predrivers erfolgt über SPI. 
+
+\subsection{Phasendetektion}
+Die Phasendetektion besteht aus Sternpunktnachbildung, Komparator und 
+Synchronisation. Die Sternpunktnachbildung erzeugt einen virtuellen Sternpunkt 
+mit Hilfe eines Widerstandsnetzwerkes und eines Tiefpassfilters. Die einzelnen 
+Phasenspannungen werden mit diesem virtuellen Sternpunkt verglichen. Mit einem 
+Flipflop wird das Signal mit der PWM Synchronisiert. 
+
+\subsection{Controller}
+Als Controller kommt ein HC9S08JM60 der Firma Freescale zum Einsatz. Der Takt 
+wird mittels Quarz mit 12MHz erzeugt. Um den aktuellen Betriebsszustand 
+anzuzeigen, stehen drei LED zur Verfügung. 
+
+\subsection{Speisung}
+Die Eingangsspannung wird mittels eines optional bestückbaren Filters von 
+Murata gefiltert. Der Predriver wird direkt mit dieser gefilterten Speisung 
+betrieben. Mit dem im Predriver integrierten Step-Down-Converter wird eine 
+Spannung von 3.3V erzeugt. Für Varianten mit hoher Betriebsspannung (>30V) 
+wird der Komparator der Phasendetektion über einen diskret aufgebauten 
+Spannungsregler mit einer Spannung von 30V versorgt. 
+
