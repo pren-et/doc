@@ -32,21 +32,21 @@ Register kann eine Periodendauer im Bereich 62.5\si{\micro\second} \ldots
 von 1\si{\milli\second} verwendet. In der ISR\footnote{\textbf{I}nterrupt 
 \textbf{S}ervice \textbf{Routine}} wird ein Flag gesetzt, welches in der 
 Hauptschlaufe abgefragt wird. 
-\begin{table}[h!]
-    \begin{zebratabular}{p{0.10\textwidth}p{0.06\textwidth}p{0.25\textwidth}p{0.5\textwidth}}
-    \rowcolor{gray} Register & Wert & Beschreibung & Bemerkungen \\
-    RTCSC &
-        \verb!0x38! &
-        RTC Status and Control Register &
-        ERCLK, Interrupts enabled, Prescaler = $10^3$ $\to$ T$_{\text{Count}}$ = $\frac{1}{16}$\si{\milli\second} \\
-    RTCMOD &
-        \verb!0x0F! &
-        RTC Modulo Register &
-        Modulo = 15 $\to$ T$_{\text{Interrupt}}$ = 1\si{\milli\second} \\
-    \end{zebratabular}
-    \caption{Registerinitialisierung RTC}
-    \label{tab:rtc_init}
-\end{table}
+%\begin{table}[h!]
+%    \begin{zebratabular}{p{0.10\textwidth}p{0.06\textwidth}p{0.25\textwidth}p{0.5\textwidth}}
+%    \rowcolor{gray} Register & Wert & Beschreibung & Bemerkungen \\
+%    RTCSC &
+%        \verb!0x38! &
+%        RTC Status and Control Register &
+%        ERCLK, Interrupts enabled, Prescaler = $10^3$ $\to$ T$_{\text{Count}}$ = $\frac{1}{16}$\si{\milli\second} \\
+%    RTCMOD &
+%        \verb!0x0F! &
+%        RTC Modulo Register &
+%        Modulo = 15 $\to$ T$_{\text{Interrupt}}$ = 1\si{\milli\second} \\
+%    \end{zebratabular}
+%    \caption{Registerinitialisierung RTC}
+%    \label{tab:rtc_init}
+%\end{table}
 
 \subsection{PWM}
 Mit der PWM\footnote{\textbf{P}ulse \textbf{W}idth \textbf{M}odulation} werden 
@@ -55,42 +55,42 @@ Leistung eingestellt. Damit diese Ansteuerung jedoch nicht hörbar wird, muss
 der Motor mit einer PWM Frequenz oberhalb des hörbaren Frequenzbereichs des 
 Menschen angesteuert werden. Es wird eine Frequenz von 24\si{\kilo\hertz} 
 verwendet.  Für das Erzeugen der PWM wird der Timer TPM2 verwendet. 
-\begin{table}[h!]
-    \begin{zebratabular}{p{0.10\textwidth}p{0.06\textwidth}p{0.25\textwidth}p{0.5\textwidth}}
-    \rowcolor{gray} Register & Wert & Beschreibung & Bemerkungen \\
-    TPM2SC &
-        \verb!0x08! &
-        TPM2 Status and Control Register &
-        Overflow interrupt disabled, no Center-aligned PWM, Bus clock as clock 
-            source, Prescaler = 1\\
-    TPM2CNT &
-        \verb!0x____! &
-        TPM2 Counter Register &
-        No initialisation \\
-    TPM2MOD &
-        \verb!0x03FF! &
-        TPM2 Counter Modulo Register &
-        1023 $\to$ $\frac{24\si{\mega\hertz}}{1024} = 23.4375\si{\kilo\hertz}$  \\
-    TPM2C0SC &
-        \verb!0x28! &
-        TPM2 Channel 0 Status and Control Register &
-        Interrupt disabled, edge aligned PWM, High-true\\
-    TPM2C0V &
-        \verb!0x0033! &
-        TPM2 Channel 0 Value Register &
-        5\si{\percent} \\
-    TPM2C1SC &
-        \verb!0x24! &
-        TPM2 Channel 1 Status and Control Register &
-        Interrupt disabled, edge aligned PWM, Low-true\\
-    TPM2C1V &
-        \verb!0x03CD! &
-        TPM2 Channel 1 Value Register &
-        5\si{\percent} \\
-    \end{zebratabular}
-    \caption{Registerinitialisierung TPM2}
-    \label{tab:rtc_init}
-\end{table}
+%\begin{table}[h!]
+%    \begin{zebratabular}{p{0.10\textwidth}p{0.06\textwidth}p{0.25\textwidth}p{0.5\textwidth}}
+%    \rowcolor{gray} Register & Wert & Beschreibung & Bemerkungen \\
+%    TPM2SC &
+%        \verb!0x08! &
+%        TPM2 Status and Control Register &
+%        Overflow interrupt disabled, no Center-aligned PWM, Bus clock as clock 
+%            source, Prescaler = 1\\
+%    TPM2CNT &
+%        \verb!0x____! &
+%        TPM2 Counter Register &
+%        No initialisation \\
+%    TPM2MOD &
+%        \verb!0x03FF! &
+%        TPM2 Counter Modulo Register &
+%        1023 $\to$ $\frac{24\si{\mega\hertz}}{1024} = 23.4375\si{\kilo\hertz}$  \\
+%    TPM2C0SC &
+%        \verb!0x28! &
+%        TPM2 Channel 0 Status and Control Register &
+%        Interrupt disabled, edge aligned PWM, High-true\\
+%    TPM2C0V &
+%        \verb!0x0033! &
+%        TPM2 Channel 0 Value Register &
+%        5\si{\percent} \\
+%    TPM2C1SC &
+%        \verb!0x24! &
+%        TPM2 Channel 1 Status and Control Register &
+%        Interrupt disabled, edge aligned PWM, Low-true\\
+%    TPM2C1V &
+%        \verb!0x03CD! &
+%        TPM2 Channel 1 Value Register &
+%        5\si{\percent} \\
+%    \end{zebratabular}
+%    \caption{Registerinitialisierung TPM2}
+%    \label{tab:rtc_init}
+%\end{table}
 
 \subsection{Kommutierungsverzögerung / Zeitmessung}
 Um den exakten Kommutierungszeitpunkt einstellen zu können, und um die Zeit 
@@ -100,74 +100,74 @@ Frequenz von 24\si{\mega\hertz} verwendet. Dieser wird mit dem maximal mögliche
 Prescaler von 128 geteilt. Dies ergibt eine Frequenz von 187.5\si{\kilo\hertz} 
 und eine Auflösung von 5.33\si{\micro\second}. Damit ist eine maximale 
 Messdauer von 349.5\si{\milli\second} möglich. 
-\begin{table}[h!]
-    \begin{zebratabular}{p{0.10\textwidth}p{0.06\textwidth}p{0.25\textwidth}p{0.5\textwidth}}
-    \rowcolor{gray} Register & Wert & Beschreibung & Bemerkungen \\
-    TPM1SC &
-        \verb!0x0F! &
-        TPM1 Status and Control Register &
-        Overflow interrupt disabled, no Center-aligned PWM, Bus clock as clock 
-            source, Prescaler = 128\\
-    TPM1CNT &
-        \verb!0x____! &
-        TPM1 Counter Register &
-        No initialisation \\
-    TPM1MOD &
-        \verb!0x0000! &
-        TPM1 Counter Modulo Register &
-        Free running \\
-    TPM1C0SC &
-        \verb!0x50! &
-        TPM1 Channel 0 Status and Control Register &
-        Interrupt enabled, Output compare \\
-    TPM1C0V &
-        \verb!0x0000! &
-        TPM1 Channel 0 Value Register &
-        Used for commutation delay of phase U \\
-    TPM1C1SC &
-        \verb!0x50! &
-        TPM1 Channel 1 Status and Control Register &
-        Interrupt enabled, Output compare \\
-    TPM1C1V &
-        \verb!0x0000! &
-        TPM1 Channel 1 Value Register &
-        Used for commutation delay of phase V \\
-    TPM1C2SC &
-        \verb!0x50! &
-        TPM1 Channel 2 Status and Control Register &
-        Interrupt enabled, Output compare \\
-    TPM1C2V &
-        \verb!0x0000! &
-        TPM1 Channel 2 Value Register &
-        Used for commutation delay of phase W \\
-    TPM1C3SC &
-        \verb!0x44! &
-        TPM1 Channel 3 Status and Control Register &
-        Interrupt enable, input capture \\
-    TPM1C3V &
-        \verb!0x0000! &
-        TPM1 Channel 3 Value Register &
-        Initialized zero, value not used later \\
-    TPM1C4SC &
-        \verb!0x44! &
-        TPM1 Channel 4 Status and Control Register &
-        Interrupt enable, input capture \\
-    TPM1C4V &
-        \verb!0x0000! &
-        TPM1 Channel 4 Value Register &
-        Initialized zero, value not used later \\
-    TPM1C5SC &
-        \verb!0x44! &
-        TPM1 Channel 5 Status and Control Register &
-        Interrupt enable, input capture \\
-    TPM1C5V &
-        \verb!0x0000! &
-        TPM1 Channel 5 Value Register &
-        Initialized zero, value not used later \\
-    \end{zebratabular}
-    \caption{Registerinitialisierung TPM1}
-    \label{tab:rtc_init}
-\end{table}
+%\begin{table}[h!]
+%    \begin{zebratabular}{p{0.10\textwidth}p{0.06\textwidth}p{0.25\textwidth}p{0.5\textwidth}}
+%    \rowcolor{gray} Register & Wert & Beschreibung & Bemerkungen \\
+%    TPM1SC &
+%        \verb!0x0F! &
+%        TPM1 Status and Control Register &
+%        Overflow interrupt disabled, no Center-aligned PWM, Bus clock as clock 
+%            source, Prescaler = 128\\
+%    TPM1CNT &
+%        \verb!0x____! &
+%        TPM1 Counter Register &
+%        No initialisation \\
+%    TPM1MOD &
+%        \verb!0x0000! &
+%        TPM1 Counter Modulo Register &
+%        Free running \\
+%    TPM1C0SC &
+%        \verb!0x50! &
+%        TPM1 Channel 0 Status and Control Register &
+%        Interrupt enabled, Output compare \\
+%    TPM1C0V &
+%        \verb!0x0000! &
+%        TPM1 Channel 0 Value Register &
+%        Used for commutation delay of phase U \\
+%    TPM1C1SC &
+%        \verb!0x50! &
+%        TPM1 Channel 1 Status and Control Register &
+%        Interrupt enabled, Output compare \\
+%    TPM1C1V &
+%        \verb!0x0000! &
+%        TPM1 Channel 1 Value Register &
+%        Used for commutation delay of phase V \\
+%    TPM1C2SC &
+%        \verb!0x50! &
+%        TPM1 Channel 2 Status and Control Register &
+%        Interrupt enabled, Output compare \\
+%    TPM1C2V &
+%        \verb!0x0000! &
+%        TPM1 Channel 2 Value Register &
+%        Used for commutation delay of phase W \\
+%    TPM1C3SC &
+%        \verb!0x44! &
+%        TPM1 Channel 3 Status and Control Register &
+%        Interrupt enable, input capture \\
+%    TPM1C3V &
+%        \verb!0x0000! &
+%        TPM1 Channel 3 Value Register &
+%        Initialized zero, value not used later \\
+%    TPM1C4SC &
+%        \verb!0x44! &
+%        TPM1 Channel 4 Status and Control Register &
+%        Interrupt enable, input capture \\
+%    TPM1C4V &
+%        \verb!0x0000! &
+%        TPM1 Channel 4 Value Register &
+%        Initialized zero, value not used later \\
+%    TPM1C5SC &
+%        \verb!0x44! &
+%        TPM1 Channel 5 Status and Control Register &
+%        Interrupt enable, input capture \\
+%    TPM1C5V &
+%        \verb!0x0000! &
+%        TPM1 Channel 5 Value Register &
+%        Initialized zero, value not used later \\
+%    \end{zebratabular}
+%    \caption{Registerinitialisierung TPM1}
+%    \label{tab:rtc_init}
+%\end{table}
 
 
 \subsection{Kommunikation zum Host}
@@ -175,21 +175,21 @@ Zur Interaktion mit dem BLDC-Board wird die SPI1-Schnittstelle des $\mu C$ verwe
 ist das SPI-Interface im 8 Bit Mode mit LSB-First konfiguriert. Zusätzlich zu dieser Schnittstelle
 ist eine IRQ-Leitung vorhanden, mit der das BLDC-Board den Host triggern kann, um auf ein Problem 
 hinzuweisen. Die Steckerbelegung ist in Tabelle \ref{tab:SPI_stecker} ersichtlich.
-\begin{table}[h!]
-    \begin{zebratabular}{p{0.10\textwidth}p{0.06\textwidth}p{0.25\textwidth}p{0.5\textwidth}}
-    \rowcolor{gray} Register & Wert & Beschreibung & Bemerkungen \\
-    SPI1C2 &
-        \verb!0x00! &
-        SPI Control Register 2 & 
-        \\
-    SPI1C1 &
-        \verb!0x85! &
-        SPI Control Register 1 &
-        IRQ-Enable aktiviert und LSB-First konfiguriert\\
-    \end{zebratabular}
-    \caption{Registerinitialisierung SPI1}
-    \label{tab:spi1_init}  
-\end{table}
+%\begin{table}[h!]
+%    \begin{zebratabular}{p{0.10\textwidth}p{0.06\textwidth}p{0.25\textwidth}p{0.5\textwidth}}
+%    \rowcolor{gray} Register & Wert & Beschreibung & Bemerkungen \\
+%    SPI1C2 &
+%        \verb!0x00! &
+%        SPI Control Register 2 & 
+%        \\
+%    SPI1C1 &
+%        \verb!0x85! &
+%        SPI Control Register 1 &
+%        IRQ-Enable aktiviert und LSB-First konfiguriert\\
+%    \end{zebratabular}
+%    \caption{Registerinitialisierung SPI1}
+%    \label{tab:spi1_init}  
+%\end{table}
 
 \begin{table}[h!]
     \begin{zebratabular}{p{0.10\textwidth}p{0.06\textwidth}}
@@ -274,15 +274,15 @@ Wenn das untere Nibble \verb!0xF! ist, wird die Länge der Übertragung im näch
 
 
 
-\begin{table}[h!]
-    \begin{zebratabular}{p{0.07\textwidth}p{0.07\textwidth}p{0.07\textwidth}p{0.07\textwidth}p{0.07\textwidth}p{0.07\textwidth}p{0.07\textwidth}p{0.07\textwidth}}
-    \rowcolor{gray} \multicolumn{8}{|c|}{Mögliche Werte als Argument für setVoltage }\\
-    $60 mV$   & $68 mV$   & $76 mV$   & $86 mV$   & $97 mV$   & $109 mV$  & $123 mV$  & $138 mV$  \\
-    $155 mV$  & $175 mV$  & $197 mV$  & $222 mV$  & $250 mV$  & $282 mV$  & $317 mV$  & $358 mV$  \\
-    $403 mV$  & $454 mV$  & $511 mV$  & $576 mV$  & $648 mV$  & $730 mV$  & $822 mV$  & $926 mV$  \\
-    $1046 mV$ & $1175 mV$ & $1324 mV$ & $1491 mV$ & $1679 mV$ & $1892 mV$ & $2131 mV$ & $2400 mV$ \\
-    \end{zebratabular}
-        \centering
-    \caption{Gültige Wert als Argument für setVoltage}
-\end{table}
+%\begin{table}[h!]
+%    \begin{zebratabular}{p{0.07\textwidth}p{0.07\textwidth}p{0.07\textwidth}p{0.07\textwidth}p{0.07\textwidth}p{0.07\textwidth}p{0.07\textwidth}p{0.07\textwidth}}
+%    \rowcolor{gray} \multicolumn{8}{|c|}{Mögliche Werte als Argument für setVoltage }\\
+%    $60 mV$   & $68 mV$   & $76 mV$   & $86 mV$   & $97 mV$   & $109 mV$  & $123 mV$  & $138 mV$  \\
+%    $155 mV$  & $175 mV$  & $197 mV$  & $222 mV$  & $250 mV$  & $282 mV$  & $317 mV$  & $358 mV$  \\
+%    $403 mV$  & $454 mV$  & $511 mV$  & $576 mV$  & $648 mV$  & $730 mV$  & $822 mV$  & $926 mV$  \\
+%    $1046 mV$ & $1175 mV$ & $1324 mV$ & $1491 mV$ & $1679 mV$ & $1892 mV$ & $2131 mV$ & $2400 mV$ \\
+%    \end{zebratabular}
+%        \centering
+%    \caption{Gültige Wert als Argument für setVoltage}
+%\end{table}
 
