@@ -2,12 +2,24 @@
 \section{Firmware}
 \fi
 \ifEMBED
-\subsection{Firmware}
+\subsubsection{Firmware}
 \fi
-
+\ifSTANDALONE
 \subsection{Übersicht}
-
+\fi
+\ifEMBED
+\paragraph{Übersicht}$~~$\vspace{2mm}\\
+\fi
+Die Firmware des Boards erfüllt mehrere Aufgaben. Während dem Anfahren realisiert
+diese die Zwangskommutierung und im Nennbetrieb, regelt diese die Drehzahl des
+Motors. Sobald der Motor in Betrieb ist, wir die Kommutierung mittes der Interrupts
+realisiert.
+\ifSTANDALONE
 \subsection{Takt}
+\fi
+\ifEMBED
+\paragraph{Takt}$~~$\vspace{2mm}\\
+\fi
 Der Referenztakt wird durch einen Quarz mit einer Frequenz von 
 12\si{\mega\hertz} erzeugt.  Dieser Takt dient als Referenztakt für die PLL 
 des HS9S08JM60. Dazu wird er durch 8 geteilt um im erlaubten 
@@ -20,7 +32,12 @@ Externe Takt (16\si{\mega\hertz}) wird zusätzlich als externer Referenztakt
 zur Verfügung gestellt und vom RTC verwendet.  (siehe auch Abschnitt 
 \ref{sec:rtc} \nameref{sec:rtc})
 
+\ifSTANDALONE
 \subsection{RTC}
+\fi
+\ifEMBED
+\paragraph{RTC}$~~$\vspace{2mm}\\
+\fi
 \label{sec:rtc}
 Um regelmässig abzuarbeitende Aufgaben zu steuern, wird ein entsprechender 
 Takt benötigt. Dafür wird der RTC\footnote{\textbf{R}eal \textbf{T}ime 
@@ -48,7 +65,12 @@ Hauptschlaufe abgefragt wird.
 %    \label{tab:rtc_init}
 %\end{table}
 
+\ifSTANDALONE
 \subsection{PWM}
+\fi
+\ifEMBED
+\paragraph{PWM}$~~$\vspace{2mm}\\
+\fi
 Mit der PWM\footnote{\textbf{P}ulse \textbf{W}idth \textbf{M}odulation} werden 
 die Ausgangsstufen angesteuert. Über das Puls - Pausenverhältnis wird die 
 Leistung eingestellt. Damit diese Ansteuerung jedoch nicht hörbar wird, muss 
@@ -92,7 +114,12 @@ verwendet.  Für das Erzeugen der PWM wird der Timer TPM2 verwendet.
 %    \label{tab:rtc_init}
 %\end{table}
 
+\ifSTANDALONE
 \subsection{Kommutierungsverzögerung / Zeitmessung}
+\fi
+\ifEMBED
+\paragraph{Kommutierungsverzögerung / Zeitmessung}$~~$\vspace{2mm}\\
+\fi
 Um den exakten Kommutierungszeitpunkt einstellen zu können, und um die Zeit 
 zwischen zwei Kommutierungen zu messen wird ein weiterer Timer benötigt. Dafür 
 wird TPM1 verwendet. Als Taktquelle für den Timer wird der Bustakt mit einer 
@@ -169,8 +196,12 @@ Messdauer von 349.5\si{\milli\second} möglich.
 %    \label{tab:rtc_init}
 %\end{table}
 
-
+\ifSTANDALONE
 \subsection{Kommunikation zum Host}
+\fi
+\ifEMBED
+\paragraph{Kommunikation zum Host}$~~$\vspace{2mm}\\
+\fi
 Zur Interaktion mit dem BLDC-Board wird die SPI1-Schnittstelle des $\mu C$ verwendet. Dabei
 ist das SPI-Interface im 8 Bit Mode mit LSB-First konfiguriert. Zusätzlich zu dieser Schnittstelle
 ist eine IRQ-Leitung vorhanden, mit der das BLDC-Board den Host triggern kann, um auf ein Problem 
