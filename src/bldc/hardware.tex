@@ -1,11 +1,15 @@
 \ifSTANDALONE
 \section{Hardware}
 \fi
-%\ifEMBED
-%\subsection{Hardware}
-%\fi
-
+\ifEMBED
+\subsubsection{Hardware}
+\fi
+\ifSTANDALONE
 \subsection{Übersicht}
+\fi
+\ifEMBED
+\paragraph{Übersicht}$~~$\vspace{2mm}\\
+\fi
 Der Aufbau der Ansteuerung der BLDC-Motoren ist als Blockschaltbild in Abbildung 
 \ref{abb:BlockschaltbildBLDC} ersichtlich.\\
 \begin{figure}[h!]
@@ -31,7 +35,7 @@ die Firmware läuft.
 \subsection{Kommutierung}
 \fi
 \ifEMBED
-\subsubsection{Kommutierung}
+\paragraph{Kommutierung}$~~$\vspace{2mm}\\
 \fi
 Der Motor wird mit drei Halbbrücken kommutiert. Für die Ansteuerung der MOSFET 
 wird ein Predriver DRV8301 von Texas Instruments eingesetzt. Die Halbbrücken 
@@ -45,7 +49,7 @@ getrieben, liegt die PWM an. Die Konfiguration der Predrivers erfolgt über SPI.
 \subsection{Phasendetektion}
 \fi
 \ifEMBED
-\subsubsection{Phasendetektion}
+\paragraph{Phasendetektion}$~~$\vspace{2mm}\\
 \fi
 Die Phasendetektion besteht aus Sternpunktnachbildung, Komparator und 
 Synchronisation. Die Sternpunktnachbildung erzeugt einen virtuellen Sternpunkt 
@@ -57,7 +61,7 @@ Flipflop wird das Signal mit der PWM Synchronisiert.
 \subsection{Controller}
 \fi
 \ifEMBED
-\subsubsection{Controller}
+\paragraph{Controller}$~~$\vspace{2mm}\\
 \fi
 Als Controller kommt ein HC9S08JM60 der Firma Freescale zum Einsatz. Der Takt 
 wird mittels Quarz mit 12MHz erzeugt. Um den aktuellen Betriebsszustand 
@@ -67,7 +71,7 @@ anzuzeigen, stehen drei LED zur Verfügung.
 \subsection{Speisung}
 \fi
 \ifEMBED
-\subsubsection{Speisung}
+\paragraph{Speisung}$~~$\vspace{2mm}\\
 \fi
 Die Eingangsspannung wird mittels eines optional bestückbaren Filters von 
 Murata gefiltert. Der Predriver wird direkt mit dieser gefilterten Speisung 
