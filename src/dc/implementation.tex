@@ -38,6 +38,7 @@ Ausgang.
 	\caption{Timerschaltung}
 \end{figure}
 
+\newpage
 \subsection{PWM-Logik}
 Mit dieser Logik kann eingestellt werden, ob das interne oder ein externes
 PWM Signal verwendet werden kann. Wird auf das Switch-Signal eine Logische
@@ -56,9 +57,46 @@ gesenkt werden.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.75\textwidth]{src/dc/fig/pwm_schematic.png}
-	\caption{Timerschaltung}
+	\caption{PWM-Logik}
 \end{figure}
-
 
 \subsection{Ansteuerung}
 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.75\textwidth]{src/dc/fig/driver_schematic.png}
+	\caption{Treiberschaltung}
+\end{figure}
+
+Mit dem Phase-Eingang kann die Richtung eingestellt werden. Bei PWMH und
+PWML wird das PWM Signal angeschlossen. Der Motorentreiber wird im
+Fast-Decay Modus betrieben. Das heisst, die Spule des Motor wird beim
+Abbremsen über die Dioden der H-Brücke entladen.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{src/dc/fig/decay.png}
+	\caption{Fast Decay Illustation}
+\end{figure}
+
+\subsubsection{Ladungspumpe}
+Die Ladungspumpe (Charge-Pump) wurde anhand des Datenblattes des A3941
+und der eingesetzten MOSFET berechnet und eingesetzt. Die dazu notwendige
+Kapazität ist wie folgt berechnet.
+
+\[  
+	C_{BOOT}
+		= \frac{20 \cdot Q_{GATE}}{V_{BOOT}}
+		= \frac{20 \cdot 30\mathrm{nC}}{10\mathrm{V}}
+		= 33.3\mathrm{nF} 
+		\xrightarrow{E6} 33\mathrm{nF}
+\]
+
+\noindent
+Die Stützkapazität ist mit dem 20-fachen Wert zu belegen, also mit
+\[
+	C_{REG}
+		\approx 20 \cdot C_{BOOT}
+		= 20 \cdot 33\mathrm{nF}
+		= 660\mathrm{nF}
+\]
