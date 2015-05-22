@@ -3,6 +3,7 @@
 \fi
 \ifEMBED
 \subsubsection{Firmware}
+\label{sec:ET_Firmware}
 \fi
 \ifSTANDALONE
 \subsection{Übersicht}
@@ -10,9 +11,9 @@
 \ifEMBED
 \paragraph{Übersicht}$~~$\vspace{2mm}\\
 \fi
-Die Firmware des Boards erfüllt mehrere Aufgaben. Während dem Anfahren realisiert
-diese die Zwangskommutierung und im Nennbetrieb, regelt diese die Drehzahl des
-Motors. Sobald der Motor in Betrieb ist, wir die Kommutierung mittes der Interrupts
+Die Firmware des Boards erfüllt mehrere Aufgaben. Während dem Anfahren des Motors realisiert
+sie die Zwangskommutierung, im Nennbetrieb regelt sie die Drehzahl des
+Motors. Sobald der Motor in Betrieb ist, wir die Kommutierung mittes Interrupts hardwaremässig
 realisiert.
 \ifSTANDALONE
 \subsection{Takt}
@@ -21,8 +22,8 @@ realisiert.
 \paragraph{Takt}$~~$\vspace{2mm}\\
 \fi
 Der Referenztakt wird durch einen Quarz mit einer Frequenz von 
-12\si{\mega\hertz} erzeugt.  Dieser Takt dient als Referenztakt für die PLL 
-des HS9S08JM60. Dazu wird er durch 8 geteilt um im erlaubten 
+12\si{\mega\hertz} erzeugt.  Dieser Takt dient als Referenztakt für die PLL\footnote{phase-locked loop, eine elektronische Schaltung, die die Phasenlage und Frequenz beeinflussen kann} 
+des HS9S08JM60. Dazu wird er durch acht geteilt um im erlaubten 
 Bereich\footnote{Die Frequenz des Eingangssignals der PLL muss im Bereich 1 
 \ldots 2\si{\mega\hertz} liegen. \cite[p.  195]{Datasheet:HCS08}} für die PLL 
 zu liegen. In der PLL wird der Takt mit 32 multipliziert. Dies ergibt einen 
@@ -71,7 +72,7 @@ Hauptschlaufe abgefragt wird.
 \ifEMBED
 \paragraph{PWM}$~~$\vspace{2mm}\\
 \fi
-Mit der PWM\footnote{\textbf{P}ulse \textbf{W}idth \textbf{M}odulation} werden 
+Mit der PWM werden 
 die Ausgangsstufen angesteuert. Über das Puls - Pausenverhältnis wird die 
 Leistung eingestellt. Damit diese Ansteuerung jedoch nicht hörbar wird, muss 
 der Motor mit einer PWM Frequenz oberhalb des hörbaren Frequenzbereichs des 
@@ -120,9 +121,9 @@ verwendet.  Für das Erzeugen der PWM wird der Timer TPM2 verwendet.
 \ifEMBED
 \paragraph{Kommutierungsverzögerung / Zeitmessung}$~~$\vspace{2mm}\\
 \fi
-Um den exakten Kommutierungszeitpunkt einstellen zu können, und um die Zeit 
-zwischen zwei Kommutierungen zu messen wird ein weiterer Timer benötigt. Dafür 
-wird TPM1 verwendet. Als Taktquelle für den Timer wird der Bustakt mit einer 
+Um den exakten Kommutierungszeitpunkt einstellen zu können und um die Zeit 
+zwischen zwei Kommutierungen zu messen, wird ein weiterer Timer benötigt. Dafür 
+wird TPM1 benutzt. Als Taktquelle für den Timer wird der Bustakt mit einer 
 Frequenz von 24\si{\mega\hertz} verwendet. Dieser wird mit dem maximal möglichen 
 Prescaler von 128 geteilt. Dies ergibt eine Frequenz von 187.5\si{\kilo\hertz} 
 und eine Auflösung von 5.33\si{\micro\second}. Damit ist eine maximale 
@@ -236,8 +237,8 @@ hinzuweisen. Die Steckerbelegung ist in Tabelle \ref{tab:SPI_stecker} ersichtlic
     \caption{Steckerbelegung der SPI-Schnittstelle}
     \label{tab:SPI_stecker}
 \end{table}
-Die Kommunikation zwischen BLDC-Board und Host funktioniert über ein Protokoll zur Interaktion. die 
-Spezifikation dieses ist in der Tabelle \ref{tab:Spi_Int_Table} ersichtlich. Das obere Nibble des
+Die Kommunikation zwischen BLDC-Board und Host funktioniert über ein Protokoll zur Interaktion. Die 
+Spezifikation dieses Protokolls ist in der Tabelle \ref{tab:Spi_Int_Table} ersichtlich. Das obere Nibble des
 CMD's enthält den Befehl und das untere Nibble die Anzahl Argumente, die zum CMD gehören.
 Wenn das untere Nibble \verb!0xF! ist, wird die Länge der Übertragung im nächsten Byte signalisiert.
 \begin{table}[h!]
