@@ -62,3 +62,12 @@
 \input{src/common/quellen}
 \listoffigures
 \listoftables
+
+\ifBLDC 
+    \appendix      
+   	\begin{appendix}
+   		\clearpage
+   		\pagenumbering{Roman}
+   		\input{\EtPath/Schema}
+   	\end{appendix}
+\fi
