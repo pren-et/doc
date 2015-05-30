@@ -14,6 +14,9 @@
     \fi
     \ifSTEPPER
         \input{src/stepper/title}
+    \fi    
+    \ifREVIEW
+        \input{src/review/title}
     \fi
 \else
     \author{PREN-ET}
@@ -58,7 +61,10 @@
     \input{src/stepper/ausblick}
     \clearpage
 \fi
-
+    
+\ifREVIEW
+    \input{src/review/review}
+\fi
 \input{src/common/quellen}
 \listoffigures
 \listoftables

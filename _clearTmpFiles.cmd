@@ -1,0 +1,9 @@
+del *.aux /q /f /s
+del *.bbl /q /f /s
+del *.blg /q /f /s
+del *.lof /q /f /s
+del *.log /q /f /s
+del *.lot /q /f /s
+del *.out /q /f /s
+del *.toc /q /f /s
+del *.gz /q /f /s
