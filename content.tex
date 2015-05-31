@@ -71,9 +71,10 @@
 
 \ifBLDC 
     \appendix      
-   	\begin{appendix}
-   		\clearpage
-   		\pagenumbering{Roman}
-   		\input{\EtPath/Schema}
-   	\end{appendix}
+    \begin{appendix}
+        \clearpage
+        \pagenumbering{Roman}
+        \renewcommand{\EtPath}{src/bldc}
+        \input{\EtPath/Schema}
+    \end{appendix}
 \fi
