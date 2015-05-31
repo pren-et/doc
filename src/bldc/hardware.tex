@@ -23,7 +23,7 @@ Der Aufbau der Ansteuerung der BLDC-Motoren ist als Blockschaltbild in Abbildung
 In der Abbildung \ref{abb:BlockschaltbildBLDCPhoto} ist die Realisierung der Blöcke ersichtlich. 
 Dabei ist der erste Kasten der Anschluss des Motors, der zweite die H-Brücken, der dritte der 
 Treiber, der vierte die Signalrekonstruktion und der fünfte Teil ist der Controller, auf dem 
-die Firmware läuft.
+die Firmware läuft. Das ganze Schema des Boards ist im Anhang \ref{apx:Schema_BLDC} angefügt.
 \begin{figure}[h!]
    	\includegraphics[width=0.8\textwidth,clip,trim=0mm 0mm 0mm 0mm]
    	{\EtPath/Bilder/BLDC-BoardBloecke.jpg}
@@ -84,7 +84,7 @@ Das Konzept wurde im PREN1 \cite{Team32:Doku} ausführlich beschrieben.
 \paragraph{Controller}$~~$\vspace{2mm}\\
 \fi
 Als Controller kommt ein HC9S08JM60 der Firma Freescale zum Einsatz. Der Takt 
-wird mittels Quarz mit 12MHz erzeugt. Um den aktuellen Betriebsszustand 
+wird mittels Quarz mit 12\si{\mega\hertz} erzeugt. Um den aktuellen Betriebsszustand 
 anzuzeigen, stehen drei LED zur Verfügung. 
 
 \ifSTANDALONE
