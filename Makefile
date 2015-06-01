@@ -5,17 +5,18 @@ STEPPER_EMBEDDED    = Stepper_EmbeddedDoc
 DC_STANDALONE       = DC_StandaloneDoc
 DC_EMBEDDED         = DC_EmbeddedDoc
 PREN_ET_EMBEDDED    = PREN-ET_EmbeddedDoc
+REVIEW              = ET-Gruppe_Review
 RELEASE_DIR         = ./release
 
-.PHONY: all all_log release release_log bldc stepper dc bldc_log stepper_log dc_log bldc_standalone bldc_embedded stepper_standalone stepper_embedded dc_standalone dc_embedded embedded bldc_standalone_log bldc_embedded_log stepper_standalone_log stepper_embedded_log dc_standalone_log dc_embedded_log embedded_log release_copy clean
+.PHONY: all all_log release release_log bldc stepper dc bldc_log stepper_log dc_log bldc_standalone bldc_embedded stepper_standalone stepper_embedded dc_standalone dc_embedded embedded bldc_standalone_log bldc_embedded_log stepper_standalone_log stepper_embedded_log dc_standalone_log dc_embedded_log embedded_log review review_log release_copy clean
 
-all:	bldc_standalone bldc_embedded stepper_standalone stepper_embedded dc_standalone embedded clean
+all:	bldc_standalone bldc_embedded stepper_standalone stepper_embedded dc_standalone embedded review  clean
 
-all_log:	clean bldc_standalone_log bldc_embedded_log stepper_standalone_log stepper_embedded_log dc_standalone_log embedded_log
+all_log:	clean bldc_standalone_log bldc_embedded_log stepper_standalone_log stepper_embedded_log dc_standalone_log embedded_log review_log
 
-release:	bldc_standalone bldc_embedded stepper_standalone stepper_embedded dc_standalone embedded release_copy clean
+release:	bldc_standalone bldc_embedded stepper_standalone stepper_embedded dc_standalone embedded review release_copy clean
 
-release_log:	clean bldc_standalone_log bldc_embedded_log stepper_standalone_log stepper_embedded_log dc_standalone_log embedded_log release_copy
+release_log:	clean bldc_standalone_log bldc_embedded_log stepper_standalone_log stepper_embedded_log dc_standalone_log embedded_log review_log release_copy
 
 bldc:	bldc_standalone bldc_embedded
 
@@ -126,6 +127,20 @@ embedded_log:
 	pdflatex $(PREN_ET_EMBEDDED).tex    >> make.log
 	pdflatex $(PREN_ET_EMBEDDED).tex    >> make.log
 	pdflatex $(PREN_ET_EMBEDDED).tex    >> make.log
+
+review:
+	pdflatex $(REVIEW).tex
+	bibtex   $(REVIEW).aux
+	pdflatex $(REVIEW).tex
+	pdflatex $(REVIEW).tex
+	pdflatex $(REVIEW).tex
+
+review_log:
+	pdflatex $(REVIEW).tex    >> make.log
+	bibtex   $(REVIEW).aux    >> make.log
+	pdflatex $(REVIEW).tex    >> make.log
+	pdflatex $(REVIEW).tex    >> make.log
+	pdflatex $(REVIEW).tex    >> make.log
 
 release_copy:
 	cp *_StandaloneDoc.pdf $(RELEASE_DIR)/.
