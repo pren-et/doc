@@ -325,23 +325,25 @@ Wenn das untere Nibble \verb!0xF! ist, wird die Länge der Übertragung im näch
 \ifEMBED
 \paragraph{Regler}$~~$\vspace{2mm}\\
 \fi
-In der Software ist ein PID-Regler mit Vorsteuerung implementiert. Dies ist im Blockschema in der 
-Abbildung \ref{abb:BlockschemaRegler} abgebildet. Je nachdem Wahl der Parameter $P$, $I$, $D$ und 
-$F_{Forward}$, können nur einzelne Teile des Reglers verwendet werden. 
+In der Software ist ein PID-Regler mit Vorsteuerung implementiert. Dies ist im 
+Blockschema in der Abbildung \ref{abb:BlockschemaRegler} abgebildet. Je nach 
+Wahl der Parameter $P$, $I$, $D$ und $F_{Forward}$, können nur einzelne Teile 
+des Reglers verwendet werden. 
 \ifSTANDALONE
-Auf diese weise kann zum Beispiel ein PI-Regler realisiert werden. 
+Auf diese Weise kann zum Beispiel ein PI-Regler realisiert werden. 
 \fi 
 \ifEMBED
-Während der Testphase, siehe Testbericht in Kapitel \ref{sec:ParameterSuche}, stellte sich heraus, 
-dass ein reiner PI-Regler ohne Feedforward den Anforderungen am besten entsprechen. somit sind die 
-Parameter $D = 0$ und $F_{Forward} = 0$.
+Während der Testphase, siehe Testbericht in Kapitel \ref{sec:ParameterSuche}, 
+stellte sich heraus, dass ein reiner PI-Regler ohne Feedforward den 
+Anforderungen am besten entsprechen. somit sind die Parameter $D = 0$ und 
+$F_{Forward} = 0$.
 \fi
-Als Feedback wird die Zeit, die für die 
-Kommutierung bereist besprochen wurde, verwendet. Damit kurzfristige Unregelmässigkeiten gedämpft 
-werden, wird das Feedback durch ein FIR-Filter\footnote{Finite Impulse Response Filter, Ein Filter 
-mit garantierter endlichen Antwort auf ein Impuls} gefiltert. Der Ausgang dieses Filters wird mittels 
-eines Korrekturfaktor in RPM umgerechnet. Dieser Wert wird mit der Stellgrösse verrechnet und dem Regler 
-zugeführt.
+Als Feedback wird die Zeit, die für die Kommutierung bereits besprochen wurde, 
+verwendet. Damit kurzfristige Unregelmässigkeiten gedämpft werden, wird das 
+Feedback durch ein FIR-Filter\footnote{Finite Impulse Response Filter, Ein 
+Filter mit garantierter endlichen Antwort auf ein Impuls} gefiltert. Der 
+Ausgang dieses Filters wird mittels eines Korrekturfaktor in RPM umgerechnet. 
+Dieser Wert wird mit der Sollgrösse verrechnet und dem Regler zugeführt.
 \begin{figure}[h!]
     \includegraphics[width=0.6\textwidth,clip,trim=0mm 0mm 0mm 0mm]
     {\EtPath/Bilder/Blockschaltbild_Regler.jpg}

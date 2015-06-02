@@ -130,14 +130,14 @@ embedded_log:
 
 review:
 	pdflatex $(REVIEW).tex
-	bibtex   $(REVIEW).aux
+	#bibtex   $(REVIEW).aux
 	pdflatex $(REVIEW).tex
 	pdflatex $(REVIEW).tex
 	pdflatex $(REVIEW).tex
 
 review_log:
 	pdflatex $(REVIEW).tex    >> make.log
-	bibtex   $(REVIEW).aux    >> make.log
+	#bibtex   $(REVIEW).aux    >> make.log
 	pdflatex $(REVIEW).tex    >> make.log
 	pdflatex $(REVIEW).tex    >> make.log
 	pdflatex $(REVIEW).tex    >> make.log

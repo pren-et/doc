@@ -18,7 +18,7 @@ DC-Motorenansteuerung mittels PWM-Signal und Richtungsangabe.
 \subsection{Timer}
 Dieser Teil der Schaltung erzeugt das interne PWM-Signal. Mithilfe des
 NE555 wird ein Sägezahnsignal erzeugt, welches auf den Komparator in IC1
-geführt wird. Dieser Vergleicht diesen Sägezahn mit dem Schwellwert,
+geführt wird. Dieser vergleicht diesen Sägezahn mit dem Schwellwert,
 welcher mit dem Potentiometer R7 oder den beiden Widerständen R22 und R23
 eingestellt werden kann (R22 und R23 sind eine Bestückungsvariante). 
 Sobald er Sägezahn über dem Schwellwert ist, gibt der Komparator 15V aus.
@@ -41,8 +41,8 @@ Ausgang.
 \newpage
 \subsection{PWM-Logik}
 Mit dieser Logik kann eingestellt werden, ob das interne oder ein externes
-PWM Signal verwendet werden kann. Wird auf das Switch-Signal eine Logische
-0 gelegt, wird das interne PWM verwendet, bei einer Logischen 1 das externe
+PWM Signal verwendet werden kann. Wird auf das Switch-Signal eine logische
+0 gelegt, wird das interne PWM verwendet, bei einer logischen 1 das externe
 PWM. Das Switch Signal kann auch als ON/OFF Signal für das interne PWM
 verwendet werden. Dazu muss nur das externe PWM Signal dauerhaft auf Ground
 geschaltet werden. Auf diese Art kann zwischen internem PWM und keinem PWM
@@ -82,7 +82,7 @@ Abbremsen über die Dioden der H-Brücke entladen.
 \subsubsection{Ladungspumpe}
 Die Ladungspumpe (Charge-Pump) wurde anhand des Datenblattes des A3941
 und der eingesetzten MOSFET berechnet und eingesetzt. Die dazu notwendige
-Kapazität ist wie folgt berechnet.
+Kapazität ist wie folgt berechnet:
 
 \[  
 	C_{BOOT}

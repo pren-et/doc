@@ -46,11 +46,12 @@ die Firmware läuft. Das ganze Schema des Boards ist im Anhang \ref{apx:Schema_B
    	\label{abb:SchemaKommutierung}
 \end{figure}
 Der Motor wird mit drei Halbbrücken kommutiert. Für die Ansteuerung der 
-MOSFET\footnote{metal-oxide-semiconductor field-effect transistor} 
+MOSFET\footnote{\textbf{M}etal \textbf{O}xide \textbf{S}emiconductor 
+\textbf{F}ield \textbf{E}ffect \textbf{T}ransistor} 
 wird ein Predriver DRV8301 von Texas Instruments eingesetzt. Die Halbbrücken 
 werden einzeln vom Controller geschalten. Damit nur ein PWM-Signal erzeugt 
 werden muss, sind die Ansteuerleitungen mittels Widerständen mit dem 
-PWM-Signal verbunden, siehe Abbildung \ref{abb:SchemaKommutierung}. 
+PWM-Signal verbunden. (siehe Abbildung \ref{abb:SchemaKommutierung}) 
 Sind die Ansteuerungen vom Controller nicht aktiv 
 getrieben, liegt die PWM an. Die Konfiguration der Predrivers erfolgt über SPI. 
 
@@ -61,18 +62,20 @@ getrieben, liegt die PWM an. Die Konfiguration der Predrivers erfolgt über SPI.
 \paragraph{Phasendetektion}$~~$\vspace{2mm}\\
 \fi
 \begin{figure}[h!]
-   	\includegraphics[width=1\textwidth,clip,trim=0mm 0mm 0mm 0mm]
+    \includegraphics[width=1\textwidth,clip,trim=0mm 0mm 0mm 0mm]
    	{\EtPath/Bilder/Schema_Phasendetektion.png}
    	\centering
    	\caption{Schema-Ausschnitt der Phasendetektion}
    	\label{abb:SchemaPhasenDetektion}
 \end{figure}
-Die Phasendetektion besteht aus Sternpunktnachbildung (R201 - R205 in Abbildung 
-\ref{abb:SchemaPhasenDetektion}), Komparator (U201) und 
-Synchronisation (U203). Die Sternpunktnachbildung erzeugt einen virtuellen Sternpunkt 
-mit Hilfe eines Widerstandsnetzwerkes und eines Tiefpassfilters. Die einzelnen 
-Phasenspannungen werden mit diesem virtuellen Sternpunkt verglichen. Mit einem 
-Flipflop wird das Signal mit der PWM Synchronisiert. 
+Die Phasendetektion besteht aus Sternpunktnachbildung (R201 - R205 in 
+Abbildung \ref{abb:SchemaPhasenDetektion}), Komparator (U201) und 
+Synchronisation (U203). Die Sternpunktnachbildung erzeugt einen virtuellen 
+Sternpunkt mit Hilfe eines Widerstandsnetzwerkes und eines Tiefpassfilters. 
+Besitzt der verwendete Motor einen herausgeführten Sternpunkt, so kann auch 
+dieser verwendet werden. Die einzelnen Phasenspannungen werden mit diesem 
+virtuellen Sternpunkt verglichen. Mit einem Flipflop wird das Signal mit der 
+PWM synchronisiert. 
 \ifEMBED 
 Das Konzept wurde im PREN1 \cite{Team32:Doku} ausführlich beschrieben.
 \fi
