@@ -10,8 +10,8 @@
     \ifEMBED
     \subsubsection{Hardware} \label{ch:Hardware}
     \fi
-    Der L6480 besitzt, wie im \autoref{sec:L6480} beschrieben, eine SPI- 
-    Schnittstelle. Über diese Schnittstelle soll der Steppertreiber die 
+    Der L6480 besitzt, wie in \autoref{sec:L6480} beschrieben, eine 
+    SPI-Schnittstelle. Über diese Schnittstelle soll der Steppertreiber die 
     Befehle des Freedomboards erhalten. Der Steppertreiberprint wird mit 
     Stiftleisten bestückt und kann so direkt auf das Freedomboard aufgesteckt 
     werden. Es wird so keine Kabelverbindung benötigt und die Elektronik 
@@ -21,11 +21,11 @@
         \begin{tikzpicture}
         \node[above right] (img) at (0,0) {\includegraphics[width=8cm]{\EtPath/Bilder/hardware.jpg}};
         \draw[line width=1pt]
-        (1.5, 0.75) node[below=1mm] {$Freedom-Board$}
+        (1.5, 0.75) node[below=1mm] {Freedom-Board}
         -- (2.7, 1);
         \fill (2.7,1) circle (2pt);
         \draw[line width=1pt]
-        (2, 4) node[above=2mm] {$Adapterprint$}
+        (2, 4) node[above=2mm] {Adapterprint}
         -- (2.7, 2);
         \fill (2.7,2) circle (2pt);
         \end{tikzpicture}
@@ -34,12 +34,12 @@
     \end{figure}
     \newline
     Der Steppertreiberprint beinhaltet grundsätzlich den Treiber für den 
-    Schrittmotor, realisiert mit dem Baustein L6480 und einer externen H- 
-    Brücke aus N- FET. Zusätzlich sind Anschlüsse für andere Motoren (z.B. 
-    BLDC- Motor) auf dem Print integiert. Im Folgenden wird die Entwicklung 
+    Schrittmotor, realisiert mit dem Baustein L6480 und einer externen 
+    H-Brücke aus N-FET. Zusätzlich sind Anschlüsse für andere Motoren (z.B.  
+    BLDC-Motor) auf dem Print integiert. Im Folgenden wird die Entwicklung 
     dieses Adapterprints vogestellt. Ab Seite \pageref{sec:Schema} ist das 
     Schema der Schaltung und ab Seite \pageref{sec:PrintDesign} die 
-    Beschreibung des Printdesignes zu finden. 
+    Beschreibung des Printdesigns zu finden. 
     % -----------------------------------------------------------------------------------
     \ifSTANDALONE
     \subsection{Schema} \label{sec:Schema}
@@ -47,56 +47,58 @@
     \ifEMBED
     \subsubsection{Schema} \label{sec:Schema}
     \fi
-    Als Motorenkontoller wird der integrierte Schaltkreis L6480 von 
+    Als Motorencontroller wird der integrierte Schaltkreis L6480 von 
     STMicroelectronics verwendet. Dieser wird über eine SPI-Schnittstelle 
     angesteuert. Der l6480 bietet die Möglichkeit, Bewegungsprofile zu 
     konfigurieren. Die verschiedenen Betriebsarten werden im Kapitel 
-    \ref{ch:Software} vorgestellt. Die H- Brücke wird extern mit N-FETs 
-    realisiert. Die Beschaltung des L6480 konnte aus dem Datenblatt 
+    \ref{ch:Software} vorgestellt. Die H-Brücke wird extern mit N-FETs 
+    realisiert. Die Beschaltung des L6480 kann aus dem Datenblatt 
     \cite{Datasheet:L6480} entnommen werden.\\\\ 
     Das revidierte Schema ist auf Seite \pageref{Schema} abgebildet.
     \\\\
     \textbf{Speisung}\\
-    Es gibt zwei Möglichkeiten, wie das IC gespeist werden kann: 
+    Es gibt zwei Möglichkeiten, wie das IC gespiesen werden kann: 
     \begin{itemize}
         \item Motorenspannung, interne Spannungsregler generieren die nötige 
             Gatespannung sowie die Logikspannung
         \item Externe Spannungsregler
     \end{itemize}
-    Es wurde die erste Möglichkeit, die Speisung mit nur der Motorenspannung 
-    gewählt. Als Motorenspeisung wurde ??V gewählt, da ... . Zusätzliche 
-    Spannungsregler sind nicht notwendig. 
+    Es wird die erste Möglichkeit, die Speisung mit nur der Motorenspannung 
+    gewählt. Als Motorenspeisung ist ein Bereich von 10.5 \ldots 85\si{\volt} 
+    zulässig. Bei eine Betriebsspannung von mehre als 25\si{\volt} sind MOSFET 
+    mit einer höherenen Sperrspannung notwendig. Zusätzliche Spannungsregler 
+    sind nicht notwendig. 
     \\\\
     \textbf{Motor supply voltage compensation}\\
     Der Motorcontoller bietet die Möglichkeit, Schwankungen der 
-    Motorenspannung zu erkennen und so die Amplitude des PWM- Sinussignales am 
+    Motorenspannung zu erkennen und so die Amplitude des PWM-Sinussignales am 
     Schrittmotor zu regeln. Dazu muss der Eingang ADCIN des Controllers 
     korrekt beschaltet werden. An diesem Analogeingang soll bei korrekter 
     Motorspannung 1/2 der Logikspannung anliegen. In diesem Fall bedeutet 
-    dies, dass bei ??V Motorspannung 1.65V über dem Widerstand R4 anliegen 
-    müssen. Dimensioniert wurde für R4 ?? und für R3 ??.
-    \\\\\
+    dies, dass bei normaler Betriebsspannung 1.65\si{\volt} über dem 
+    Widerstand R4 anliegen müssen. 
+    \\\\
     \textbf{LED Speisung}\\
-    Damit sofort ersichtlich ist, ob der Adapterprint gespeist ist, wurde eine 
+    Damit sofort ersichtlich ist, ob der Adapterprint gespiesen ist, wird eine 
     LED vorgesehen. Diese wird zwischen die Speisung über einen Vorwiderstand 
     an GND angeschlossen. Somit ist alles in Ordnung, falls die LED leuchtet.
     \\\\
     \textbf{LED Fehler}\\
-    Der Motorenkontroller kann so konfiguriert werden, dass verschiedene 
+    Der Motorencontroller kann so konfiguriert werden, dass verschiedene 
     Fehler angezeigt werden können. Dies beinhaltet zum Beispiel 
     Schrittverluste, Überstrom, Unterspannungserkennung oder Überhitzung des 
-    Kontrollers. Dazu dient ein Open-Drain Pin $\overline{FLAG}$, welcher im 
-    Fehlerfall auf GND zieht. Der Pin wurde so beschaltet, dass eine LED den 
+    Controllers. Dazu dient ein Open-Drain Pin $\overline{FLAG}$, welcher im 
+    Fehlerfall auf GND zieht. Der Pin wird so beschaltet, dass eine LED den 
     Fehlerfall auch optisch sichtbar macht. 
     \\\\
     \textbf{Pinbelegung}\\
-    Die Kommunikation mit dem Motorenkontoller und die Ansteuerung des 
-    Pneumatikventils wird mit dem Freedom- Board realisiert. 
+    Die Kommunikation mit dem Motorencontroller und die Ansteuerung des 
+    Pneumatikventils wird mit dem Freedom-Board realisiert. 
     Die folgende Tabelle stellt die Schnittstelle zwischen dem Freedomboard 
     und den Anschlüssen auf dem Adapterprint dar. 
     \begin{table}[h!]
         \begin{zebralongtable}{p{3cm} p{2cm} p{1.5cm}}
-             \rowcolor{gray}\textbf{Pin}                & \textbf{Stepper- board}   & \textbf{FRDM- KL25Z} \\           
+             \rowcolor{gray}\textbf{Pin}                & \textbf{Stepper-board}   & \textbf{FRDM-KL25Z} \\           
             \textbf{IO L6480}\\ 
             %\cmidrule{1-1}
             $\overline{FLAG}$           & J2 Pin 2  & PTA13 \\ 
@@ -120,7 +122,7 @@
     \textbf{Zusätzliche Bestückung}\\
     Zusätzlich kann ein Bluetoothmodul bestückt werden. Weitere 
     Bestückungen...\\\\
-    Es wurde mit dem Tool Altium Designer gearbeitet. Das überarbeitete Schema 
+    Es wird mit dem Tool Altium Designer gearbeitet. Das überarbeitete Schema 
     des Steppertreiberprints ist auf der Seite \pageref{Schema} zu finden. 
     %*****************************************************
     % Schema Stepperboard                                %
@@ -168,8 +170,8 @@
     % TODO Betty, Korrektur durch Clirim        
     Der Adapterprint soll auf das Freedom-Board aufgesteckt werden und 
     möglichst klein sein. Der Print hat eine Grösse von 60mm x 70mm. Darauf 
-    befinden sich die Anschlüsse für die Speisung, für den Motor, für weiter 
-    Motoren und für einen End- oder Notschalter. Dazu wurden stabile 
+    befinden sich die Anschlüsse für die Speisung, für den Motor, für weitere 
+    Motoren und für einen End- oder Notschalter. Dazu werden stabile 
     Leiterplattenanschlüsse gewählt, welche auch die hohen Phasenströme des 
     Motors aushalten und zudem eine genug hohe Spannungsfestigkeit besitzen, 
     da die Motorenspannung bis 85V gewählt werden kann. Die eingesetzten 
@@ -177,7 +179,7 @@
     bis 8A geeignet. Dies ist ausreichend für diese Anwendung. Alle Bauteile 
     sind SMD, ausser den Leiterplattenanschlüssen und den Kondensatoren.
     \newpage
-    Grundsätzlich wurden folgende Regeln beim Design eingehalten: 
+    Grundsätzlich werden folgende Regeln beim Design eingehalten: 
     \begin{itemize}
         \item Leiterbahnbreite 20mil
         \item Abstände zwischen Leiterbahnen und Polygonen 20mil
@@ -186,24 +188,24 @@
         \item genügend grosse Pads 
         \item Verbindungen möglichst kurz halten
     \end{itemize}
-    Da die Pins des L6480 näher als 20mil zueinander sind, konnte dort die 
+    Da die Pins des L6480 näher als 20mil zueinander sind, können dort die 
     Regel für die Leiterbahnbreite und für den Abstand nicht eingehalten 
-    werden. Deshalb wurde für dieses Bauteil eigene Regeln definiert. Die 
+    werden. Deshalb werden für dieses Bauteil eigene Regeln definiert. Die 
     Leiterbahnen sind um den L6480 nur 8mil breit, werden jedoch sofort auf 
-    20mil verdickt. Die Motorenphasen wurden nicht mit Leiterbahnen an die 
-    Anschlüsse geführt, sondern mit breiten Polygons verbunden. Die 
-    Auskreuzungen auf dem Bottomlayer sollten vermieden werden, da einerseits 
-    der erste Prototyp ohne Durchkontaktierung hergestellt wurde, andererseits 
+    20mil verdickt. Die Motorenphasen werden nicht mit Leiterbahnen an die 
+    Anschlüsse geführt, sondern mit breiten Polygonen verbunden. Die 
+    Auskreuzungen auf dem Bottomlayer werden vermieden, da einerseits 
+    der erste Prototyp ohne Durchkontaktierung hergestellt wird, andererseits 
     da die GND-Fläche auf dem Bottomlayer möglichst nicht "verschnitten" 
-    werden sollte, um so EMV-Störungen abzuschirmen.
-    Nach dem layouten des ersten Prototypes folgte das Bestellen der Bauteile, 
-    welche nicht im Elektroniklabor vorhanden waren. Die Stückliste ist in der 
-    \autoref{Stückliste} zu finden. Der erste Prototyp wurde von Hand 
+    werden soll, um so EMV-Störungen abzuschirmen.
+    Nach dem Layouten des ersten Prototypes folgt das Bestellen der Bauteile, 
+    welche nicht im Elektroniklabor vorhanden sind. Die Stückliste ist in der 
+    \autoref{Stückliste} zu finden. Der erste Prototyp wird von Hand 
     durchkontaktiert. Nach dem Bestücken mit der halbautomatischen 
-    Bestückungsmaschine und dem Löten im Ofen wurde der Prototyp in Betrieb 
-    genommen. Die Inbetriebnahme zeigte, dass einige wenige Änderungen im 
-    Layout nötig waren. Diese wurden in einer überarbeiteten Version des 
-    Adapterprints berücksichtigt. Der zweite Print wurde maschinell 
+    Bestückungsmaschine und dem Löten im Ofen wird der Prototyp in Betrieb 
+    genommen. Die Inbetriebnahme zeigt, dass einige wenige Änderungen im 
+    Layout nötig sind. Diese werden in einer überarbeiteten Version des 
+    Adapterprints berücksichtigt. Der zweite Print wird maschinell 
     durchkontaktiert. Die Dokumente zur ersten Version sind im Anhang zu 
     finden. Die Bestückungsdokumente sind auf Seite \pageref{fig:Bottom Layer} 
     abgebildet.
@@ -215,25 +217,25 @@
     \end{figure}
     \begin{table}
         \begin{zebralongtable}{p{2.5cm} p{3cm} p{2cm} p{4cm} p{1cm}} 
-             \rowcolor{gray}\textbf{Bauteil}            & \textbf{Bezeichnung}      & \textbf{Lieferant} & \textbf{Bestellnummer}   &\textbf{Anz}\\
-                    
-            Motor Contoller             & L6480H                    & Mouser            & 511-L6480H                & 1\\   
-            Shottkydiode                & BAS40-04-G                & Mouser            & 78-BAS40-04-E3-08         & 1\\ 
-            Zenerdiode                  & BZX585-B3V3               & Mouser            & 771-BZX585-B3V3           & 1\\ 
-            Freilaufdiode               & BAV103                    & Mouser            & 512-BAV103                & 1\\ 
-            FET                         & Si4178DY                  & PTA16             & 781-SI4178DY-TI-GE3       & 9\\ 
-            LED                         & LSQ976                    & Mouser            & 720-LSQ976-NR-1           & 2\\ 
+            \rowcolor{gray}
+            \textbf{Bauteil}    & \textbf{Bezeichnung}  & \textbf{Lieferant} & \textbf{Bestellnummer}   &\textbf{Anz}\\
+            Motor Contoller     & L6480H                & Mouser             & 511-L6480H               & 1\\   
+            Shottkydiode        & BAS40-04-G            & Mouser             & 78-BAS40-04-E3-08        & 1\\ 
+            Zenerdiode          & BZX585-B3V3           & Mouser             & 771-BZX585-B3V3          & 1\\ 
+            Freilaufdiode       & BAV103                & Mouser             & 512-BAV103               & 1\\ 
+            FET                 & Si4178DY              & PTA16              & 781-SI4178DY-TI-GE3      & 9\\ 
+            LED                 & LSQ976                & Mouser             & 720-LSQ976-NR-1          & 2\\ 
         \end{zebralongtable}
         \caption{Stückliste (Bauteile nicht an Lager)} 
         \label{Stückliste}
     \end{table}  
     \newpage
-    % -----------------------------------------------------------------------------------   
+    % -----------------------------------------------------------------------------------
     \ifSTANDALONE
     \subsection{Software}   \label{ch:Software} 
     \fi
     \ifEMBED
-    \subsubsection{Software} \label{ch:Softwarea}
+    \subsubsection{Software} \label{ch:Software}
     \fi
     Die Software auf dem Freedom-Board dient als Schnittstellensoftware. Sie 
     nimmt die Befehle der zentralen Recheneinheit über USB/UART an und sendet 
@@ -243,7 +245,7 @@
     Expert heisst. Dieses erlaubt es, Komponenten wie z.B. einen 
     Analog-Digital-Wandler in das Projekt zu integrieren. Die Konfiguration 
     solcher Komponenten kann mit dem Component Inspector vorgenommen werden, 
-    ohne dass einzelne Register des Mikrokontrollers beschrieben werden 
+    ohne dass einzelne Register des Mikrocontrollers beschrieben werden 
     müssen. Die Komponenten stammen von der Internetseite 
     http://steinerberg.com/EmbeddedComponents/ und können dort gratis 
     gedownloadet werden.
@@ -252,11 +254,11 @@
     mit ihren Aufgaben: 
     \begin{itemize}
         \item FreeRTOS:         Ein Open-Source-Echtbetriebszeitsystem für 
-            Mikroprozessoren und Mikrokontroller.  
+            Mikroprozessoren und Mikrocontroller.  
         \item Shell:            Die Schnittstelle zur zentralen Recheneinheit. 
             Sie vergleicht die von der zentralen Recheneinheit ankommenden 
             Befehle und ruft die entsprechenden Funktionen auf. 
-        \item SynchroMaster:    SPI- Komponente für die Kommunikation mit dem 
+        \item SynchroMaster:    SPI-Komponente für die Kommunikation mit dem 
             Schrittmorotren-IC L6480. 
         \item LED:              Anzeige auf dem Freedom-Boarad.
         \item Bit:              Ansteuerung des Pneumatikventils.
@@ -266,7 +268,7 @@
     Kommandos entsprechen, dokumentiert. In der \autoref{fig:command} ist ein 
     Beispieles eines solchen Kommandos aus dem Datenblatt des l6480 zu sehen, 
     welches den Befehl RUN beschreibt. In diesem Beispiel werden 4 Bytes 
-    einzeln über die SPI- Schnittstelle gesendet: 
+    einzeln über die SPI-Schnittstelle gesendet: 
     \begin{enumerate}
         \item Bitfolge für das Kommando RUN, sowie die Richtung (DIR) der Bewegung
         \item Bit 16 bis 19 der Geschwindigkeit, mit welcher sich der Motor dreht
