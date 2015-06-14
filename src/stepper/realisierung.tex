@@ -248,15 +248,18 @@
     Schrittmotortreibers zu beschreiben und zu lesen. Ausserdem ist jeder 
     Befehl des Treibers implementiert. Die Bibliothek ist mit Doxygen 
     dokumentiert. In der entsprechenden Dokumentation ist die Schnittstelle 
-    der Bibliothek beschrieben. 
+    der Bibliothek beschrieben. Aufgrund des Umfangs ist diese nicht im Anhang 
+    aufgeführt. Sie kann aber mit Doxygen generiert und als separates Dokument 
+    abgegeben werden. 
+
+    \noindent
     Damit die Bibliothek mit dem Schrittmotortreiber kommunizieren kann, muss 
     eine SPI Schnittstelle zur breeitgestellt werden. Dazu sind die Funktionen 
     \verb?spi_write(uint8_t *data)? und \verb?spi_read(uint8_t *data)? so zu 
     ergänzen, dass sie jeweils ein Byte über SPI senden respektive empfangen.  
     Über die Konstante \verb?PL_FRDM? ist die SPI Schnittstelle auf einem 
-    FRDM-KL25Z von Freescale einschaltbar. Die SPI Komponente heisst dabei 
-    Stepperspi. Alle notwendigen Komponenten sind in \autoref{tab:comp_frdm} 
-    aufgeführt. 
+    FRDM-KL25Z von Freescale einschaltbar. Alle dafür notwendigen Komponenten 
+    sind in \autoref{tab:comp_frdm} aufgeführt. 
     \begin{lstlisting}[caption={Definition der Plattform für das FRDM-KL25Z}]
 #define PL_FRDM
     \end{lstlisting}
@@ -285,10 +288,54 @@
             Name        & Komponente    & Beschreibung \\
             CLS1        & Shell         & Shell \\
             UTIL1       & Utility       & Funktionen für die Verarbeitung von Strings \\
-            Shell       & -             & Funktionen für das Senden von Strings über die Schell \\
+            Shell       & -             & Funktionen für das Senden von Strings über die Shell (teamspezifisch) \\
         \end{zebratabular}
         \caption{Komponenten bei Verwendung der Shell}
         \label{tab:comp_shell}
+    \end{table}
+    Folgende Befehle werden vom Parser der Bibliothek geparst: 
+    \begin{table}[h!]
+        \centering
+        \begin{tabular}{p{0.30\textwidth}p{0.65\textwidth}}
+            \rowcolor{gray}  Befehl                              & Beschreibung \\
+            \rowcolor{white} \verb?l6480 help                  ? & Hilfe zur Shell \\
+            \rowcolor{lgray} \verb?l6480 status                ? & Status des Treibers \\
+            \rowcolor{white} \verb?l6480 run (f|r) <speed>     ? & Drehung mit konstanter Geschwindigkeit \\
+            \rowcolor{white} \verb?          (f|r)             ? & $\quad$ Drehrichtung \\
+            \rowcolor{white} \verb?           f                ? & $\quad\quad$ \verb?forward? $\to$ Vorwärts \\
+            \rowcolor{white} \verb?             r              ? & $\quad\quad$ \verb?reverse? $\to$ Rückwärts \\
+            \rowcolor{white} \verb?                <speed>     ? & $\quad$ Geschwindigkeit \\
+            \rowcolor{lgray} \verb?l6480 goto (f|r) <position> ?  & absolute Positionierung  \\
+            \rowcolor{lgray} \verb?           (f|r)            ?  & $\quad$ Drehrichtung  \\
+            \rowcolor{lgray} \verb?            f               ?      & $\quad\quad$ \verb?forward? $\to$ Vorwärts \\
+            \rowcolor{lgray} \verb?              r             ?      & $\quad\quad$ \verb?reverse? $\to$ Rückwärts \\
+            \rowcolor{lgray} \verb?                 <position> ? & $\quad$Position in Anzahl Schritten  \\
+            \rowcolor{white} \verb?l6480 move (f|r) <steps>    ? & relative Positionierung \\
+            \rowcolor{white} \verb?           (f|r)            ? & $\quad$relative Positionierung \\
+            \rowcolor{white} \verb?            f               ?      & $\quad\quad$ \verb?forward? $\to$ Vorwärts \\
+            \rowcolor{white} \verb?              r             ?      & $\quad\quad$ \verb?reverse? $\to$ Rückwärts \\
+            \rowcolor{white} \verb?                 <steps>    ? & $\quad$relative Positionierung \\
+            \rowcolor{lgray} \verb?l6480 reset                 ? & Anhalten mit Rampe \\
+            \rowcolor{white} \verb?l6480 hardstop              ? & sofortiges Anhalten \\
+            \rowcolor{lgray} \verb?l6480 softstop              ? & Reset des Treibers \\
+            \rowcolor{white} \verb?l6480 init (f|r) <speed>    ? & Initialisierung des Treibers \\
+            \rowcolor{white} \verb?           (f|r)            ? & $\quad$Initialisierung des Treibers \\
+            \rowcolor{white} \verb?            f               ?      & $\quad\quad$ \verb?forward? $\to$ Vorwärts \\
+            \rowcolor{white} \verb?              r             ?      & $\quad\quad$ \verb?reverse? $\to$ Rückwärts \\
+            \rowcolor{white} \verb?                 <speed>    ? & $\quad$Initialisierung des Treibers \\
+            \rowcolor{lgray} \verb?l6480 home go               ? & Drehung zu Initialposition \\
+            \rowcolor{white} \verb?l6480 home set              ? & Setze aktuelle Position als Initialposition \\
+            \rowcolor{lgray} \verb?l6480 softhiz               ? & Anhalten mit Rampe mit anschliessendem deaktivieren der Treiberstufe \\
+            \rowcolor{white} \verb?l6480 kval (h|r|a|d) <value>? & Setzen des Motorstroms der einzelnen Betriebsphasen \\
+            \rowcolor{white} \verb?           (h|r|a|d)        ? & $\quad$ Betriebsphase \\
+            \rowcolor{white} \verb?            h               ? & $\quad\quad$ \verb?hold        ? $\to$ Stillstand \\
+            \rowcolor{white} \verb?              r             ? & $\quad\quad$ \verb?run         ? $\to$ Fahrt mit konstanter Geschwindigkeit \\
+            \rowcolor{white} \verb?                a           ? & $\quad\quad$ \verb?acceleration? $\to$ Beschleunigung \\
+            \rowcolor{white} \verb?                  d         ? & $\quad\quad$ \verb?deceleration? $\to$ Abbremsen \\
+            \rowcolor{white} \verb?                     <value>? & $\quad$ Wert für Motorstrom \\
+        \end{tabular}
+        \caption{Befehle der Shell}
+        \label{tab:shell_parser}
     \end{table}
 
     \clearpage
