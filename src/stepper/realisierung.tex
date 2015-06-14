@@ -237,77 +237,148 @@
     \ifEMBED
     \subsubsection{Software} \label{ch:Software}
     \fi
-    Die Software auf dem Freedom-Board dient als Schnittstellensoftware. Sie 
-    nimmt die Befehle der zentralen Recheneinheit über USB/UART an und sendet 
-    diese an den Motor Controller l6480 sowie das Pneumatikventil weiter. Die 
-    Software wurde mit der Entwicklungsumgebung Kinetis Design Studio von 
-    Freescale entwickelt. Diese Umgebung bietet ein Tool, welches Processor 
-    Expert heisst. Dieses erlaubt es, Komponenten wie z.B. einen 
-    Analog-Digital-Wandler in das Projekt zu integrieren. Die Konfiguration 
-    solcher Komponenten kann mit dem Component Inspector vorgenommen werden, 
-    ohne dass einzelne Register des Mikrocontrollers beschrieben werden 
-    müssen. Die Komponenten stammen von der Internetseite 
-    http://steinerberg.com/EmbeddedComponents/ und können dort gratis 
-    gedownloadet werden.
-    \\\\
-    Die Software auf dem Freedom-Board beinhaltet folgende fünf Komponenten 
-    mit ihren Aufgaben: 
-    \begin{itemize}
-        \item FreeRTOS:         Ein Open-Source-Echtbetriebszeitsystem für 
-            Mikroprozessoren und Mikrocontroller.  
-        \item Shell:            Die Schnittstelle zur zentralen Recheneinheit. 
-            Sie vergleicht die von der zentralen Recheneinheit ankommenden 
-            Befehle und ruft die entsprechenden Funktionen auf. 
-        \item SynchroMaster:    SPI-Komponente für die Kommunikation mit dem 
-            Schrittmorotren-IC L6480. 
-        \item LED:              Anzeige auf dem Freedom-Boarad.
-        \item Bit:              Ansteuerung des Pneumatikventils.
-    \end{itemize}
-    \textbf{Schrittmotorentreiber}\\
-    Im Datenblatt des L4680 sind die verschiedenen Bitfolgen, welche einzelnen 
-    Kommandos entsprechen, dokumentiert. In der \autoref{fig:command} ist ein 
-    Beispieles eines solchen Kommandos aus dem Datenblatt des l6480 zu sehen, 
-    welches den Befehl RUN beschreibt. In diesem Beispiel werden 4 Bytes 
-    einzeln über die SPI-Schnittstelle gesendet: 
-    \begin{enumerate}
-        \item Bitfolge für das Kommando RUN, sowie die Richtung (DIR) der Bewegung
-        \item Bit 16 bis 19 der Geschwindigkeit, mit welcher sich der Motor dreht
-        \item Bit 8 bis 15 der Geschwindigkeit
-        \item Bit 0 bis 7 der Geschwindigkeit
-    \end{enumerate}
-    \begin{figure}[h!]
+    Für die einfache Einbindung des Schrittmotortreibers in die Software der 
+    jeweiligen Teams wird eine Bibliothek erstellt. Diese besteht aus den 
+    Dateien \verb?l6480.c? und \verb?l6480.h?, welche in eigene Software 
+    eingebunden werden kann. 
+    \begin{lstlisting}[caption={Einbinden der Bibliothek}]
+#include l6480.h
+    \end{lstlisting}
+    Diese Bibliothek bietet Funktionen um alle Register des 
+    Schrittmotortreibers zu beschreiben und zu lesen. Ausserdem ist für jeder 
+    Befehl des Treibers implementiert. Damit die Bibliothek mit dem 
+    Schrittmotortreiber kommunizieren kann, muss eine SPI Schnittstelle zur 
+    Verfügung gestellt werden. Dazu sind die Funktionen 
+    \verb?spi_write(uint8_t *data)? und \verb?spi_read(uint8_t *data)? so zu 
+    ergänzen, dass sie jeweils ein Byte über SPI senden respektive empfangen. 
+    Über die Konstante \verb?PL_FRDM? ist die SPI Schnittstelle auf einem 
+    FRDM-KL25Z von Freescale einschaltbar. Die SPI Komponente heisst dabei 
+    Stepperspi. 
+    \begin{lstlisting}[caption={Definition der Plattform für das FRDM-KL25Z}]
+#define PL_FRDM
+    \end{lstlisting}
+    Zudem kann mit der Konstante \verb?PL_HAS_SHELL?  die Unterstützung einer 
+    Shell-Komponente aktiviert werden. 
+    \begin{lstlisting}[caption={Definition für Shell-Unterstützung}]
+#define PL_HAS_SHELL
+    \end{lstlisting}
+    Wird die Konstante \verb?PL_FRDM?  nicht gesetzt, kann die Bibliothek auf 
+    einem Computer kompiliert und getestet werden. Die Daten werden dabei 
+    nicht über SPI geschickt, sondern auf die Standardausgabe ausgegeben. 
+    \begin{lstlisting}[caption={Beispielprogramm für den Test der Bibliothek auf dem Computer}, label={lis:test_source}]
+#include "stdio.h"
+#include "drv/l6480.h"
+
+int main(void) {
+    l6480_init();
+    printf("hardhiz\n");
+    l6480_cmd_hardhiz();
+    printf("run 1 2\n");
+    l6480_cmd_run(1, 2);
+    return 0;
+}
+    \end{lstlisting}
+    \begin{lstlisting}[caption={Ausgabe vom Testprogramm in \autoref{lis:test_source}}]
+hardhiz
+write: 0xA8
+run 1 2
+write: 0x51
+write: 0x0
+write: 0x0
+write: 0x2
+    \end{lstlisting}
+    \begin{table}[h!]
         \centering
-        \includegraphics[width=10cm]{\EtPath/Bilder/command_example.JPG}
-        \caption{Beispiel eines Kommandos aus dem Datenblatt des l6480}
-        \label{fig:command}
-    \end{figure}
-    Der Treiber beinhaltet die Funktionen, welche die richtigen Bitfolgen über 
-    SPI an den L6480 senden. Fast alle dieser Funktionen wurden in 
-    Zusammenarbeit mit dem PREN-ET Team von Daniel Winz implementiert.  
-    \\\\
-    \textbf{Shell}\\
-    Für das Pneumatikventil und den Steppertreiber wurden Shellfunktionen 
-    implementiert. Erhält die Shell ein Kommando von der zentralen 
-    Recheneinheit, so wird die Eingabe ausgewertet und die entsprechende 
-    Shellfunktion ausgeführt. Die von der zentralen Recheneinheit geparsten 
-    Befehle sind:  
-    \begin{itemize}
-        \item l6480 run [f/r] [speed]
-        \item l6480 reset
-        \item l6480 softstop
-        \item l6480 hardstop
-        \item l6480 softhiz
-    \end{itemize}
-    für die Steuerung des Motor Controllers, sowie
-    \begin{itemize}
-        \item vent shoot
-    \end{itemize}
-    für die Steuerung des Pneumatikventils. 
-    \\\\
-    Der Befehl "l6480 run" lässt den Motor in Vorwärtsrichtung [f] oder 
-    Rückwärtsrichtung [r] mit der in [speed] definierten Geschwindigkeit 
-    drehen. "l6480 reset" konfiguriert den l6480 und bestromt den Motor, so 
-    dass dieser ein Haltemoment aufweist. Um den Motor ohne Haltemoment 
-    bewegen zu können, wird der Befehl "l6480 softhiz" verwendet, welcher die 
-    H-Brücke ausschaltet. 
+        \begin{zebratabular}{p{0.11\textwidth}p{0.14\textwidth}p{0.5\textwidth}}
+            \rowcolor{gray}
+            Name        & Komponente    & Beschreibung \\
+            Stepperspi  & SynchroMaster & SPI \\
+            WAIT1       & Wait          & Delays \\
+            STP\_BSY    & ExtInt        & Interrupt für das Signal Busy \\
+            CLS1        & Shell         & Shell \\
+            UTIL1       & Utility       & Funktionen für die Verarbeitung von Strings \\
+            Shell       & -             & Funktionen für das Senden von Strings über die Schell \\
+        \end{zebratabular}
+        \caption{Komponenten bei Verwendung auf einem FRDM-KL25Z}
+        \label{tab:comp_frdm}
+    \end{table}
+
+
+
+
+
+
+%    Die Software auf dem Freedom-Board dient als Schnittstellensoftware. Sie 
+%    nimmt die Befehle der zentralen Recheneinheit über USB/UART an und sendet 
+%    diese an den Motor Controller l6480 sowie das Pneumatikventil weiter. Die 
+%    Software wurde mit der Entwicklungsumgebung Kinetis Design Studio von 
+%    Freescale entwickelt. Diese Umgebung bietet ein Tool, welches Processor 
+%    Expert heisst. Dieses erlaubt es, Komponenten wie z.B. einen 
+%    Analog-Digital-Wandler in das Projekt zu integrieren. Die Konfiguration 
+%    solcher Komponenten kann mit dem Component Inspector vorgenommen werden, 
+%    ohne dass einzelne Register des Mikrocontrollers beschrieben werden 
+%    müssen. Die Komponenten stammen von der Internetseite 
+%    http://steinerberg.com/EmbeddedComponents/ und können dort gratis 
+%    gedownloadet werden.
+%    \\\\
+%    Die Software auf dem Freedom-Board beinhaltet folgende fünf Komponenten 
+%    mit ihren Aufgaben: 
+%    \begin{itemize}
+%        \item FreeRTOS:         Ein Open-Source-Echtbetriebszeitsystem für 
+%            Mikroprozessoren und Mikrocontroller.  
+%        \item Shell:            Die Schnittstelle zur zentralen Recheneinheit. 
+%            Sie vergleicht die von der zentralen Recheneinheit ankommenden 
+%            Befehle und ruft die entsprechenden Funktionen auf. 
+%        \item SynchroMaster:    SPI-Komponente für die Kommunikation mit dem 
+%            Schrittmorotren-IC L6480. 
+%        \item LED:              Anzeige auf dem Freedom-Boarad.
+%        \item Bit:              Ansteuerung des Pneumatikventils.
+%    \end{itemize}
+%    \textbf{Schrittmotorentreiber}\\
+%    Im Datenblatt des L4680 sind die verschiedenen Bitfolgen, welche einzelnen 
+%    Kommandos entsprechen, dokumentiert. In der \autoref{fig:command} ist ein 
+%    Beispieles eines solchen Kommandos aus dem Datenblatt des l6480 zu sehen, 
+%    welches den Befehl RUN beschreibt. In diesem Beispiel werden 4 Bytes 
+%    einzeln über die SPI-Schnittstelle gesendet: 
+%    \begin{enumerate}
+%        \item Bitfolge für das Kommando RUN, sowie die Richtung (DIR) der Bewegung
+%        \item Bit 16 bis 19 der Geschwindigkeit, mit welcher sich der Motor dreht
+%        \item Bit 8 bis 15 der Geschwindigkeit
+%        \item Bit 0 bis 7 der Geschwindigkeit
+%    \end{enumerate}
+%    \begin{figure}[h!]
+%        \centering
+%        \includegraphics[width=10cm]{\EtPath/Bilder/command_example.JPG}
+%        \caption{Beispiel eines Kommandos aus dem Datenblatt des l6480}
+%        \label{fig:command}
+%    \end{figure}
+%    Der Treiber beinhaltet die Funktionen, welche die richtigen Bitfolgen über 
+%    SPI an den L6480 senden. Fast alle dieser Funktionen wurden in 
+%    Zusammenarbeit mit dem PREN-ET Team von Daniel Winz implementiert.  
+%    \\\\
+%    \textbf{Shell}\\
+%    Für das Pneumatikventil und den Steppertreiber wurden Shellfunktionen 
+%    implementiert. Erhält die Shell ein Kommando von der zentralen 
+%    Recheneinheit, so wird die Eingabe ausgewertet und die entsprechende 
+%    Shellfunktion ausgeführt. Die von der zentralen Recheneinheit geparsten 
+%    Befehle sind:  
+%    \begin{itemize}
+%        \item l6480 run [f/r] [speed]
+%        \item l6480 reset
+%        \item l6480 softstop
+%        \item l6480 hardstop
+%        \item l6480 softhiz
+%    \end{itemize}
+%    für die Steuerung des Motor Controllers, sowie
+%    \begin{itemize}
+%        \item vent shoot
+%    \end{itemize}
+%    für die Steuerung des Pneumatikventils. 
+%    \\\\
+%    Der Befehl "l6480 run" lässt den Motor in Vorwärtsrichtung [f] oder 
+%    Rückwärtsrichtung [r] mit der in [speed] definierten Geschwindigkeit 
+%    drehen. "l6480 reset" konfiguriert den l6480 und bestromt den Motor, so 
+%    dass dieser ein Haltemoment aufweist. Um den Motor ohne Haltemoment 
+%    bewegen zu können, wird der Befehl "l6480 softhiz" verwendet, welcher die 
+%    H-Brücke ausschaltet. 
     
