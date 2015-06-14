@@ -245,26 +245,63 @@
 #include l6480.h
     \end{lstlisting}
     Diese Bibliothek bietet Funktionen um alle Register des 
-    Schrittmotortreibers zu beschreiben und zu lesen. Ausserdem ist für jeder 
-    Befehl des Treibers implementiert. Damit die Bibliothek mit dem 
-    Schrittmotortreiber kommunizieren kann, muss eine SPI Schnittstelle zur 
-    Verfügung gestellt werden. Dazu sind die Funktionen 
+    Schrittmotortreibers zu beschreiben und zu lesen. Ausserdem ist jeder 
+    Befehl des Treibers implementiert. Die Bibliothek ist mit Doxygen 
+    dokumentiert. In der entsprechenden Dokumentation ist die Schnittstelle 
+    der Bibliothek beschrieben. 
+    Damit die Bibliothek mit dem Schrittmotortreiber kommunizieren kann, muss 
+    eine SPI Schnittstelle zur breeitgestellt werden. Dazu sind die Funktionen 
     \verb?spi_write(uint8_t *data)? und \verb?spi_read(uint8_t *data)? so zu 
-    ergänzen, dass sie jeweils ein Byte über SPI senden respektive empfangen. 
+    ergänzen, dass sie jeweils ein Byte über SPI senden respektive empfangen.  
     Über die Konstante \verb?PL_FRDM? ist die SPI Schnittstelle auf einem 
     FRDM-KL25Z von Freescale einschaltbar. Die SPI Komponente heisst dabei 
-    Stepperspi. 
+    Stepperspi. Alle notwendigen Komponenten sind in \autoref{tab:comp_frdm} 
+    aufgeführt. 
     \begin{lstlisting}[caption={Definition der Plattform für das FRDM-KL25Z}]
 #define PL_FRDM
     \end{lstlisting}
+    \begin{table}[h!]
+        \centering
+        \begin{zebratabular}{p{0.11\textwidth}p{0.14\textwidth}p{0.5\textwidth}}
+            \rowcolor{gray}
+            Name        & Komponente    & Beschreibung \\
+            Stepperspi  & SynchroMaster & SPI \\
+            WAIT1       & Wait          & Delays \\
+            STP\_BSY    & ExtInt        & Interrupt für das Signal Busy \\
+        \end{zebratabular}
+        \caption{Komponenten bei Verwendung auf einem FRDM-KL25Z}
+        \label{tab:comp_frdm}
+    \end{table}
     Zudem kann mit der Konstante \verb?PL_HAS_SHELL?  die Unterstützung einer 
-    Shell-Komponente aktiviert werden. 
+    Shell-Komponente aktiviert werden. Die für die Shell zusätzlich 
+    notwendigen Komponenten sind in \autoref{tab:comp_shell} aufgeführt. 
     \begin{lstlisting}[caption={Definition für Shell-Unterstützung}]
 #define PL_HAS_SHELL
     \end{lstlisting}
+    \begin{table}[h!]
+        \centering
+        \begin{zebratabular}{p{0.11\textwidth}p{0.14\textwidth}p{0.5\textwidth}}
+            \rowcolor{gray}
+            Name        & Komponente    & Beschreibung \\
+            CLS1        & Shell         & Shell \\
+            UTIL1       & Utility       & Funktionen für die Verarbeitung von Strings \\
+            Shell       & -             & Funktionen für das Senden von Strings über die Schell \\
+        \end{zebratabular}
+        \caption{Komponenten bei Verwendung der Shell}
+        \label{tab:comp_shell}
+    \end{table}
+
+    \clearpage
+    \ifSTANDALONE
+    \subsubsection{Test auf Computer}   \label{sec:Software_test} 
+    \fi
+    \ifEMBED
+    \paragraph{Test} auf Computer \label{sec:Software_test}
+    \fi
     Wird die Konstante \verb?PL_FRDM?  nicht gesetzt, kann die Bibliothek auf 
-    einem Computer kompiliert und getestet werden. Die Daten werden dabei 
-    nicht über SPI geschickt, sondern auf die Standardausgabe ausgegeben. 
+    einem Computer kompiliert und getestet werden. Das ermöglicht das Testen 
+    der Bibliothek ohne Hardware. Die Daten werden dabei nicht über SPI 
+    geschickt, sondern auf die Standardausgabe ausgegeben. 
     \begin{lstlisting}[caption={Beispielprogramm für den Test der Bibliothek auf dem Computer}, label={lis:test_source}]
 #include "stdio.h"
 #include "drv/l6480.h"
@@ -287,21 +324,6 @@ write: 0x0
 write: 0x0
 write: 0x2
     \end{lstlisting}
-    \begin{table}[h!]
-        \centering
-        \begin{zebratabular}{p{0.11\textwidth}p{0.14\textwidth}p{0.5\textwidth}}
-            \rowcolor{gray}
-            Name        & Komponente    & Beschreibung \\
-            Stepperspi  & SynchroMaster & SPI \\
-            WAIT1       & Wait          & Delays \\
-            STP\_BSY    & ExtInt        & Interrupt für das Signal Busy \\
-            CLS1        & Shell         & Shell \\
-            UTIL1       & Utility       & Funktionen für die Verarbeitung von Strings \\
-            Shell       & -             & Funktionen für das Senden von Strings über die Schell \\
-        \end{zebratabular}
-        \caption{Komponenten bei Verwendung auf einem FRDM-KL25Z}
-        \label{tab:comp_frdm}
-    \end{table}
 
 
 
