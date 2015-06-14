@@ -18,20 +18,20 @@ Wie bereits im Kapitel \ref*{subsec:Ansteuerung} erwähnt, wird der L6480 von ST
 \fi
     Diese Schrittmotorensteuerung ist für den Betrieb von zweiphasigen (Vgl. 
     Kapitel \ref{sec:stepper}) Schrittmotoren mit Mikrosteps (Vgl. Kapitel 
-    \ref{sec:stepper}) geeignet. Der L6480 erreicht eine maximale Auflösung 
-    von einem 1/128 Schritt. Die Steuerung generiert intern die PWM- Signale 
+    \ref{sec:steps}) geeignet. Der L6480 erreicht eine maximale Auflösung 
+    von einem 1/128 Schritt. Die Steuerung generiert intern die PWM-Signale 
     für die Motorenansteuerung. Alternativ kann auch mit Vollschritten oder 
-    Halbschritten gearbeitet werden. Die beiden H- Brücken werden extern mit 
+    Halbschritten gearbeitet werden. Die beiden H-Brücken werden extern mit 
     N-Kanal MOSFETs realisiert. Es können Bewegungsprofile konfiguriert 
     werden, so dass die Motoren definiert anfahren, abbremsen oder ein Punkt 
     direkt angefahren werden kann. So kann der Aufwand bei der 
     Mikrocontrollerprogrammierung verringert werden. Die Befehle werden über 
-    eine SPI- Schnittstelle übertragen. Die absolute Position ist in einem 22- 
-    Bit Register gespeichert. Der Bereich liegt dementsprechend zwischen 
+    eine SPI-Schnittstelle übertragen. Die absolute Position ist in einem 
+    22-Bit Register gespeichert. Der Bereich liegt dementsprechend zwischen 
     \(-2^{21}\) und \(2^{21}-1\). \cite{Datasheet:L6480} 
 
 \ifSTANDALONE
-    \subsection{Schnitstelle}
+    \subsection{Schnittstelle}
 \fi
 \ifEMBED
     \subsubsection{Schnittstelle}
@@ -54,7 +54,7 @@ L6480 \cite{Datasheet:L6480} :
             Standby- und Resetmodus, falls extern GND anliegt. \\
         STCK &
             Input &
-            Im Step-Clock- Mode führt jede positive Flanke an diesem Pin zu einem 
+            Im Step-Clock-Mode führt jede positive Flanke an diesem Pin zu einem 
                 Schritt. \\
         \rowcolor{gray}\textbf{SPI} & & \\
         $\overline{CS}$ &
@@ -85,7 +85,7 @@ L6480 \cite{Datasheet:L6480} :
 %    $\overline{FLAG}$& Output               & Wird bei einem Fehler intern auf GND gezogen. \\ \addlinespace
 %    $\overline{BUSY}$ / SYNC & Output       & Wird während dem Ausführen eines Befehls intern auf GND gezogen.\\ \addlinespace
 %    $\overline{STBY / RESET}$& Input        & Standby- und Resetmodus, falls extern GND anliegt. \\ \addlinespace
-%    STCK            & Input         & Im Step-Clock- Mode führt jede positive Flanke an diesem Pin zu einem Schritt. \\ \addlinespace
+%    STCK            & Input         & Im Step-Clock-Mode führt jede positive Flanke an diesem Pin zu einem Schritt. \\ \addlinespace
 %    %\cmidrule{1-1}
 %    \textbf{SPI}\\ \addlinespace
 %    %\cmidrule{1-1}
@@ -108,7 +108,7 @@ L6480 \cite{Datasheet:L6480} :
 \fi
 \begin{figure}[h]
     \centering
-    \includegraphics[width=12cm]{\EtPath/Bilder/typicalApp.jpg}
+    \includegraphics[width=16cm]{\EtPath/Bilder/typicalApp.jpg}
     \caption[Typical Application]{Typical Application \cite{Datasheet:L6480}}
     \label{fig:typApp}
 \end{figure}

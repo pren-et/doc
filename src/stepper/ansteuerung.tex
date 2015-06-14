@@ -30,6 +30,7 @@
         \item[] \cite{Doku:Stepper} 
     \end{itemize}
     
+    \noindent
     Der gewählte integrierte Schaltkreis ist der L6480 von 
     STMicroelectronics. Dieser wird über die SPI Schnittstelle gesteuert 
     und besitzt eine Motion Contol Engine. Die Treiberstufe wird extern 
@@ -55,7 +56,7 @@
 \fi 
 	Wird ein Schrittmotor unipolar betrieben, so können die vier Wicklungen 
     direkt mit Lowside Treibern angesteuert werden. Für den bipolaren 
-    Betrieb benötigt man für beide Wicklungen je eine H- Brücke. Die 
+    Betrieb benötigt man für beide Wicklungen je eine H-Brücke. Die 
     einfachste Methode ist es, den Strom nur durch den Wicklungswiderstand 
     zu begrenzen. Der Nachteil ist, dass die Zeitkonstante durch den 
     Wicklungswiderstand und die Induktivität bestimmt ist, und so bei 
@@ -76,6 +77,8 @@
 	 	\caption[Spannungsumschaltung]{Spannungsumschaltung \cite{AppNote:Stepper}}
 	 	\label{fig:spannungsumschaltung}
 	 \end{figure}
+
+    \noindent
 	Der Schrittmotor kann alternativ auch stromgesteuert betrieben werden. 
     Dabei folgt der Stromverlauf dem Verlauf einer Referenzspannung 
     (Sollwert). Der Stromverlauf wird auf den Sollwert geregelt. Die 

@@ -37,7 +37,7 @@
     Schrittmotor, realisiert mit dem Baustein L6480 und einer externen 
     H-Brücke aus N-FET. Zusätzlich sind Anschlüsse für andere Motoren (z.B.  
     BLDC-Motor) auf dem Print integiert. Im Folgenden wird die Entwicklung 
-    dieses Adapterprints vogestellt. Ab Seite \pageref{sec:Schema} ist das 
+    dieses Adapterprints vorgestellt. Ab Seite \pageref{sec:Schema} ist das 
     Schema der Schaltung und ab Seite \pageref{sec:PrintDesign} die 
     Beschreibung des Printdesigns zu finden. 
     % -----------------------------------------------------------------------------------
@@ -63,10 +63,10 @@
             Gatespannung sowie die Logikspannung
         \item Externe Spannungsregler
     \end{itemize}
-    Es wird die erste Möglichkeit, die Speisung mit nur der Motorenspannung 
+    Es wird die erste Möglichkeit, die Speisung nur mit der Motorenspannung 
     gewählt. Als Motorenspeisung ist ein Bereich von 10.5 \ldots 85\si{\volt} 
-    zulässig. Bei eine Betriebsspannung von mehre als 25\si{\volt} sind MOSFET 
-    mit einer höherenen Sperrspannung notwendig. Zusätzliche Spannungsregler 
+    zulässig. Bei einer Betriebsspannung von mehr als 25\si{\volt} sind MOSFET 
+    mit einer höheren Sperrspannung notwendig. Zusätzliche Spannungsregler 
     sind nicht notwendig. 
     \\\\
     \textbf{Motor supply voltage compensation}\\
@@ -78,10 +78,12 @@
     dies, dass bei normaler Betriebsspannung 1.65\si{\volt} über dem 
     Widerstand R4 anliegen müssen. 
     \\\\
+    \clearpage
+    \noindent
     \textbf{LED Speisung}\\
-    Damit sofort ersichtlich ist, ob der Adapterprint gespiesen ist, wird eine 
-    LED vorgesehen. Diese wird zwischen die Speisung über einen Vorwiderstand 
-    an GND angeschlossen. Somit ist alles in Ordnung, falls die LED leuchtet.
+    Damit sofort ersichtlich ist, ob der Adapterprint gespiesen wird, wird eine 
+    LED vorgesehen. Diese wird an die Speisung über einen Vorwiderstand an GND 
+    angeschlossen. Somit ist alles in Ordnung, wenn die LED leuchtet.
     \\\\
     \textbf{LED Fehler}\\
     Der Motorencontroller kann so konfiguriert werden, dass verschiedene 
@@ -120,8 +122,7 @@
     \end{table} 
     \\
     \textbf{Zusätzliche Bestückung}\\
-    Zusätzlich kann ein Bluetoothmodul bestückt werden. Weitere 
-    Bestückungen...\\\\
+    Zusätzlich kann ein Bluetoothmodul bestückt werden. \\\\
     Es wird mit dem Tool Altium Designer gearbeitet. Das überarbeitete Schema 
     des Steppertreiberprints ist auf der Seite \pageref{Schema} zu finden. 
     %*****************************************************
@@ -189,23 +190,22 @@
         \item Verbindungen möglichst kurz halten
     \end{itemize}
     Da die Pins des L6480 näher als 20mil zueinander sind, können dort die 
-    Regel für die Leiterbahnbreite und für den Abstand nicht eingehalten 
+    Regeln für die Leiterbahnbreite und für den Abstand nicht eingehalten 
     werden. Deshalb werden für dieses Bauteil eigene Regeln definiert. Die 
     Leiterbahnen sind um den L6480 nur 8mil breit, werden jedoch sofort auf 
     20mil verdickt. Die Motorenphasen werden nicht mit Leiterbahnen an die 
     Anschlüsse geführt, sondern mit breiten Polygonen verbunden. Die 
-    Auskreuzungen auf dem Bottomlayer werden vermieden, da einerseits 
-    der erste Prototyp ohne Durchkontaktierung hergestellt wird, andererseits 
-    da die GND-Fläche auf dem Bottomlayer möglichst nicht "verschnitten" 
-    werden soll, um so EMV-Störungen abzuschirmen.
-    Nach dem Layouten des ersten Prototypes folgt das Bestellen der Bauteile, 
-    welche nicht im Elektroniklabor vorhanden sind. Die Stückliste ist in der 
-    \autoref{Stückliste} zu finden. Der erste Prototyp wird von Hand 
-    durchkontaktiert. Nach dem Bestücken mit der halbautomatischen 
-    Bestückungsmaschine und dem Löten im Ofen wird der Prototyp in Betrieb 
-    genommen. Die Inbetriebnahme zeigt, dass einige wenige Änderungen im 
-    Layout nötig sind. Diese werden in einer überarbeiteten Version des 
-    Adapterprints berücksichtigt. Der zweite Print wird maschinell 
+    Auskreuzungen auf dem Bottomlayer werden vermieden, da der erste Prototyp 
+    ohne Durchkontaktierung hergestellt wird. Da die GND-Fläche auf dem 
+    Bottomlayer möglichst nicht "'verschnitten"' werden soll, um so 
+    EMV-Störungen abzuschirmen.  Nach dem Layouten des ersten Prototypes folgt 
+    das Bestellen der Bauteile, welche nicht im Elektroniklabor vorhanden 
+    sind. Die Stückliste ist in der \autoref{Stückliste} zu finden. Der erste 
+    Prototyp wird von Hand durchkontaktiert. Nach dem Bestücken mit der 
+    halbautomatischen Bestückungsmaschine und dem Löten im Ofen wird der 
+    Prototyp in Betrieb genommen. Die Inbetriebnahme zeigt, dass einige wenige 
+    Änderungen im Layout nötig sind. Diese werden in einer überarbeiteten 
+    Version des Adapterprints berücksichtigt. Der zweite Print wird maschinell 
     durchkontaktiert. Die Dokumente zur ersten Version sind im Anhang zu 
     finden. Die Bestückungsdokumente sind auf Seite \pageref{fig:Bottom Layer} 
     abgebildet.
@@ -223,7 +223,7 @@
             Shottkydiode        & BAS40-04-G            & Mouser             & 78-BAS40-04-E3-08        & 1\\ 
             Zenerdiode          & BZX585-B3V3           & Mouser             & 771-BZX585-B3V3          & 1\\ 
             Freilaufdiode       & BAV103                & Mouser             & 512-BAV103               & 1\\ 
-            FET                 & Si4178DY              & PTA16              & 781-SI4178DY-TI-GE3      & 9\\ 
+            FET                 & Si4178DY              & Mouser             & 781-SI4178DY-TI-GE3      & 9\\ 
             LED                 & LSQ976                & Mouser             & 720-LSQ976-NR-1          & 2\\ 
         \end{zebralongtable}
         \caption{Stückliste (Bauteile nicht an Lager)} 
@@ -254,9 +254,9 @@
 
     \noindent
     Damit die Bibliothek mit dem Schrittmotortreiber kommunizieren kann, muss 
-    eine SPI Schnittstelle zur breeitgestellt werden. Dazu sind die Funktionen 
+    eine SPI Schnittstelle bereitgestellt werden. Dazu sind die Funktionen 
     \verb?spi_write(uint8_t *data)? und \verb?spi_read(uint8_t *data)? so zu 
-    ergänzen, dass sie jeweils ein Byte über SPI senden respektive empfangen.  
+    ergänzen, dass sie jeweils ein Byte über SPI senden, respektive empfangen.  
     Über die Konstante \verb?PL_FRDM? ist die SPI Schnittstelle auf einem 
     FRDM-KL25Z von Freescale einschaltbar. Alle dafür notwendigen Komponenten 
     sind in \autoref{tab:comp_frdm} aufgeführt. 
@@ -293,6 +293,8 @@
         \caption{Komponenten bei Verwendung der Shell}
         \label{tab:comp_shell}
     \end{table}
+    \clearpage
+    \noindent
     Folgende Befehle werden vom Parser der Bibliothek geparst: 
     \begin{table}[h!]
         \centering
@@ -309,20 +311,20 @@
             \rowcolor{lgray} \verb?           (f|r)            ?  & $\quad$ Drehrichtung  \\
             \rowcolor{lgray} \verb?            f               ?      & $\quad\quad$ \verb?forward? $\to$ Vorwärts \\
             \rowcolor{lgray} \verb?              r             ?      & $\quad\quad$ \verb?reverse? $\to$ Rückwärts \\
-            \rowcolor{lgray} \verb?                 <position> ? & $\quad$Position in Anzahl Schritten  \\
+            \rowcolor{lgray} \verb?                 <position> ? & $\quad$ Position in Anzahl Schritten  \\
             \rowcolor{white} \verb?l6480 move (f|r) <steps>    ? & relative Positionierung \\
-            \rowcolor{white} \verb?           (f|r)            ? & $\quad$relative Positionierung \\
+            \rowcolor{white} \verb?           (f|r)            ? & $\quad$ Drehrichtung \\
             \rowcolor{white} \verb?            f               ?      & $\quad\quad$ \verb?forward? $\to$ Vorwärts \\
             \rowcolor{white} \verb?              r             ?      & $\quad\quad$ \verb?reverse? $\to$ Rückwärts \\
-            \rowcolor{white} \verb?                 <steps>    ? & $\quad$relative Positionierung \\
+            \rowcolor{white} \verb?                 <steps>    ? & $\quad$ Anzahl zu fahrende Schritte \\
             \rowcolor{lgray} \verb?l6480 reset                 ? & Anhalten mit Rampe \\
             \rowcolor{white} \verb?l6480 hardstop              ? & sofortiges Anhalten \\
             \rowcolor{lgray} \verb?l6480 softstop              ? & Reset des Treibers \\
             \rowcolor{white} \verb?l6480 init (f|r) <speed>    ? & Initialisierung des Treibers \\
-            \rowcolor{white} \verb?           (f|r)            ? & $\quad$Initialisierung des Treibers \\
+            \rowcolor{white} \verb?           (f|r)            ? & $\quad$ Drehrichtung \\
             \rowcolor{white} \verb?            f               ?      & $\quad\quad$ \verb?forward? $\to$ Vorwärts \\
             \rowcolor{white} \verb?              r             ?      & $\quad\quad$ \verb?reverse? $\to$ Rückwärts \\
-            \rowcolor{white} \verb?                 <speed>    ? & $\quad$Initialisierung des Treibers \\
+            \rowcolor{white} \verb?                 <speed>    ? & $\quad$ Geschwindigkeit \\
             \rowcolor{lgray} \verb?l6480 home go               ? & Drehung zu Initialposition \\
             \rowcolor{white} \verb?l6480 home set              ? & Setze aktuelle Position als Initialposition \\
             \rowcolor{lgray} \verb?l6480 softhiz               ? & Anhalten mit Rampe mit anschliessendem deaktivieren der Treiberstufe \\

@@ -19,12 +19,12 @@
        	\item Permanentmagnetmotor
        	\item Reluktanzmotor
     \end{itemize} 
-    Der Permanentmagnetmotor besitzt als Rotor einen Permagnentmagneten. Beim 
+    Der Permanentmagnetmotor besitzt als Rotor einen Permanentmagneten. Beim 
     Reluktanzmotor besteht der Rotor aus einem gezahnten Weicheisenkern. 
     Permanentmagnetmotoren erreichen eine kleinere Schrittfrequenz, besitzen 
     jedoch ein grösseres Drehmoment als Reluktanzmotoren. Die Kombination 
     aus Reluktanzmotor und Permanentmagnetmotor ist ein Hybridmotor. Ein 
-    Hybridmotor verbindet die Vorteile von Reluktanz- und Permagnentmotor. 
+    Hybridmotor verbindet die Vorteile von Reluktanz- und Permanentmotor. 
 
 \ifSTANDALONE
     \subsection{Schritte} \label{sec:steps}
@@ -32,14 +32,14 @@
 \ifEMBED
     \subsubsection{Schritte} \label{sec:steps}
 \fi
-    Der Vollschrittbetrieb kann einphasig oder auch zweiphasig gesteuert 
+    Der Vollschrittbetrieb kann ein- oder auch zweiphasig gesteuert 
     werden. Beim einphasigen Vollschrittbetrieb sind immer zwei gegenüber 
     liegende Pole aktiv. Beim zweiphasigen Vollschrittbetrieb werden jeweils 
     zwei nebeneinander liegende Pole aktiv. Im Halbschrittbetrieb werden die 
     beiden Vollschrittbetriebsarten kombiniert. So kann der Schrittwinkel 
     halbiert werden. Zusätzlich kann der Schrittmotor mit Mikroschritten 
     betrieben werden. Dabei folgt der Strom der sinusförmigen 
-    Referenzspannung. (Vgl. Seite \pageref{stromgesteuert}) \\
+    Referenzspannung. (Vgl. Seite \pageref{stromgesteuert}) 
     \begin{figure}[h!]
     	\centering
     	\begin{tikzpicture}
@@ -174,6 +174,8 @@
     	\caption{Mikroschritt}
     	\label{fig:mikroschritt}
     \end{figure}
+
+    \noindent
     Wie bei anderen Motoren hat auch bei Schrittmotoren die Anzahl Polpaare 
     einen Einfluss auf dessen Drehzahl. Die Polpaare bilden eine Untersetzung 
     zwischen der elektrischen und der mechanischen Rotation. Die meisten 
@@ -198,7 +200,7 @@
     mit einer Lowside Treiberstufe angesteuert. Dadurch kann der magnetische 
     Fluss mit einem geringen elektronischen Aufwand umgekehrt werden. Jedoch 
     ist immer nur eine Hälfte der Wicklung aktiv. Zudem ist die Herstellung 
-    aufwendiger und somit auch teuerer. 
+    aufwendiger und somit auch teurer. 
     %
     Bei einer bipolaren Wicklung fehlt der mittlere Abgriff. Die Umkehrung des 
     magnetischen Flusses muss über die Umkehrung der angelegten Spannung 
@@ -212,7 +214,7 @@
     \begin{figure}[h!]
        	\centering
        	\includegraphics[width=12cm]{\EtPath/Bilder/uniVsbi.jpg}
-       	\caption[bipolarer und unipolarer Betrieb]{bipolarer und unipolarer Betrieb \cite{Doku:Stepper}}
+       	\caption[Bipolarer und unipolarer Betrieb]{bipolarer und unipolarer Betrieb \cite{Doku:Stepper}}
        	\label{fig:uniVsbi}
     \end{figure}
     
