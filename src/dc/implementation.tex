@@ -2,16 +2,16 @@
 \section{Implementierung}
 
 \subsection{Treiber}
-Als Treiber für die H-Brücke wird der A3941 von Allegro verwendet. Dieser
-Chip ist auf Farnell für ca. 8 CHF verfügbar und bietet eine einfache
-DC-Motorenansteuerung mittels PWM-Signal und Richtungsangabe.
+Als Treiber für die H-Brücke wird der A3941 von Allegro Microsystems 
+verwendet. Dieser Chip ist bei Farnell für ca. 8 CHF verfügbar und bietet eine 
+einfache DC-Motorenansteuerung mittels PWM-Signal und Richtungsangabe.
 
 \subsubsection*{Eckdaten zum A3941 Treiberchip}
 \begin{itemize}
-	\item Spannung: 5.5 – 50V
+	\item Betriebsspannung: 5.5 – 50\si{\volt}
 	\item Geschwindigkeitseinstellung mittels PWM
 	\item Richtungsbestimmung
-	\item Preis: ca. 8 SFR
+	\item Preis: ca. 8 CHF
 	\item Externe H-Brücke
 \end{itemize}
 
@@ -21,10 +21,10 @@ NE555 wird ein Sägezahnsignal erzeugt, welches auf den Komparator in IC1
 geführt wird. Dieser vergleicht diesen Sägezahn mit dem Schwellwert,
 welcher mit dem Potentiometer R7 oder den beiden Widerständen R22 und R23
 eingestellt werden kann (R22 und R23 sind eine Bestückungsvariante). 
-Sobald er Sägezahn über dem Schwellwert ist, gibt der Komparator 15V aus.
-Wenn der Sägezahn tiefer ist zieht er seinen Ausgang auf Ground. Da er
-einen Open-Drain Ausgang hat, benötigt er einen Pull-UP Widerstand am
-Ausgang.
+Sobald der Sägezahn über dem Schwellwert ist, gibt der Komparator eine Spannung 
+von 15\si{\volt} aus. Wenn der Sägezahn tiefer ist zieht er seinen Ausgang 
+auf Ground. Da er einen Open-Drain Ausgang hat, benötigt er einen Pull-Up 
+Widerstand am Ausgang.
 
 \begin{figure}[h!]
 	\centering
@@ -40,19 +40,20 @@ Ausgang.
 
 \newpage
 \subsection{PWM-Logik}
-Mit dieser Logik kann eingestellt werden, ob das interne oder ein externes
-PWM Signal verwendet werden kann. Wird auf das Switch-Signal eine logische
+Mit dieser Logik kann ausgewählt werden, ob das interne oder ein externes
+PWM Signal verwendet wird. Wird auf das Switch-Signal eine logische
 0 gelegt, wird das interne PWM verwendet, bei einer logischen 1 das externe
 PWM. Das Switch Signal kann auch als ON/OFF Signal für das interne PWM
 verwendet werden. Dazu muss nur das externe PWM Signal dauerhaft auf Ground
 geschaltet werden. Auf diese Art kann zwischen internem PWM und keinem PWM
 umgeschaltet werden. Diese Betriebsart wird im Moment verwendet.
 
+\noindent
 Die Zehnerdiode am Ausgang wird benötigt, um das Ausgangssignal auf den
-Logikpegel des A3941 zu senken. Die 400x IC Reihe kann mit bis zu 18V
-betrieben werden und gibt auch annähernd diese Spannung wieder aus. Da der
-A3941 maximal einen Logikpegel von 6.5V verträgt, muss die Spannung
-gesenkt werden.
+Logikpegel des A3941 zu senken. Die 4xxx IC Reihe kann mit bis zu 18\si{\volt} 
+betrieben werden und gibt auch annähernd diese Spannung wieder aus. Da der 
+A3941 einen maximalen Logikpegel von 6.5\si{\volt} verträgt, muss die 
+Signalspannung reduziert werden.
 
 \begin{figure}[h!]
 	\centering
@@ -68,6 +69,7 @@ gesenkt werden.
 	\caption{Treiberschaltung}
 \end{figure}
 
+\noindent
 Mit dem Phase-Eingang kann die Richtung eingestellt werden. Bei PWMH und
 PWML wird das PWM Signal angeschlossen. Der Motorentreiber wird im
 Fast-Decay Modus betrieben. Das heisst, die Spule des Motor wird beim
@@ -75,8 +77,8 @@ Abbremsen über die Dioden der H-Brücke entladen.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.5\textwidth]{src/dc/fig/decay.png}
-	\caption{Fast Decay Illustation}
+	\includegraphics[width=0.5\textwidth]{src/dc/fig/decay.pdf}
+	\caption[Fast Decay Illustation]{Fast Decay Illustation \cite{Datasheet:A3941}}
 \end{figure}
 
 \subsubsection{Ladungspumpe}
@@ -93,7 +95,7 @@ Kapazität ist wie folgt berechnet:
 \]
 
 \noindent
-Die Stützkapazität ist mit dem 20-fachen Wert zu belegen, also mit
+Die Stützkapazität ist mit dem 20-fachen Wert zu belegen, also mit:
 \[
 	C_{REG}
 		\approx 20 \cdot C_{BOOT}

@@ -76,7 +76,7 @@ bedient, welcher ebenfalls individuell gewählt ist.
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.75\textwidth]{\DCPath/fig/a3941-functional.png}
+    \includegraphics[width=0.73\textwidth]{\DCPath/fig/a3941-functional.pdf}
     \caption[Blockschaltbild des A3941]{Blockschaltbild des A3941 \cite{Datasheet:A3941}}
     \label{fig:a3941-functional}
 \end{figure}
@@ -120,14 +120,14 @@ PWM Signal generiert.
         \includegraphics[width=\textwidth]{\DCPath/sim/pwm-01.jpg}
         \caption{Simulationsergebnisse für lineares Feedback}
     \end{subfigure}
-    \caption{Simulation eines PWM-Generator mit Komparator}
+    \caption{Simulation eines PWM-Generators mit Komparator}
 \end{figure}
 
 \begin{figure}[h!]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
         \includegraphics[width=\textwidth]{\DCPath/sim/sch-sawtooth-01.jpg}
-        \caption{Sägezahntgenerator mit Timer TLC555}
+        \caption{Sägezahngenerator mit Timer TLC555}
     \end{subfigure}
     \begin{subfigure}[b]{0.45\textwidth}
         \includegraphics[width=\textwidth]{\DCPath/sim/sawtooth-01.jpg}
@@ -146,12 +146,13 @@ Einfluss der Temperatur zu einer deutlichen Nichtlinearität dieses
 Messmittels. Eine Alternative zum Shunt-Widerstands bietet der Einsatz von
 Hall-Effekt-Stromwandlern, welche den Strom linearisiert als Spannungssignal
 ausgeben. Ein solcher Baustein ist der ACS712 der Allegro Microsystems,
-welcher im SMD Format verfügbar ist, bis zu einem Strom von 30\si{\ampere}.
+welcher im SMD Format verfügbar ist. Dieser kann einen Strom von bis zu 
+30\si{\ampere} messen.
 
 \noindent Ist eine genaue Drehzahl nicht von Bedeutung, kann auf die Regelung der
 Winkelgeschwindigkeit verzichtet werden. Dies gilt insbesondere, wenn eine
 hohe Übersetzung vorliegt, welche verhindert, dass die Winkelgeschwindigkeit
-der Gleichstrommaschine einbricht, bei entsprechender Belastung. Für diesen
+der Gleichstrommaschine bei entsprechender Belastung einbricht. Für diesen
 Fall kann das PWM fix eingestellt werden und lediglich mit einem Enable
 Signal gearbeitet werden. Dies lässt sich mit einer logischen AND Funktion
 realisieren für das PWM Signal. Eine mögliche Implementierung ist in der
