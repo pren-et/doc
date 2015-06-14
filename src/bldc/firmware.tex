@@ -193,16 +193,16 @@ Wenn das untere Nibble \verb!0xF! ist, wird die Länge der Übertragung im näch
 \fi
 In der Software ist ein PID-Regler mit Vorsteuerung implementiert. Dies ist im 
 Blockschema in der Abbildung \ref{fig:BlockschemaRegler} abgebildet. Je nach 
-Wahl der Parameter $P$, $I$, $D$ und $F_{Forward}$, können nur einzelne Teile 
+Wahl der Parameter $P$, $I$, $D$ und $F_{\text{Vorsteuerung}}$, können nur einzelne Teile 
 des Reglers verwendet werden. 
 \ifSTANDALONE
 Auf diese Weise kann zum Beispiel ein PI-Regler realisiert werden. 
 \fi 
 \ifEMBED
 Während der Testphase, siehe Testbericht in Kapitel \ref{sec:ParameterSuche}, 
-stellte sich heraus, dass ein reiner PI-Regler ohne Feedforward den 
+stellte sich heraus, dass ein reiner PI-Regler ohne Vorsteuerung den 
 Anforderungen am besten entsprechen. somit sind die Parameter $D = 0$ und 
-$F_{Forward} = 0$.
+$F_{\text{Vorsteuerung}} = 0$.
 \fi
 Als Feedback wird die Zeit, die für die Kommutierung bereits besprochen wurde, 
 verwendet. Damit kurzfristige Unregelmässigkeiten gedämpft werden, wird das 
@@ -215,7 +215,12 @@ Dieser Wert wird mit der Sollgrösse verrechnet und dem Regler zugeführt.
 \tikzstyle{controlblock} = [rectangle, rounded corners, minimum width=1.5cm, minimum height=1cm, draw=black]
 \begin{figure}[h!]
     \centering
+    \ifSTANDALONE
     \begin{tikzpicture}[node distance=2.0cm]
+    \fi 
+    \ifEMBED
+        \begin{tikzpicture}[node distance=1.85cm]
+    \fi
         \node (soll)    []                                  {Sollwert};
         \node (in)      [crosspoint, right of=soll]         {};
         \node (diff)    [sumpoint, right of=in]             {};
