@@ -192,7 +192,7 @@ Wenn das untere Nibble \verb!0xF! ist, wird die Länge der Übertragung im näch
 \paragraph{Regler}$~~$\vspace{2mm}\\
 \fi
 In der Software ist ein PID-Regler mit Vorsteuerung implementiert. Dies ist im 
-Blockschema in der Abbildung \ref{abb:BlockschemaRegler} abgebildet. Je nach 
+Blockschema in der Abbildung \ref{fig:BlockschemaRegler} abgebildet. Je nach 
 Wahl der Parameter $P$, $I$, $D$ und $F_{Forward}$, können nur einzelne Teile 
 des Reglers verwendet werden. 
 \ifSTANDALONE
@@ -210,20 +210,13 @@ Feedback durch ein FIR-Filter\footnote{Finite Impulse Response Filter, Ein
 Filter mit garantierter endlichen Antwort auf ein Impuls} gefiltert. Der 
 Ausgang dieses Filters wird mittels eines Korrekturfaktor in RPM umgerechnet. 
 Dieser Wert wird mit der Sollgrösse verrechnet und dem Regler zugeführt.
-\begin{figure}[h!]
-    \includegraphics[width=0.6\textwidth,clip,trim=0mm 0mm 0mm 0mm]
-    {\EtPath/Bilder/Blockschaltbild_Regler.jpg}
-    \centering
-    \caption{Blockschema der Regelung}
-    \label{abb:BlockschemaRegler}
-\end{figure}
 \tikzstyle{crosspoint}   = [circle, minimum size=0.15cm, inner sep=0pt, draw=black, fill=black]
 \tikzstyle{sumpoint}     = [circle, draw=black]
 \tikzstyle{controlblock} = [rectangle, rounded corners, minimum width=1.5cm, minimum height=1cm, draw=black]
 \begin{figure}[h!]
     \centering
     \begin{tikzpicture}[node distance=2.0cm]
-        \node (soll)    []                                  {Sollwert Drehzahl};
+        \node (soll)    []                                  {Sollwert};
         \node (in)      [crosspoint, right of=soll]         {};
         \node (diff)    [sumpoint, right of=in]             {};
         \node (control) [controlblock, right of=diff]       {PID-Regler};
@@ -231,7 +224,7 @@ Dieser Wert wird mit der Sollgrösse verrechnet und dem Regler zugeführt.
         \node (path1)   [controlblock, right of=sum1]       {Strecke};
         \node (sum2)    [sumpoint, right of=path1]          {};
         \node (feedback)[crosspoint, right of=sum2]         {};
-        \node (ist)     [right of=feedback]                 {Istwert Drehzahl};
+        \node (ist)     [right of=feedback]                 {Istwert};
         \node (moment)  [above of=sum2]                     {Störgrösse (Tennisball)};
         \node (fir)     [controlblock, below of=path1]      {FIR-Filter};
         \node (forward) [controlblock, above of=control]    {Vorsteuerung};
@@ -247,6 +240,7 @@ Dieser Wert wird mit der Sollgrösse verrechnet und dem Regler zugeführt.
         \draw[thick, ->] (in)       |- (forward);
         \draw[thick, ->] (forward)  -| (sum1) node[above right] {$+$};
     \end{tikzpicture}
-    \caption{Blockschaltbild Regelung}
+    \caption{Blockschema der Regelung}
+    \label{fig:BlockschemaRegler}
 \end{figure}
 
