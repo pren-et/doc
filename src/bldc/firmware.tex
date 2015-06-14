@@ -79,6 +79,22 @@ und eine Auflösung von 5.33\si{\micro\second}. Damit ist eine maximale
 Messdauer von 349.5\si{\milli\second} möglich. 
 
 \ifSTANDALONE
+\subsection{Kommutierung}
+\fi
+\ifEMBED
+\paragraph{Kommutierung}$~~$\vspace{2mm}\\
+\fi
+Die Kommutierung wird mit dem Timer TPM1 realisiert. Bei der 
+Zwangskommutierung und bei der Wiedergabe von Tönen wird der Kanal 0 
+verwendet. Dieser liest aus globalen Registern die Zeitdauer für die 
+Kommutierung aus. In der ISR wird eine Zustandsmaschine ausgeführt. Diese 
+steuert die drei Phasen des Motors entsprechend dem aktuellen Zustand an. Bei 
+Autokommutierung wird die Zustandsmaschine basierend auf den Signalen aus der 
+Phasendetektion (siehe Abschnitt \ref{sec:phase_det}) ausgeführt. Dazu kommen 
+die Kanäle 3 bis 5 zum Einsatz, welche als Input Capture konfiguriert sind. So 
+kann parallel zur Kommutierung die Drehzahl des Motors gemessen werden. 
+
+\ifSTANDALONE
 \subsection{Kommunikation zum Host}
 \fi
 \ifEMBED
